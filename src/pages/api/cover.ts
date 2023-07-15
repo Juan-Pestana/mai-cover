@@ -31,6 +31,13 @@ export default async function handler(
       training: sanitizedTraining,
       abstract: sanitizedAbstract,
     })
+    // ,[
+    //   {
+    //     handleLLMNewToken(token: string) {
+    //       process.stdout.write(token);
+    //     },
+    //   },
+    // ])
     console.log('response', response)
     res.status(200).json(response)
   } catch (error) {
