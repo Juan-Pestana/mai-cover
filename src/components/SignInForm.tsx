@@ -1,17 +1,17 @@
 'use client'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useStore } from './Store'
-import { redirect, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { signIn } from 'next-auth/react'
+import { FaGithub } from 'react-icons/fa'
 
 type Inputs = {
-  userName: string
   email: string
   password: string
 }
 
-function SignUpForm() {
+function SignInForm() {
   const router = useRouter()
 
   const {
@@ -24,19 +24,17 @@ function SignUpForm() {
     //console.log(data)
 
     try {
-      const user = await fetch('api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
+      signIn('credentials', { ...data, redirect: false }).then((callback) => {
+        if (callback?.error) {
+          //  toast.error(callback.error)
+          console.log('hubo un error')
+        }
 
-      if (user) {
-        //TO DO
-        //meter algo en local storage
-        router.push('/api/auth/signin')
-      }
+        if (callback?.ok && !callback?.error) {
+          //   toast.success('Logged in successfully!')
+          console.log('sesion iniciada')
+        }
+      })
     } catch (error) {
       console.log(error)
     }
@@ -86,21 +84,6 @@ function SignUpForm() {
         </span>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="mb-3">
-          <label className="text-sm ml-2" htmlFor="company_name">
-            Nombre de usuario
-          </label>
-          <input
-            type="text"
-            id="userName"
-            className="mt-2 w-full rounded-md p-2"
-            placeholder="Susana"
-            {...register('userName', { required: true })}
-          />
-          {errors.userName && (
-            <span className="text-red-500">This field is required</span>
-          )}
-        </div>
         {/* register your input into the hook by invoking the "register" function */}
         <div className="mb-3">
           <label className="text-sm ml-2" htmlFor="offer_title">
@@ -137,20 +120,22 @@ function SignUpForm() {
           </div>
         </div>
 
-        <input
-          className="w-full mt-4 bg-blue-950 py-3 text-slate-50 rounded-lg text-xl"
+        <button
+          className="w-full mt-4 bg-blue-950 py-3 text-slate-50 rounded-lg text-lg"
           type="submit"
-          value="Registrarse"
-        />
+          value="Inicia Sesión"
+        >
+          Inicia Sesión
+        </button>
       </form>
       <p className="mt-4">
-        ya tienes cuenta?{' '}
-        <Link className="text-blue-800" href="/api/auth/signin">
-          Inicia sesión
+        Aun no tienes cuenta?{' '}
+        <Link className="text-blue-800" href="/signup">
+          Regístrate
         </Link>
       </p>
     </div>
   )
 }
 
-export default SignUpForm
+export default SignInForm

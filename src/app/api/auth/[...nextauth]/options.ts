@@ -42,8 +42,6 @@ export const options: NextAuthOptions = {
             creds.password
           )
           if (isValidPassword) {
-            console.log('algo hace', user)
-
             return user
           } else {
             return null
@@ -56,6 +54,10 @@ export const options: NextAuthOptions = {
   ],
   session: {
     strategy: 'jwt',
+  },
+  pages: {
+    signIn: '/signin',
+    newUser: '/signup',
   },
   debug: process.env.NODE_ENV === 'development',
 }
