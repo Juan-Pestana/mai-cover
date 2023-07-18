@@ -1,8 +1,8 @@
 'use client'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useStore } from './Store'
-import { useRouter } from 'next/navigation'
-
+import { redirect, useRouter } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 type Inputs = {
   abstract: string
   experience: string
@@ -13,6 +13,10 @@ function Profile() {
   const { updateAbstract, updateExperience, updateTraining } = useStore(
     (state) => state
   )
+
+  const { data: session } = useSession()
+
+  console.log('la sesión en el cliente', session)
 
   const router = useRouter()
 
