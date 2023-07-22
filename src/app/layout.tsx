@@ -1,9 +1,8 @@
 import AuthProvider from '@/lib/Providers'
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import { inter } from '@/app/fonts/fonts'
+import Header from '@/components/header'
 
 export const metadata: Metadata = {
   title: 'mAI-cover',
@@ -18,7 +17,10 @@ export default function RootLayout({
   return (
     <html lang="es">
       <AuthProvider>
-        <body className={`${inter.className} relative`}>{children}</body>
+        <body className={`${inter.className} relative`}>
+          <Header />
+          {children}
+        </body>
       </AuthProvider>
     </html>
   )

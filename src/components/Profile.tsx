@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { useStore } from './Store'
 import { redirect, useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
+import { useEffect, useState } from 'react'
 type Inputs = {
   abstract: string
   experience: string
@@ -10,21 +11,36 @@ type Inputs = {
 }
 
 function Profile() {
-  const { updateAbstract, updateExperience, updateTraining } = useStore(
-    (state) => state
-  )
+  const { updateAbstract, updateExperience, updateTraining, profile_preview } =
+    useStore((state) => state)
 
-  const { data: session } = useSession()
+  // const [initialValues, setInitialValues] = useState({
+  //   abstract: '',
+  //   experience: '',
+  //   training: '',
+  // })
 
-  console.log('la sesión en el cliente', session)
+  useEffect(() => {
+    // router.refresh()
+    // console.log(profile_preview)
+    reset(profile_preview)
+  }, [profile_preview])
 
   const router = useRouter()
 
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>()
+  } = useForm<Inputs>({
+    defaultValues: {
+      abstract: profile_preview.abstract,
+      experience: profile_preview.experience,
+      training: profile_preview.training,
+    },
+  })
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     updateAbstract(data.abstract)
     updateExperience(data.experience)

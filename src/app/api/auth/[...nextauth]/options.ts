@@ -52,6 +52,24 @@ export const options: NextAuthOptions = {
       },
     }), // ...add more providers here
   ],
+  callbacks: {
+    // Ref: https://authjs.dev/guides/basics/role-based-access-control#persisting-the-role
+    async jwt({ token, user }) {
+      if (user) {
+        token.role = user.role
+        token.id = user.id
+      }
+      return token
+    },
+    // If you want to use the role in client components
+    async session({ session, token }) {
+      if (session?.user) {
+        session.user.role = token.role
+        session.user.id = token.id
+      }
+      return session
+    },
+  },
   session: {
     strategy: 'jwt',
   },
@@ -59,7 +77,7 @@ export const options: NextAuthOptions = {
     signIn: '/signin',
     newUser: '/signup',
   },
-  debug: process.env.NODE_ENV === 'development',
+  debug: false,
 }
 //   callbacks: {
 //     jwt: async ({ token, user }) => {
