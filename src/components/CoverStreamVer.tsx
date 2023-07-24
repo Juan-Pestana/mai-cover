@@ -9,12 +9,22 @@ import { FaCopy, FaSave } from 'react-icons/fa'
 import { SiTinyletter } from 'react-icons/si'
 import { montserrat } from '@/app/fonts/fonts'
 import { log } from 'console'
+import { useToast } from './ui/use-toast'
 
 function CoverStreamVer() {
-  const { offer_name, offer, company_name, training, experience, abstract } =
-    useStore((state) => state)
+  const {
+    offer_name,
+    offer,
+    company_name,
+    training,
+    experience,
+    abstract,
+    profile_used,
+    offer_used,
+  } = useStore((state) => state)
 
   const [isFinished, setIsFinished] = useState<boolean>(false)
+  const { toast } = useToast()
 
   const {
     completion,
@@ -42,30 +52,38 @@ function CoverStreamVer() {
 
   const saveLetter = async () => {
     try {
-      const letter = await fetch('api/letter', {
+      const res = await fetch('api/letter', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          offer_name,
-          offer,
-          company_name,
-          training,
-          experience,
-          abstract,
+          offer_used,
           completion,
+          profile_used,
         }),
       })
 
-      if (letter) {
+      if (res.ok) {
         //TO DO
         //meter algo en local storage
-        console.log(letter)
+        const letter = await res.json()
+        toast({
+          title: 'Se ha guardado la carta en tu perfil',
+          description: 'Puedes encontrarla en tu Dashboard',
+        })
       }
     } catch (error) {
       console.log(error)
+      toast({
+        title: 'Error al guardar la carta',
+        variant: 'destructive',
+      })
     }
+  }
+
+  const copyLetter = () => {
+    toast({ title: 'Una tostadica', description: 'Mu rica la tostadica' })
   }
 
   return (
@@ -105,6 +123,7 @@ function CoverStreamVer() {
             <button
               className=" mx-2 px-10 py-3 bg-blue-800 text-slate-200 rounded-xl hover:bg-blue-600  hover:shadow-xl hover:text-white transition-all"
               type="button"
+              onClick={copyLetter}
             >
               <FaCopy className="inline-block mr-2" /> Copiar
             </button>

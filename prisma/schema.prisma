@@ -32,15 +32,15 @@ model Account {
   @@index([userId])
 }
 
-model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+// model Session {
+//   id           String   @id @default(cuid())
+//   sessionToken String   @unique
+//   userId       String
+//   expires      DateTime
+//   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@index([userId])
-}
+//   @@index([userId])
+// }
 
 model User {
   id             String    @id @default(cuid())
@@ -51,7 +51,6 @@ model User {
   role           Role      @default(user)
   hashedPassword String?
   accounts       Account[]
-  sessions       Session[]
   letters        Letter[]
   Profile        Profile[]
 }
@@ -64,29 +63,32 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-model Letter {
-  id      String   @id @default(cuid())
-  content String   @db.Text
-  profile Profile?
-  offer   Offer?
-  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId  String
+model Profile {
+  id           String   @id @default(cuid())
+  profile_name String
+  abstract     String   @db.Text
+  experience   String   @db.Text
+  training     String   @db.Text
+  user         User     @relation(fields: [userId], references: [id])
+  userId       String
+  Letter       Letter[]
 
   @@index([userId])
 }
 
-model Profile {
-  id         String  @id @default(cuid())
-  abstract   String  @db.Text
-  experience String  @db.Text
-  training   String  @db.Text
-  user       User    @relation(fields: [userId], references: [id])
-  letter     Letter? @relation(fields: [letterId], references: [id])
-  letterId   String  @unique
-  userId     String
+model Letter {
+  id        String   @id @default(cuid())
+  content   String   @db.Text
+  profile   Profile? @relation(fields: [profileId], references: [id])
+  offer     Offer    @relation(fields: [offerId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  profileId String
+  offerId   String   @unique
 
-  @@index([letterId])
   @@index([userId])
+  @@index([profileId])
+  @@index([offerId])
 }
 
 model Offer {
@@ -94,8 +96,7 @@ model Offer {
   company_name String
   offer_name   String
   offer        String  @db.Text
-  letter       Letter? @relation(fields: [letterId], references: [id])
-  letterId     String  @unique
+  letters      Letter?
 }
 
 enum Role {

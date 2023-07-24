@@ -3,6 +3,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { inter } from '@/app/fonts/fonts'
 import Header from '@/components/header'
+import { Toaster } from '@/components/ui/toaster'
 
 export const metadata: Metadata = {
   title: 'mAI-cover',
@@ -20,6 +21,7 @@ export default function RootLayout({
         <body className={`${inter.className} relative`}>
           <Header />
           {children}
+          <Toaster />
         </body>
       </AuthProvider>
     </html>

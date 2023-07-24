@@ -2,15 +2,16 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useStore } from './Store'
 import { useRouter } from 'next/navigation'
+import { IOffer } from '@/schema/letter.schema'
 
 type Inputs = {
   company_name: string
-  offer_title: string
+  offer_name: string
   offer: string
 }
 
 function Offer() {
-  const { updateCompanyName, updateOffer, updateOfferName, offer_name } =
+  const { updateCompanyName, updateOffer, updateOfferName, updateOfferUsed } =
     useStore((state) => state)
 
   const router = useRouter()
@@ -21,13 +22,26 @@ function Offer() {
     formState: { errors },
   } = useForm<Inputs>()
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
     //console.log(data)
     updateCompanyName(data.company_name)
-    updateOfferName(data.offer_title)
+    updateOfferName(data.offer_name)
     updateOffer(data.offer)
 
-    router.push('/cover_letter')
+    const res = await fetch('api/offer', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    if (res.ok) {
+      const newOffer = await res.json()
+
+      updateOfferUsed(newOffer.id)
+    }
+
+    router.push('/cover_stream')
   }
 
   return (
@@ -55,10 +69,12 @@ function Offer() {
             id="offer_title"
             className="mt-2 w-full rounded-md p-2"
             placeholder="Ingeniero de Producto"
-            {...register('offer_title', { required: true })}
+            {...register('offer_name', { required: true })}
           />
-          {errors.offer_title && (
-            <span className="text-red-500">This field is required</span>
+          {errors.offer_name && (
+            <span className="text-red-500">
+              Debes indicar el nombre del puesto
+            </span>
           )}
         </div>
 
@@ -76,7 +92,9 @@ function Offer() {
           {/* errors will return when field validation fails  */}
           <div>
             {errors.offer && (
-              <span className="text-red-500">This field is required</span>
+              <span className="text-red-500">
+                Debes indicar la descripción de la oferta
+              </span>
             )}
           </div>
         </div>

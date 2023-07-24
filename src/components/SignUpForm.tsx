@@ -26,7 +26,7 @@ function SignUpForm() {
     //console.log(data)
 
     try {
-      const user = await fetch('api/register', {
+      const res = await fetch('api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ function SignUpForm() {
         body: JSON.stringify(data),
       })
 
-      if (user) {
+      if (res.ok) {
         //TO DO
         //meter algo en local storage
         signIn('credentials', {
@@ -58,11 +58,6 @@ function SignUpForm() {
       }
     } catch (error) {
       console.log(error)
-
-      setError('notRegisteredInput', {
-        type: 'custom',
-        message: `Error al registrar usuario, `,
-      })
     }
   }
 

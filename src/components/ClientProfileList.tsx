@@ -1,14 +1,9 @@
 'use client'
 
-import { IProfile } from '@/schema/letter.schema'
-
 import { useStore } from './Store'
 
 import { useState } from 'react'
-
-export interface IProfiles extends IProfile {
-  id: string
-}
+import { IProfiles } from '@/schema/letter.schema'
 
 interface IprofilesProps {
   profiles: IProfiles[]
@@ -22,14 +17,13 @@ function ClientProfileList({ profiles }: IprofilesProps) {
   const selectProfile = (id: string) => {
     const selectedProfile = profiles.find((profile) => id === profile.id)
     setSelected(id)
-    if(selectedProfile){
-        updateProfilePreview(selectedProfile)
+    if (selectedProfile) {
+      updateProfilePreview(selectedProfile)
     }
-    
   }
 
   return (
-    <div className="flex flex-wrap">
+    <div className="py-6 flex flex-wrap">
       {profiles.map((prof) => (
         <button
           onClick={() => selectProfile(prof.id)}
@@ -38,7 +32,7 @@ function ClientProfileList({ profiles }: IprofilesProps) {
             selected === prof.id && 'bg-slate-800 text-slate-200'
           }`}
         >
-          {prof.id}
+          {prof.profile_name}
         </button>
       ))}
     </div>

@@ -29,7 +29,7 @@ function CoverStream() {
         onmessage(event) {
           if (event.data !== '' && event.data !== 'CLOSE') {
             message += event.data
-            console.log(message)
+            //console.log(message)
             setResp(message)
           }
         },

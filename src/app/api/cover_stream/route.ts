@@ -25,7 +25,6 @@ export async function POST(req: Request) {
     : ''
 
   const handleNewToken = async (token: any) => {
-    console.log(token)
     await writer.ready
     writer.write(encoder.encode(`data: ${token}\n\n`))
   }

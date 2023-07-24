@@ -8,7 +8,7 @@ export async function POST(req: Request) {
   const session = await getServerSession(options)
   const data: ILetter = await req.json()
 
-  console.log('la sesion en el servidor', session)
+  console.log('la data de la carta', data)
 
   try {
     const letter = letterSchema.parse(data)
@@ -19,29 +19,17 @@ export async function POST(req: Request) {
       data: {
         content: letter.completion,
         userId: session?.user.id!,
-        offer: {
-          create: {
-            company_name: letter.company_name,
-            offer_name: letter.offer_name,
-            offer: letter.offer,
-          },
-        },
-        profile: {
-          create: {
-            //ojo que hemos hecho una trampa en abstract,
-            //TO DO hacer abstract obligatorio en el schema
-            abstract: letter.abstract!,
-            experience: letter.experience,
-            training: letter.training,
-            userId: session?.user.id!,
-          },
-        },
+        profileId: letter.profile_used,
+        offerId: letter.offer_used,
+      },
+      include: {
+        offer: true,
       },
     })
 
     return NextResponse.json(createdLetter)
   } catch (error) {
     console.log(error)
-    return new NextResponse('algo ha ido mal', { status: 400 })
+    return new NextResponse('algo ha ido mal')
   }
 }
