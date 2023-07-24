@@ -6,6 +6,8 @@ import { NextResponse } from 'next/server'
 export async function POST(req: Request) {
   const { email, userName, password }: ISignUp = await req.json()
 
+  console.log(userName)
+
   if (!userName || !email || !password) {
     return new NextResponse('Missing Fields', { status: 400 })
   }
