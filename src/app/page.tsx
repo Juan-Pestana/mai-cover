@@ -1,87 +1,113 @@
 import Image from 'next/image'
+import { montserrat } from './fonts/fonts'
+import Link from 'next/link'
+import { getServerSession } from 'next-auth'
+import { options } from './api/auth/[...nextauth]/options'
 
 export default async function asyncHome() {
+  const session = await getServerSession(options)
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-5 md:p-12 lg:p-24">
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+    <main className="flex flex-col items-center p-5 md:p-12 lg:p-24">
+      <div className="flex mt-24 flex-col lg:flex-row lg:mt-8 xl:mt-0">
+        <div className="flex-1 flex items-center xl:px-14 ">
+          <div className="py-0 md:pr-11">
+            <h1
+              className={`text-2xl leading-relaxed ${montserrat.className} lg:text-3xl xl:text-4xl`}
+            >
+              Ayúdate de la Inteligencia Artificial para generar tu mejor carta
+              de presentación.
+            </h1>
+            <div className="mt-3 leading-7 text-xl text-slate-700">
+              <p className="">
+                Si vas en serio en tu búsqueda de empleo, no descuides ni el más
+                mínimo detalle. Una buena carta adaptada a cada oferta puede
+                marcar la diferencia.{' '}
+                <span className="font-bold text-xl">
+                  Deja que nuestra IA te inspire.
+                </span>
+              </p>
+            </div>
+            <div className="flex mt-8 w-5/6">
+              {session ? (
+                <Link
+                  className="px-4 py-2 border-2 border-black text-xl hover:bg-black hover:text-white transition-all lg:text-2xl lg:px-6 lg:py-3"
+                  href="/profile_form"
+                >
+                  Crea tu carta
+                </Link>
+              ) : (
+                <Link
+                  className="px-4 py-2 border-2 border-black text-xl hover:bg-black hover:text-white transition-all lg:text-2xl lg:px-6 lg:py-3"
+                  href="/signup"
+                >
+                  Date de alta
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="flex-1 flex items-center justify-center">
+          <Image
+            className="w-full"
+            src="/headImageTrans.png"
+            alt="copy writing bot"
+            width={550}
+            height={550}
+            priority
+          />
+        </div>
       </div>
 
       <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <div className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300">
           <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
+            Date de Alta{' '}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
+            Obtén 3 cartas gratis en cuanto te Registres.
           </p>
-        </a>
+        </div>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <div className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300">
           <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
+            Tu perfil{' '}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
+            Simplemente pega desde tu CV el perfil que nuestra IA considerará
+            para cada oferta.
           </p>
-        </a>
+        </div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <div className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 ">
           <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
+            La Oferta{' '}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
+            Pega el texto de la oferta y nuestra y nuestra IA sacará lo mejor de
+            tu perfil para adaptarse a ella.
           </p>
-        </a>
+        </div>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <div className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 ">
           <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
+            Genera tu Carta{' '}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
+            Genera tu carta de presentación y guárdala en tu perfil.
           </p>
-        </a>
+        </div>
       </div>
     </main>
   )
