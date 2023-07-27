@@ -15,6 +15,7 @@ export const offerSchema = z.object({
 
 export const letterSchema = z.object({
   profile_used: z.string().nonempty(),
+  rating: z.number().min(1).max(5).optional(),
   completion: z.string().nonempty().min(40),
   offer_used: z.string().nonempty(),
 })

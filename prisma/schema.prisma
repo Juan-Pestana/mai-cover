@@ -79,6 +79,7 @@ model Profile {
 model Letter {
   id        String   @id @default(cuid())
   content   String   @db.Text
+  rating    Int?
   profile   Profile? @relation(fields: [profileId], references: [id])
   offer     Offer    @relation(fields: [offerId], references: [id])
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)

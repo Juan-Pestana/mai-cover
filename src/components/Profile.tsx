@@ -1,11 +1,10 @@
 'use client'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useStore } from './Store'
-import { redirect, useRouter } from 'next/navigation'
-import { useSession } from 'next-auth/react'
-import { useEffect, useState } from 'react'
-import { log } from 'console'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 import { IProfiles } from '@/schema/letter.schema'
+
 type Inputs = {
   profile_name: string
   abstract: string
@@ -83,7 +82,7 @@ function Profile() {
 
           setError('profile_name', {
             type: 'custom',
-            message: `Modifica el nombre de éste perfil si has hecho cambios, para crear uno nuevo perfil a partir de tu perfil de ${profile_preview.profile_name}`,
+            message: `Modifica el nombre de éste perfil si has hecho cambios, para crear uno nuevo perfil a partir de ${profile_preview.profile_name}`,
           })
         } else {
           //ha usado un perfil anterior y es todo igual, no ha cambiado nada
@@ -109,8 +108,6 @@ function Profile() {
         }
       }
     }
-
-    // if (profile_preview) router.push('/offer_form')
   }
 
   return (
@@ -130,7 +127,7 @@ function Profile() {
         {errors.profile_name && (
           <span className="text-red-500">{errors.profile_name.message}</span>
         )}
-        <hr />
+        <hr className="my-3" />
         <div className="mb-3">
           <label className="text-sm ml-2" htmlFor="abstract">
             Abstract
@@ -178,7 +175,7 @@ function Profile() {
         </div>
 
         <button
-          className="w-full mt-4 bg-blue-950 py-3 text-slate-50 rounded-lg text-xl"
+          className="w-full mt-4 bg-black py-3 text-slate-50 rounded-lg text-xl hover:bg-slate-800"
           type="submit"
         >
           Continuar

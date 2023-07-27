@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { montserrat } from './fonts/fonts'
+import { montserrat, garamont } from './fonts/fonts'
 import Link from 'next/link'
 import { getServerSession } from 'next-auth'
 import { options } from './api/auth/[...nextauth]/options'
@@ -7,17 +7,17 @@ import { options } from './api/auth/[...nextauth]/options'
 export default async function asyncHome() {
   const session = await getServerSession(options)
   return (
-    <main className="flex flex-col items-center p-5 md:p-12 lg:p-24">
-      <div className="flex mt-24 flex-col lg:flex-row lg:mt-8 xl:mt-0">
+    <main className="flex flex-col items-center p-5 md:p-12 lg:py-16 lg:px-34">
+      <div className="flex mt-24 flex-col max-w-screen-2xl lg:flex-row lg:mt-8 xl:mt-0">
         <div className="flex-1 flex items-center xl:px-14 ">
           <div className="py-0 md:pr-11">
             <h1
-              className={`text-2xl leading-relaxed ${montserrat.className} lg:text-3xl xl:text-4xl`}
+              className={`text-3xl leading-relaxed font-semibold ${garamont.className} lg:text-3xl xl:text-4xl`}
             >
-              Ayúdate de la Inteligencia Artificial para generar tu mejor carta
-              de presentación.
+              Ayúdate de la Inteligencia Artificial para generar tu carta de
+              presentación.
             </h1>
-            <div className="mt-3 leading-7 text-xl text-slate-700">
+            <div className="mt-3 leading-7 text-lg text-slate-700 md:text-xl">
               <p className="">
                 Si vas en serio en tu búsqueda de empleo, no descuides ni el más
                 mínimo detalle. Una buena carta adaptada a cada oferta puede
@@ -27,10 +27,11 @@ export default async function asyncHome() {
                 </span>
               </p>
             </div>
+
             <div className="flex mt-8 w-5/6">
               {session ? (
                 <Link
-                  className="px-4 py-2 border-2 border-black text-xl hover:bg-black hover:text-white transition-all lg:text-2xl lg:px-6 lg:py-3"
+                  className="px-4 py-2 border-2 border-black text-xl hover:bg-black hover:text-white transition-all lg:text-2xl lg:px-6 lg:py-2"
                   href="/profile_form"
                 >
                   Crea tu carta
@@ -67,7 +68,8 @@ export default async function asyncHome() {
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Obtén 3 cartas gratis en cuanto te Registres.
+            Obtén <span className="font-semibold">2 cartas gratis</span> en
+            cuanto te Registres.
           </p>
         </div>
 

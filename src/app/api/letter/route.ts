@@ -8,8 +8,6 @@ export async function POST(req: Request) {
   const session = await getServerSession(options)
   const data: ILetter = await req.json()
 
-  console.log('la data de la carta', data)
-
   try {
     const letter = letterSchema.parse(data)
 
@@ -18,6 +16,7 @@ export async function POST(req: Request) {
     const createdLetter = await prisma.letter.create({
       data: {
         content: letter.completion,
+        rating: letter.rating,
         userId: session?.user.id!,
         profileId: letter.profile_used,
         offerId: letter.offer_used,

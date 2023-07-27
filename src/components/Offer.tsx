@@ -45,7 +45,7 @@ function Offer() {
   }
 
   return (
-    <div className="w-full max-w-3xl my-10 py-10 px-5 bg-slate-100 rounded-lg shadow-lg">
+    <div className="w-full max-w-3xl my-10 py-10 px-2 bg-slate-100 rounded-lg shadow-lg md:px-5">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-3">
           <label className="text-sm ml-2" htmlFor="company_name">
@@ -99,11 +99,12 @@ function Offer() {
           </div>
         </div>
 
-        <input
-          className="w-full mt-4 bg-blue-950 py-3 text-slate-50 rounded-lg text-xl"
+        <button
+          className="w-full mt-4 bg-black py-3 text-slate-50 rounded-lg text-lg hover:bg-slate-800 md:text-xl"
           type="submit"
-          value="Generar Carta de Presentación"
-        />
+        >
+          Generar Carta
+        </button>
       </form>
     </div>
   )
