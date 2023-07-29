@@ -18,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="es">
       <AuthProvider>
-        <body className={`${inter.className} relative min-h-screen`}>
+        <body
+          className={`${inter.className} relative flex flex-col min-h-screen`}
+        >
           <Header />
           {children}
           <Toaster />

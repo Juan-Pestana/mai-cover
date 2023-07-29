@@ -111,7 +111,7 @@ function Profile() {
   }
 
   return (
-    <div className=" mx-auto w-full max-w-3xl my-10 py-10 px-5 bg-slate-100 rounded-lg shadow-lg">
+    <div className=" mx-auto w-full max-w-3xl py-10 px-5 bg-slate-100 rounded-lg shadow-lg">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-3">
           <label className="text-sm ml-2" htmlFor="profile_name">

@@ -1,8 +1,10 @@
 'use client'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { signIn } from 'next-auth/react'
+import { useToast } from './ui/use-toast'
+import { useEffect } from 'react'
 
 type Inputs = {
   email: string
@@ -17,6 +19,23 @@ function SignInForm() {
     setError,
     formState: { errors },
   } = useForm<Inputs>()
+
+  const searchParams = useSearchParams()
+
+  const { toast } = useToast()
+
+  useEffect(() => {
+    checkAuthError()
+  }, [])
+
+  const checkAuthError = () => {
+    if (searchParams && searchParams.get('error') === 'auth') {
+      //console.log('holaaaa....')
+      toast({
+        title: 'Debes iniciar sesión para acceder a esa página',
+      })
+    }
+  }
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     //console.log(data)

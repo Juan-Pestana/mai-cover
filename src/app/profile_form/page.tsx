@@ -1,14 +1,12 @@
-import Image from 'next/image'
 import Profile from '@/components/Profile'
 import { Suspense } from 'react'
 import ListProfiles from '@/components/ListProfiles'
-import { Divide } from 'lucide-react'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen items-center justify-center p-3 md:p-12 ">
+    <main className="flex-1 flex items-center justify-center ">
       <div className="flex flex-col  justify-center lg:flex-row lg:w-5/6">
-        <div className="py-5 mx-auto lg:w-3xl lg:py-28">
+        <div className="py-5 mx-auto lg:w-3xl lg:pt-28 lg:pr-5">
           <Suspense
             fallback={
               <div className="w-full px-3">

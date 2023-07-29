@@ -1,9 +1,8 @@
 import SignInForm from '@/components/SignInForm'
-import Image from 'next/image'
 
-export default function SignIp() {
+export default function signIn() {
   return (
-    <main className="flex min-h-screen items-center justify-center p-3 md:p-12 ">
+    <main className=" flex-1 flex items-center justify-center ">
       <div className="flex flex-col w-full items-center ">
         <h2 className="text-center text-xl">Inicia Sesión</h2>
         <SignInForm />
