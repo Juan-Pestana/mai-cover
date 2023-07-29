@@ -37,15 +37,19 @@ function SignUpForm() {
       if (res.ok) {
         //TO DO
         //meter algo en local storage
-        signIn('credentials', {
-          email: data.email,
-          password: data.password,
-          callbackUrl: '/',
-        }).then((callback) => {
+        signIn(
+          'credentials',
+
+          {
+            email: data.email,
+            password: data.password,
+            callbackUrl: '/',
+          }
+        ).then((callback) => {
           if (callback?.error) {
             setError('notRegisteredInput', {
               type: 'custom',
-              message: `Error en el inicio de sesión,  ${callback.error}`,
+              message: `Error en el registro de usuario,  ${callback.error}`,
             })
             console.log('hubo un error')
           }
@@ -67,7 +71,7 @@ function SignUpForm() {
         if (callback?.error) {
           setError('notRegisteredInput', {
             type: 'custom',
-            message: `Error en el inicio de sesión,  ${callback.error}`,
+            message: `Error en el registro con GitHub,  ${callback.error}`,
           })
           console.log('hubo un error')
         }
@@ -90,7 +94,7 @@ function SignUpForm() {
     <div className="w-full max-w-xl my-10 py-3 px-5 bg-slate-100 rounded-lg shadow-lg">
       <button
         type="button"
-        className="block w-full content-center text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-lg  py-3 text-center items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 my-3"
+        className="block w-full content-center text-white bg-black hover:bg-[#24292F]/90 focus:ring-2 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-lg  py-3 text-center items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 my-3"
         onClick={githubSignIn}
       >
         <div className="items-center content-center">
@@ -132,7 +136,7 @@ function SignUpForm() {
             {...register('userName', { required: true })}
           />
           {errors.userName && (
-            <span className="text-red-500">This field is required</span>
+            <span className="text-red-500">Este campo es obligatorio</span>
           )}
         </div>
         {/* register your input into the hook by invoking the "register" function */}
@@ -148,7 +152,7 @@ function SignUpForm() {
             {...register('email', { required: true })}
           />
           {errors.email && (
-            <span className="text-red-500">This field is required</span>
+            <span className="text-red-500">Este campo es obligatorio</span>
           )}
         </div>
 
@@ -166,13 +170,13 @@ function SignUpForm() {
           {/* errors will return when field validation fails  */}
           <div>
             {errors.password && (
-              <span className="text-red-500">This field is required</span>
+              <span className="text-red-500">Este campo es obligatorio</span>
             )}
           </div>
         </div>
 
         <button
-          className="w-full mt-4 bg-blue-950 py-3 text-slate-50 rounded-lg text-xl"
+          className="w-full mt-4 bg-black hover:bg-[#24292F]/90 py-3 text-slate-50  text-xl"
           type="submit"
         >
           Regístrate

@@ -29,7 +29,7 @@ function DropdownContent({ userName }: dDownContent) {
       <DropdownMenuItem>Facturación</DropdownMenuItem>
       <DropdownMenuSeparator />
       <DropdownMenuItem>
-        <button onClick={() => signOut()}>Log Out</button>
+        <button onClick={() => signOut({ callbackUrl: '/' })}>Log Out</button>
       </DropdownMenuItem>
     </DropdownMenuContent>
   )

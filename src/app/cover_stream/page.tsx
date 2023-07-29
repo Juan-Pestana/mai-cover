@@ -1,11 +1,17 @@
-import CoverStream from '@/components/CoverStream'
 import CoverStreamVer from '@/components/CoverStreamVer'
+import { getServerSession } from 'next-auth/next'
+import { options } from '../api/auth/[...nextauth]/options'
+import { redirect } from 'next/navigation'
 
-export default function Home() {
+export default async function Home() {
+  const session = await getServerSession(options)
+
+  if (!session) {
+    redirect('/api/auth/signin?callbackUrl=/')
+  }
   return (
-    <main className="flex min-h-screen items-center justify-center p-3 md:p-12 ">
-      <div className="flex flex-col w-full items-center ">
-        
+    <main className="flex items-center justify-center p-3  ">
+      <div className="flex flex-col w-full justify-center items-center lg:mt-6">
         <CoverStreamVer />
       </div>
     </main>

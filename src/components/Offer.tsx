@@ -86,7 +86,7 @@ function Offer() {
           <textarea
             id="offer"
             className=" mt-2 w-full rounded-md p-2 h-60"
-            placeholder="pega aquí el texto de la oferta"
+            placeholder="Pega aquí el texto de la oferta"
             {...register('offer', { required: true })}
           />
           {/* errors will return when field validation fails  */}

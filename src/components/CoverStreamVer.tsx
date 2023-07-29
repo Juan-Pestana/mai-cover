@@ -114,7 +114,7 @@ function CoverStreamVer() {
               onSubmit={handleSubmit}
             >
               <button
-                className="mx-2 px-10 py-3 bg-blue-800 text-slate-200 rounded-xl hover:bg-blue-600 hover:shadow-xl hover:text-white transition-all"
+                className="mx-2 px-10 py-3 bg-black text-white hover:bg-[#24292F]/90 hover:shadow-xl transition-all"
                 type="submit"
               >
                 <SiTinyletter className="inline-block mr-2 font-bold text-xl" />{' '}

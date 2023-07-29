@@ -7,9 +7,9 @@ import { options } from './api/auth/[...nextauth]/options'
 export default async function asyncHome() {
   const session = await getServerSession(options)
   return (
-    <main className="flex flex-col items-center p-5 md:p-12 lg:py-16 lg:px-34">
-      <div className="flex mt-24 flex-col max-w-screen-2xl lg:flex-row lg:mt-8 xl:mt-0">
-        <div className="flex-1 flex items-center xl:px-14 ">
+    <main className="flex flex-col items-center ">
+      <div className="flex mt-24 flex-col max-w-screen-2xl px-5 lg:flex-row lg:mt-8 xl:mt-0 md:px-0">
+        <div className="flex-1 flex items-center xl:pr-14 ">
           <div className="py-0 md:pr-11">
             <h1
               className={`text-3xl leading-relaxed font-semibold ${garamont.className} lg:text-3xl xl:text-4xl`}
@@ -20,7 +20,7 @@ export default async function asyncHome() {
             <div className="mt-3 leading-7 text-lg text-slate-700 md:text-xl">
               <p className="">
                 Si vas en serio en tu búsqueda de empleo, no descuides ni el más
-                mínimo detalle. Una buena carta adaptada a cada oferta puede
+                mínimo detalle. Una buena carta, adaptada a cada oferta, puede
                 marcar la diferencia.{' '}
                 <span className="font-bold text-xl">
                   Deja que nuestra IA te inspire.

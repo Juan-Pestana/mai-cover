@@ -143,7 +143,7 @@ function SignInForm() {
         </div>
 
         <button
-          className="w-full mt-4 bg-blue-950 py-3 text-slate-50 rounded-lg text-lg"
+          className="w-full mt-4 bg-black py-3 text-slate-50 rounded-lg text-lg"
           type="submit"
           value="Inicia Sesión"
         >

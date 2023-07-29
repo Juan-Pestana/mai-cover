@@ -6,8 +6,8 @@ import Header from '@/components/header'
 import { Toaster } from '@/components/ui/toaster'
 
 export const metadata: Metadata = {
-  title: 'mAI-cover',
-  description: 'Tu carta de presentación en segundos gracias a la IA',
+  title: 'mAI-Cover',
+  description: 'Tu carta de presentación en segundos gracias a nuestra IA',
 }
 
 export default function RootLayout({
@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <AuthProvider>
-        <body className={`${inter.className} relative`}>
+        <body className={`${inter.className} relative min-h-screen`}>
           <Header />
           {children}
           <Toaster />

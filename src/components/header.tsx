@@ -17,7 +17,7 @@ async function Header() {
   const session = await getServerSession(options)
 
   return (
-    <header className="fixed bg-black w-full p-3">
+    <header className="block bg-black w-full p-3">
       <div className="flex justify-between items-center text-xl">
         <div>
           <Link href="/" className="text-white flex items-center">
@@ -31,7 +31,7 @@ async function Header() {
           <div className="flex items-center justify-center mx-2">
             <Link
               href="/profile_form"
-              className="inline-block text-sm mx-4 px-4 py-2 border-2 border-slate-300 text-slate-300 rounded-md lg:text-lg lg:px-6"
+              className="inline-block text-sm mx-4 px-4 py-2 border-2 hover:bg-[#24292F]/90 border-slate-300 text-slate-300 rounded-md lg:text-lg lg:px-6"
             >
               Nueva carta
             </Link>
@@ -49,14 +49,16 @@ async function Header() {
                   <FaUserCircle className="text-white h-full w-full" />
                 )}
               </DropdownMenuTrigger>
-              <DropdownContent userName={session?.user?.name ? session.user.name : 'Mi cuenta'} />
+              <DropdownContent
+                userName={session?.user?.name ? session.user.name : 'Mi cuenta'}
+              />
             </DropdownMenu>
           </div>
         ) : (
           <div className="mx-3">
             <Link
               href="/signin"
-              className="inline-block text-sm mx-4 px-4 py-2 border-2 border-slate-300 text-slate-300 rounded-md lg:text-lg lg:px-6"
+              className="inline-block hover:bg-[#24292F]/90 text-sm mx-4 px-4 py-2 border-2  border-slate-300 text-white rounded-md lg:text-lg lg:px-6"
             >
               Inicia Sesión
             </Link>
