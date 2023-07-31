@@ -7,7 +7,7 @@ export default async function Home() {
   const session = await getServerSession(options)
 
   if (!session) {
-    redirect('/api/auth/signin?callbackUrl=/&error=auth')
+    redirect('/api/auth/signin?callbackUrl=/')
   }
   return (
     <main className="flex items-center justify-center p-3  ">

@@ -7,8 +7,8 @@ import { options } from './api/auth/[...nextauth]/options'
 export default async function asyncHome() {
   const session = await getServerSession(options)
   return (
-    <main className="flex flex-col items-center ">
-      <div className="flex mt-24 flex-col max-w-screen-2xl px-5 lg:flex-row lg:mt-8 xl:mt-0 md:px-0">
+    <main className="flex flex-col items-center px-3 sm:px-5  ">
+      <div className="flex mt-14 flex-col max-w-screen-2xl lg:flex-row lg:mt-8 xl:mt-0 md:px-0">
         <div className="flex-1 flex items-center xl:pr-14 ">
           <div className="py-0 md:pr-11">
             <h1

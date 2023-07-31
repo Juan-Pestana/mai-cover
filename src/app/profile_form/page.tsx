@@ -1,8 +1,16 @@
 import Profile from '@/components/Profile'
 import { Suspense } from 'react'
 import ListProfiles from '@/components/ListProfiles'
+import { getServerSession } from 'next-auth/next'
+import { options } from '../api/auth/[...nextauth]/options'
+import { redirect } from 'next/navigation'
 
-export default function Home() {
+export default async function Home() {
+  const session = await getServerSession(options)
+
+  if (!session) {
+    redirect('/api/auth/signin?callbackUrl=/')
+  }
   return (
     <main className="flex-1 flex items-center justify-center ">
       <div className="flex flex-col  justify-center lg:flex-row lg:w-5/6">
