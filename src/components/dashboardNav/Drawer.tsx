@@ -1,6 +1,7 @@
 'use client'
 
 import React, { Dispatch, SetStateAction } from 'react'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 interface Idrawer {
   isOpen: boolean
@@ -24,9 +25,9 @@ export default function Drawer({ children, isOpen, setIsOpen }: Idrawer) {
           (isOpen ? ' -translate-x-0 ' : ' -translate-x-full ')
         }
       >
-        <article className="relative w-full pb-10 flex flex-col space-y-6 h-full">
-          <header className="p-4 font-bold text-lg flex justify-between bg-slate-800 text-white ">
-            <p>Cartas</p>
+        <article className="relative w-full pb-10 flex flex-col  h-full bg-gradient-to-t from-gray-700 via-gray-900 to-black">
+          <header className="p-4 font-bold text-lg flex justify-between text-white ">
+            <h2 className="text-2xl">Documentos</h2>
             <button
               onClick={() => {
                 setIsOpen(false)
@@ -35,8 +36,7 @@ export default function Drawer({ children, isOpen, setIsOpen }: Idrawer) {
               X
             </button>
           </header>
-          {/* <div className="px-5">{children}</div> */}
-          {children}
+          <div className="px-5  mt-6 text-white">{children}</div>
         </article>
       </section>
       <section
