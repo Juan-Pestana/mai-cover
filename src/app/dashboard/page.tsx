@@ -2,6 +2,7 @@ import DrawerClientWrap from '@/components/dashboardNav/DrawerClientWrap'
 import { prisma } from '@/lib/prismaClient'
 import { getServerSession } from 'next-auth/next'
 import { options } from '../api/auth/[...nextauth]/options'
+import NavContent from '@/components/dashboardNav/NavContent'
 
 export interface ILettersList {
   id: string
@@ -70,14 +71,19 @@ async function Dashboard() {
         <aside className="hidden w-96 lg:block ">
           <article className="relative w-full pb-10 flex flex-col h-full border-r-2 border-black bg-gradient-to-t from-gray-700 via-gray-900 to-black">
             <header className="p-4 font-bold text-lg flex justify-between  text-white ">
-              <p>Tus documentos</p>
+              <h2 className="text-2xl">Documentos</h2>
             </header>
-
-            <nav className="px-5 space-y-6 mt-6 text-white">
-              {/* {Array.from(profSet).map((prof) => (
-                <div key={prof.id}>{prof.profile_name}</div>
-              ))} */}
-            </nav>
+            {letters.length ? (
+              <nav className="px-5 space-y-6 mt-6 text-white">
+                <NavContent profiles={profiles} letters={letters} />
+              </nav>
+            ) : (
+              <div className="flex h-full items-center justify-center px-5">
+                <h2 className="text-white text-center text-2xl leading-relaxed">
+                  No tienes documentos todavía
+                </h2>
+              </div>
+            )}
           </article>
           {/* <GetLetters /> */}
         </aside>
