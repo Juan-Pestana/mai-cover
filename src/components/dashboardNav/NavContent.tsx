@@ -22,7 +22,7 @@ function NavContent({ letters, profiles }: IDrawerProps) {
           Tus Cartas
         </AccordionTrigger>
         {letters.map((letter) => (
-          <Link href={`/dashboard?letter=${letter.id}`} key={letter.id}>
+          <Link href={`/dashboard?show=letter&id=${letter.id}`} key={letter.id}>
             <AccordionContent className=" text-lg mb-5 px-5 pt-4 border-2 border-slate-400 rounded-xl">
               {letter.offer.offer_name}
             </AccordionContent>
@@ -34,7 +34,10 @@ function NavContent({ letters, profiles }: IDrawerProps) {
           Tus Perfiles
         </AccordionTrigger>
         {profiles.map((profile) => (
-          <Link href={`/dashboard?profile=${profile.id}`} key={profile.id}>
+          <Link
+            href={`/dashboard?show=profile&id=${profile.id}`}
+            key={profile.id}
+          >
             <AccordionContent className=" text-lg mb-5 px-5 pt-4 border-2 border-slate-400 rounded-xl">
               {profile.profile_name}
             </AccordionContent>

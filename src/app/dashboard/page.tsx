@@ -3,6 +3,8 @@ import { prisma } from '@/lib/prismaClient'
 import { getServerSession } from 'next-auth/next'
 import { options } from '../api/auth/[...nextauth]/options'
 import NavContent from '@/components/dashboardNav/NavContent'
+import LetterDB from '@/components/dashboardMain/LetterDB'
+import ProfileDB from '@/components/dashboardMain/ProfileDB'
 
 export interface ILettersList {
   id: string
@@ -55,7 +57,13 @@ async function getProfiles() {
   return res as ILettersList[]
 }
 
-async function Dashboard() {
+async function Dashboard({
+  params,
+  searchParams,
+}: {
+  params: { slug: string }
+  searchParams?: { [key: string]: string | undefined }
+}) {
   const letters = await getProfiles()
   //const profiles = await JSON.parse(res)
 
@@ -63,6 +71,19 @@ async function Dashboard() {
   const profiles = profArr.filter(
     (value, index, self) => index === self.findIndex((t) => t.id === value.id)
   )
+
+  let show = ''
+  let id = ''
+
+  if (searchParams?.show) {
+    show = searchParams.show!
+    id = searchParams.id!
+  } else {
+    show = 'letter'
+    id = letters[0].id
+  }
+
+  console.log(show)
 
   return (
     <>
@@ -79,7 +100,7 @@ async function Dashboard() {
               </nav>
             ) : (
               <div className="flex h-full items-center justify-center px-5">
-                <h2 className="text-white text-center text-2xl leading-relaxed">
+                <h2 className="text-white text-center text-2xl leading-relaxed ">
                   No tienes documentos todavía
                 </h2>
               </div>
@@ -87,18 +108,11 @@ async function Dashboard() {
           </article>
           {/* <GetLetters /> */}
         </aside>
-        <main className="flex flex-col flex-1  border-1 border-black  bg-white lg:rounded-tl-3xl">
-          <div className="flex-1 flex items-center justify-center overflow-hidden">
-            <article className="p-10 border-2 border-red-500">
-              aqui va una parte
-            </article>
-          </div>
-          <footer className="h-16 flex items-center justify-around">
-            <div>Perfil</div>
-            <div>Oferta</div>
-            <div>Carta</div>
-          </footer>
-        </main>
+        {show === 'letter' ? (
+          <LetterDB letter={letters.find((letr) => letr.id === id)} />
+        ) : (
+          <ProfileDB />
+        )}
       </div>
     </>
   )

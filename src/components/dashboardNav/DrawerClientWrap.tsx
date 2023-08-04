@@ -26,7 +26,7 @@ function DrawerClientWrap({ letters, profiles }: IDrawerProps) {
       <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
         <NavContent letters={letters} profiles={profiles} />
       </Drawer>
-      <div className=" absolute top-1 left-1 lg:hidden">
+      <div className=" absolute top-1 z-10 left-1 lg:hidden">
         <div>
           <button onClick={() => setIsOpen(true)}>abrir</button>
         </div>
