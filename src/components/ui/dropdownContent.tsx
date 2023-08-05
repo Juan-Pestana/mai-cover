@@ -11,6 +11,7 @@ import {
 } from './dropdown-menu'
 
 import React from 'react'
+import Link from 'next/link'
 
 interface dDownContent {
   userName: string
@@ -18,16 +19,17 @@ interface dDownContent {
 
 function DropdownContent({ userName }: dDownContent) {
   return (
-    <DropdownMenuContent className="mt-2 ml-2">
+    <DropdownMenuContent className="mt-2 ml-2 bg-white">
       <DropdownMenuLabel className="text-lg text-center">
         {userName}
       </DropdownMenuLabel>
       <DropdownMenuSeparator />
       <DropdownMenuItem>Perfil</DropdownMenuItem>
-      <DropdownMenuItem>Mis cartas</DropdownMenuItem>
-      <DropdownMenuItem>Mis sugerencias</DropdownMenuItem>
+      <DropdownMenuItem>
+        <Link href={'/dashboard'}>Mis Documentos</Link>
+      </DropdownMenuItem>
       <DropdownMenuItem>Facturación</DropdownMenuItem>
-      <DropdownMenuSeparator />
+      <DropdownMenuSeparator className="text-black" />
       <DropdownMenuItem>
         <button onClick={() => signOut({ callbackUrl: '/' })}>Log Out</button>
       </DropdownMenuItem>

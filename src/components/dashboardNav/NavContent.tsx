@@ -1,3 +1,5 @@
+'use client'
+
 import { ILettersList } from '@/app/dashboard/page'
 import {
   Accordion,
@@ -8,13 +10,27 @@ import {
 
 import { IProfiles } from '@/schema/letter.schema'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { Dispatch, SetStateAction } from 'react'
 
 interface IDrawerProps {
   letters: ILettersList[]
   profiles: IProfiles[]
+  id: string
+  setIsOpen?: Dispatch<SetStateAction<boolean>>
+  show: string
 }
 
-function NavContent({ letters, profiles }: IDrawerProps) {
+function NavContent({ letters, profiles, id, setIsOpen }: IDrawerProps) {
+  const router = useRouter()
+
+  const linkBtn = (type: string, id: string) => {
+    router.push(`/dashboard?show=${type}&id=${id}`)
+    if (setIsOpen) {
+      setIsOpen(false)
+    }
+  }
+
   return (
     <Accordion type="single" collapsible>
       <AccordionItem className="mb-6 " value="item-1">
@@ -22,11 +38,16 @@ function NavContent({ letters, profiles }: IDrawerProps) {
           Tus Cartas
         </AccordionTrigger>
         {letters.map((letter) => (
-          <Link href={`/dashboard?show=letter&id=${letter.id}`} key={letter.id}>
-            <AccordionContent className=" text-lg mb-5 px-5 pt-4 border-2 border-slate-400 rounded-xl">
+          <AccordionContent key={letter.id}>
+            <button
+              className={`text-lg  px-5 py-4 border-2 border-slate-400 rounded-xl w-full ${
+                id === letter.id ? 'bg-white text-black' : null
+              }`}
+              onClick={() => linkBtn('letter', letter.id)}
+            >
               {letter.offer.offer_name}
-            </AccordionContent>
-          </Link>
+            </button>
+          </AccordionContent>
         ))}
       </AccordionItem>
       <AccordionItem className="mb-12 space-y-6" value="item-2">
@@ -34,14 +55,16 @@ function NavContent({ letters, profiles }: IDrawerProps) {
           Tus Perfiles
         </AccordionTrigger>
         {profiles.map((profile) => (
-          <Link
-            href={`/dashboard?show=profile&id=${profile.id}`}
-            key={profile.id}
-          >
-            <AccordionContent className=" text-lg mb-5 px-5 pt-4 border-2 border-slate-400 rounded-xl">
+          <AccordionContent key={profile.id}>
+            <button
+              className={`text-lg  px-5 py-4 border-2 border-slate-400 rounded-xl w-full ${
+                id === profile.id ? 'bg-white text-black' : null
+              }`}
+              onClick={() => linkBtn('profile', profile.id)}
+            >
               {profile.profile_name}
-            </AccordionContent>
-          </Link>
+            </button>
+          </AccordionContent>
         ))}
       </AccordionItem>
     </Accordion>

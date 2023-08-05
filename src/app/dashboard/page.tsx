@@ -58,7 +58,6 @@ async function getProfiles() {
 }
 
 async function Dashboard({
-  params,
   searchParams,
 }: {
   params: { slug: string }
@@ -83,8 +82,6 @@ async function Dashboard({
     id = letters[0].id
   }
 
-  console.log(show)
-
   return (
     <>
       <div className="relative flex-1 h-full flex bg-black">
@@ -96,7 +93,12 @@ async function Dashboard({
             </header>
             {letters.length ? (
               <nav className="px-5 space-y-6 mt-6 text-white">
-                <NavContent profiles={profiles} letters={letters} />
+                <NavContent
+                  profiles={profiles}
+                  letters={letters}
+                  id={id}
+                  show={show}
+                />
               </nav>
             ) : (
               <div className="flex h-full items-center justify-center px-5">
@@ -109,7 +111,7 @@ async function Dashboard({
           {/* <GetLetters /> */}
         </aside>
         {show === 'letter' ? (
-          <LetterDB letter={letters.find((letr) => letr.id === id)} />
+          <LetterDB letter={letters.find((letr) => letr.id === id)!} />
         ) : (
           <ProfileDB />
         )}

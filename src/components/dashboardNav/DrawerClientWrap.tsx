@@ -24,7 +24,13 @@ function DrawerClientWrap({ letters, profiles }: IDrawerProps) {
   return (
     <>
       <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
-        <NavContent letters={letters} profiles={profiles} />
+        <NavContent
+          letters={letters}
+          profiles={profiles}
+          setIsOpen={setIsOpen}
+          id={'caca'}
+          show={'asd'}
+        />
       </Drawer>
       <div className=" absolute top-1 z-10 left-1 lg:hidden">
         <div>
