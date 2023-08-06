@@ -29,7 +29,7 @@ export default async function Home() {
           </Suspense>
         </div>
 
-        <Profile />
+        <Profile pageType="form" />
       </div>
     </main>
   )

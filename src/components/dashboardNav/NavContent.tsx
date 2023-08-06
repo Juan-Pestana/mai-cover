@@ -9,20 +9,22 @@ import {
 } from '@/components/ui/accordion'
 
 import { IProfiles } from '@/schema/letter.schema'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+
+import { useSearchParams, useRouter } from 'next/navigation'
 import { Dispatch, SetStateAction } from 'react'
 
 interface IDrawerProps {
   letters: ILettersList[]
   profiles: IProfiles[]
-  id: string
   setIsOpen?: Dispatch<SetStateAction<boolean>>
-  show: string
 }
 
-function NavContent({ letters, profiles, id, setIsOpen }: IDrawerProps) {
+function NavContent({ letters, profiles, setIsOpen }: IDrawerProps) {
+  const searchParams = useSearchParams()
   const router = useRouter()
+
+  const id = searchParams?.get('id')
+  //const show = searchParams?.get('show')
 
   const linkBtn = (type: string, id: string) => {
     router.push(`/dashboard?show=${type}&id=${id}`)
@@ -50,7 +52,7 @@ function NavContent({ letters, profiles, id, setIsOpen }: IDrawerProps) {
           </AccordionContent>
         ))}
       </AccordionItem>
-      <AccordionItem className="mb-12 space-y-6" value="item-2">
+      <AccordionItem className="mb-6" value="item-2">
         <AccordionTrigger className="text-xl font-semibold">
           Tus Perfiles
         </AccordionTrigger>
@@ -66,6 +68,14 @@ function NavContent({ letters, profiles, id, setIsOpen }: IDrawerProps) {
             </button>
           </AccordionContent>
         ))}
+        <AccordionContent>
+          <button
+            className={`text-lg  px-5 py-4 border-2 border-slate-400 rounded-xl w-full`}
+            onClick={() => console.log('hooooola')}
+          >
+            Crear nuevo perfil
+          </button>
+        </AccordionContent>
       </AccordionItem>
     </Accordion>
   )

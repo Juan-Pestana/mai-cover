@@ -34,8 +34,6 @@ export async function POST(req: Request) {
 
   const body: IProfiles = await req.json()
 
-  console.log(body)
-
   const newProfile = await prisma.profile.upsert({
     where: {
       id: body.id || '',

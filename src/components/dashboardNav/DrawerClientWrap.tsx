@@ -3,13 +3,6 @@
 import { useState } from 'react'
 import Drawer from './Drawer'
 import { ILettersList } from '@/app/dashboard/page'
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion'
-
 import { IProfiles } from '@/schema/letter.schema'
 import NavContent from './NavContent'
 
@@ -28,8 +21,6 @@ function DrawerClientWrap({ letters, profiles }: IDrawerProps) {
           letters={letters}
           profiles={profiles}
           setIsOpen={setIsOpen}
-          id={'caca'}
-          show={'asd'}
         />
       </Drawer>
       <div className=" absolute top-1 z-10 left-1 lg:hidden">

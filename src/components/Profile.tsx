@@ -2,8 +2,9 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useStore } from './Store'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { Dispatch, SetStateAction, useEffect } from 'react'
 import { IProfiles } from '@/schema/letter.schema'
+import { useToast } from './ui/use-toast'
 
 type Inputs = {
   profile_name: string
@@ -12,7 +13,12 @@ type Inputs = {
   training: string
 }
 
-function Profile() {
+interface IProfileProps {
+  pageType: string
+  setShow?: Dispatch<SetStateAction<string>>
+}
+
+function Profile({ pageType, setShow }: IProfileProps) {
   const {
     updateAbstract,
     updateExperience,
@@ -22,6 +28,8 @@ function Profile() {
   } = useStore((state) => state)
 
   const profile_preview = useStore((state) => state.profile_preview)
+
+  const { toast } = useToast()
 
   useEffect(() => {
     // router.refresh()
@@ -36,6 +44,7 @@ function Profile() {
     register,
     reset,
     handleSubmit,
+    watch,
     setError,
     formState: { errors },
   } = useForm<Inputs>({
@@ -79,15 +88,48 @@ function Profile() {
         ) {
           //ha actualizado el perfil, pero no le ha cambiado el nombre
           //lanzar error de nombre
+          // si estamos en el dashboard actulizamos el actual
+          if (pageType === 'form') {
+            setError('profile_name', {
+              type: 'custom',
+              message: `Modifica el nombre de éste perfil si has hecho cambios, para crear uno nueva versión`,
+            })
+          }
+          if (pageType === 'dashboard') {
+            //actualizar el mismo perfil
+            // pasando
+            const res = await fetch('api/profile', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ id: profile_preview.id, ...data }),
+            })
 
-          setError('profile_name', {
-            type: 'custom',
-            message: `Modifica el nombre de éste perfil si has hecho cambios, para crear uno nuevo perfil a partir de ${profile_preview.profile_name}`,
-          })
+            if (res.ok) {
+              //console.log(body)
+              const updatedProfile = (await res.json()) as IProfiles
+
+              setShow && setShow('profile')
+              router.refresh()
+              toast({
+                title: `Se ha actualizado ${updatedProfile.profile_name} `,
+              })
+            }
+          }
         } else {
           //ha usado un perfil anterior y es todo igual, no ha cambiado nada
-          updateProfileUsed(profile_preview.id)
-          router.push('offer_form')
+          if (pageType === 'form') {
+            updateProfileUsed(profile_preview.id)
+            router.push('offer_form')
+          }
+          if (pageType === 'dashboard') {
+            setShow && setShow('profile')
+            router.refresh()
+            toast({
+              title: `No se han hecho cambios en ${profile_preview.profile_name} `,
+            })
+          }
         }
       } else {
         //Es un nuevo perfil creado a partir de otro perfil
@@ -102,9 +144,20 @@ function Profile() {
 
         if (res.ok) {
           //console.log(body)
-          const newProfile = (await res.json()) as IProfiles
-          updateProfileUsed(newProfile.id)
-          router.push('/offer_form')
+          if (pageType === 'form') {
+            const newProfile = (await res.json()) as IProfiles
+            updateProfileUsed(newProfile.id)
+            router.push('/offer_form')
+          }
+          if (pageType === 'dashboard') {
+            const createdProfile = (await res.json()) as IProfiles
+            //OJO PARA QUE ESTO FUNCIONE HAY QUE CAMBIAR LA FORMA DE RECOGER LOS PERFILES....
+            setShow && setShow('profile')
+            router.refresh()
+            toast({
+              title: `Se ha creado un nuevo perfil ${createdProfile.profile_name} `,
+            })
+          }
         }
       }
     }
@@ -174,12 +227,23 @@ function Profile() {
           </div>
         </div>
 
-        <button
-          className="w-full mt-4 bg-black py-3 text-slate-50 rounded-lg text-xl hover:bg-slate-800"
-          type="submit"
-        >
-          Continuar
-        </button>
+        {pageType === 'form' ? (
+          <button
+            className="w-full mt-4 bg-black py-3 text-slate-50 rounded-lg text-xl hover:bg-slate-800"
+            type="submit"
+          >
+            Continuar
+          </button>
+        ) : (
+          <button
+            className="w-full mt-4 bg-black py-3 text-slate-50 rounded-lg text-xl hover:bg-slate-800"
+            type="submit"
+          >
+            {profile_preview.profile_name === watch('profile_name')
+              ? 'Actulizar'
+              : 'Crear Nueva Version'}
+          </button>
+        )}
       </form>
     </div>
   )

@@ -75,7 +75,7 @@ function CoverStreamVer() {
         const letter = await res.json()
         toast({
           title: 'Se ha guardado la carta en tu perfil',
-          description: 'Puedes encontrarla en tu Dashboard',
+          description: 'Puedes encontrarla en tus Documentos',
         })
       }
     } catch (error) {

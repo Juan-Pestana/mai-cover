@@ -93,12 +93,7 @@ async function Dashboard({
             </header>
             {letters.length ? (
               <nav className="px-5 space-y-6 mt-6 text-white">
-                <NavContent
-                  profiles={profiles}
-                  letters={letters}
-                  id={id}
-                  show={show}
-                />
+                <NavContent profiles={profiles} letters={letters} />
               </nav>
             ) : (
               <div className="flex h-full items-center justify-center px-5">
@@ -113,7 +108,7 @@ async function Dashboard({
         {show === 'letter' ? (
           <LetterDB letter={letters.find((letr) => letr.id === id)!} />
         ) : (
-          <ProfileDB />
+          <ProfileDB profile={profiles.find((prof) => prof.id === id)!} />
         )}
       </div>
     </>
