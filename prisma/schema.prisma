@@ -52,7 +52,7 @@ model User {
   hashedPassword String?
   accounts       Account[]
   letters        Letter[]
-  Profile        Profile[]
+  profiles       Profile[]
 }
 
 model VerificationToken {
@@ -71,21 +71,21 @@ model Profile {
   training     String   @db.Text
   user         User     @relation(fields: [userId], references: [id])
   userId       String
-  Letter       Letter[]
+  letters      Letter[]
 
   @@index([userId])
 }
 
 model Letter {
-  id        String   @id @default(cuid())
-  content   String   @db.Text
+  id        String  @id @default(cuid())
+  content   String  @db.Text
   rating    Int?
-  profile   Profile? @relation(fields: [profileId], references: [id])
-  offer     Offer    @relation(fields: [offerId], references: [id])
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  profile   Profile @relation(fields: [profileId], references: [id])
+  offer     Offer   @relation(fields: [offerId], references: [id])
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
   profileId String
-  offerId   String   @unique
+  offerId   String  @unique
 
   @@index([userId])
   @@index([profileId])

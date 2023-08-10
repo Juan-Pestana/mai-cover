@@ -6,24 +6,49 @@ import ReactMarkdown from 'react-markdown'
 import { useState } from 'react'
 import Profile from '../Profile'
 import { useStore } from '../Store'
+import { useRouter } from 'next/navigation'
+import { useToast } from '../ui/use-toast'
+import { RiEdit2Line, RiUserSharedLine } from 'react-icons/ri'
 
 interface IprofileDBprops {
   profile: IProfiles
+  edit: string | undefined
 }
 
-function ProfileDB({ profile }: IprofileDBprops) {
+function ProfileDB({ profile, edit }: IprofileDBprops) {
   const [show, setShow] = useState<string>('profile')
   const { updateProfilePreview } = useStore((state) => state)
+  const {
+    updateAbstract,
+    updateExperience,
+    updateTraining,
+    updateProfileName,
+    updateProfileUsed,
+  } = useStore((state) => state)
+
+  const router = useRouter()
+  const { toast } = useToast()
 
   const editProfile = () => {
     updateProfilePreview(profile)
-    setShow('edit')
+    router.push(`/dashboard?show=profile&id=${profile.id}&edit=true`)
+  }
+
+  const thisProfile = () => {
+    updateProfileName(profile.profile_name)
+    updateAbstract(profile.abstract)
+    updateExperience(profile.experience)
+    updateTraining(profile.training)
+    updateProfileUsed(profile.id)
+
+    router.push('/offer_form')
+    toast({ title: `Perfil: ${profile.profile_name} seleccionado` })
   }
 
   return (
     <main className="flex flex-col flex-1 min-h-full  border-1 border-black  bg-white lg:rounded-tl-3xl">
       <div className="flex-1 h-full flex flex-col items-center  justify-end overflow-hidden">
-        {show === 'profile' ? (
+        {edit !== 'true' ? (
           <ScrollArea className="p-2 border-2 max-w-2xl h-[80vh] border-zinc-200 lg:h-[800px]">
             <div className="leading-relaxed p-5">
               <h2 className={`${montserrat.className} text-2xl text-center`}>
@@ -54,15 +79,19 @@ function ProfileDB({ profile }: IprofileDBprops) {
       </div>
       <footer className="h-16 w-2/3 mx-auto flex items-center justify-around max-w-2xl">
         <button
-          className={`${show === 'edit' && 'bg-black text-white'}`}
+          className={`flex flex-col items-center px-2 py-2 rounded-lg ${
+            show === 'edit' && 'bg-black text-white'
+          } hover:text-white hover:bg-black`}
           onClick={() => editProfile()}
         >
+          <RiEdit2Line className="text-center h-5 w-5 " />
           Editar
         </button>
         <button
-          className={`${show === 'offer' && 'bg-black text-white'}`}
-          onClick={() => console.log('usar este perfil')}
+          className="flex flex-col items-center px-2 py-2 rounded-lg hover:text-white hover:bg-black"
+          onClick={() => thisProfile()}
         >
+          <RiUserSharedLine className="text-center h-5 w-5" />
           Usar perfil
         </button>
       </footer>

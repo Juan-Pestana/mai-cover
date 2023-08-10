@@ -9,6 +9,7 @@ export default async function Home() {
   if (!session) {
     redirect('/api/auth/signin?callbackUrl=/')
   }
+
   return (
     <main className="flex items-center justify-center p-3  ">
       <div className="flex flex-col w-full justify-center items-center lg:mt-6">

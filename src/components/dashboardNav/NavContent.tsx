@@ -12,6 +12,7 @@ import { IProfiles } from '@/schema/letter.schema'
 
 import { useSearchParams, useRouter } from 'next/navigation'
 import { Dispatch, SetStateAction } from 'react'
+import { useStore } from '../Store'
 
 interface IDrawerProps {
   letters: ILettersList[]
@@ -22,6 +23,7 @@ interface IDrawerProps {
 function NavContent({ letters, profiles, setIsOpen }: IDrawerProps) {
   const searchParams = useSearchParams()
   const router = useRouter()
+  const { updateProfilePreview } = useStore((state) => state)
 
   const id = searchParams?.get('id')
   //const show = searchParams?.get('show')
@@ -33,6 +35,17 @@ function NavContent({ letters, profiles, setIsOpen }: IDrawerProps) {
     }
   }
 
+  const createBtn = () => {
+    updateProfilePreview({
+      id: '',
+      profile_name: '',
+      abstract: '',
+      training: '',
+      experience: '',
+    })
+    router.push('/profile_form')
+  }
+
   return (
     <Accordion type="single" collapsible>
       <AccordionItem className="mb-6 " value="item-1">
@@ -42,12 +55,12 @@ function NavContent({ letters, profiles, setIsOpen }: IDrawerProps) {
         {letters.map((letter) => (
           <AccordionContent key={letter.id}>
             <button
-              className={`text-lg  px-5 py-4 border-2 border-slate-400 rounded-xl w-full ${
+              className={`text-lg  text-left px-5  w-full rounded-lg hover:cursor-pointer hover:bg-slate-200 hover:text-black ${
                 id === letter.id ? 'bg-white text-black' : null
               }`}
               onClick={() => linkBtn('letter', letter.id)}
             >
-              {letter.offer.offer_name}
+              {letter.offer.company_name}
             </button>
           </AccordionContent>
         ))}
@@ -56,10 +69,11 @@ function NavContent({ letters, profiles, setIsOpen }: IDrawerProps) {
         <AccordionTrigger className="text-xl font-semibold">
           Tus Perfiles
         </AccordionTrigger>
+
         {profiles.map((profile) => (
           <AccordionContent key={profile.id}>
             <button
-              className={`text-lg  px-5 py-4 border-2 border-slate-400 rounded-xl w-full ${
+              className={`text-lg  text-left px-5  w-full rounded-lg hover:cursor-pointer hover:bg-slate-200 hover:text-black ${
                 id === profile.id ? 'bg-white text-black' : null
               }`}
               onClick={() => linkBtn('profile', profile.id)}
@@ -70,8 +84,8 @@ function NavContent({ letters, profiles, setIsOpen }: IDrawerProps) {
         ))}
         <AccordionContent>
           <button
-            className={`text-lg  px-5 py-4 border-2 border-slate-400 rounded-xl w-full`}
-            onClick={() => console.log('hooooola')}
+            className={`text-lg  px-5 py-4 border-2 border-slate-400 rounded-xl w-full hover:bg-white hover:text-black hover:border-white`}
+            onClick={createBtn}
           >
             Crear nuevo perfil
           </button>

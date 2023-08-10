@@ -66,22 +66,20 @@ function SignInForm() {
 
   const githubSignIn = async () => {
     try {
-      await signIn('github', { callbackUrl: '/profile_form' }).then(
-        (callback) => {
-          if (callback?.error) {
-            setError('notRegisteredInput', {
-              type: 'custom',
-              message: `Error en el inicio de sesión,  ${callback.error}`,
-            })
-            console.log('hubo un error')
-          }
-
-          if (callback?.ok && !callback?.error) {
-            //   toast.success('Logged in successfully!')
-            console.log('sesion iniciada')
-          }
+      await signIn('github', { callbackUrl: '/' }).then((callback) => {
+        if (callback?.error) {
+          setError('notRegisteredInput', {
+            type: 'custom',
+            message: `Error en el inicio de sesión,  ${callback.error}`,
+          })
+          console.log('hubo un error')
         }
-      )
+
+        if (callback?.ok && !callback?.error) {
+          //   toast.success('Logged in successfully!')
+          console.log('sesion iniciada')
+        }
+      })
     } catch (error) {
       console.log(error)
       setError('notRegisteredInput', {

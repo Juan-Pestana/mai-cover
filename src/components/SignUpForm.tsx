@@ -4,7 +4,7 @@ import { useStore } from './Store'
 import { redirect, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { signIn } from 'next-auth/react'
-
+import { signUpSchema } from '@/schema/user.schema'
 type Inputs = {
   userName: string
   email: string
@@ -26,6 +26,8 @@ function SignUpForm() {
     //console.log(data)
 
     try {
+      signUpSchema.parse(data)
+
       const res = await fetch('api/register', {
         method: 'POST',
         headers: {
@@ -49,7 +51,7 @@ function SignUpForm() {
           if (callback?.error) {
             setError('notRegisteredInput', {
               type: 'custom',
-              message: `Error en el registro de usuario,  ${callback.error}`,
+              message: `Error en el inicio de sesión del usuario,  ${callback.error}`,
             })
             console.log('hubo un error')
           }
@@ -61,6 +63,12 @@ function SignUpForm() {
         })
       }
     } catch (error) {
+      //hay que pulir esto
+      setError('email', {
+        type: 'validate',
+        message: 'Debes indicar un email correcto',
+      })
+
       console.log(error)
     }
   }
@@ -152,7 +160,7 @@ function SignUpForm() {
             {...register('email', { required: true })}
           />
           {errors.email && (
-            <span className="text-red-500">Este campo es obligatorio</span>
+            <span className="text-red-500">{errors.email.message}</span>
           )}
         </div>
 

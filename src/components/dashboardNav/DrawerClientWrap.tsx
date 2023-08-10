@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Drawer from './Drawer'
 import { ILettersList } from '@/app/dashboard/page'
 import { IProfiles } from '@/schema/letter.schema'
+import { RiSideBarFill } from 'react-icons/ri'
 import NavContent from './NavContent'
 
 interface IDrawerProps {
@@ -24,8 +25,13 @@ function DrawerClientWrap({ letters, profiles }: IDrawerProps) {
         />
       </Drawer>
       <div className=" absolute top-1 z-10 left-1 lg:hidden">
-        <div>
-          <button onClick={() => setIsOpen(true)}>abrir</button>
+        <div className="block h-8 w-8 ">
+          <button
+            className="h-full w-full text-slate-700"
+            onClick={() => setIsOpen(true)}
+          >
+            <RiSideBarFill className="h-full w-full" />
+          </button>
         </div>
       </div>
     </>

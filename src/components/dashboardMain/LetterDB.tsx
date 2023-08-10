@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import { ScrollArea } from '../ui/scroll-area'
 import { useState } from 'react'
 import { montserrat } from '@/app/fonts/fonts'
+import { RiUser3Line, RiPagesLine, RiMailOpenLine } from 'react-icons/ri'
 
 interface ILetterDBProps {
   letter: ILettersList
@@ -51,7 +52,7 @@ function LetterDB({ letter }: ILetterDBProps) {
             <>
               <div className="leading-relaxed p-5">
                 <h2 className={`${montserrat.className} text-2xl`}>
-                  Mi perfil de:{'   '}
+                  Perfil:{'   '}
                   <span className="font-semibold">
                     {letter.profile.profile_name}
                   </span>
@@ -59,7 +60,7 @@ function LetterDB({ letter }: ILetterDBProps) {
               </div>
               <hr className="mb-5" />
               <p className="text-xl font-semibold">Abstract:</p>
-              <p className="mb-3 text-xl">{letter.profile.abstract}</p>
+              <p className="mb-3 text-lg">{letter.profile.abstract}</p>
               <p className="text-xl font-semibold">Experiencia:</p>
               <ReactMarkdown
                 className={`prose whitespace-pre-wrap lg:text-lg leading-7 mb-3`}
@@ -76,24 +77,33 @@ function LetterDB({ letter }: ILetterDBProps) {
           )}
         </ScrollArea>
       </div>
-      <footer className="h-16 w-2/3 mx-auto flex items-center justify-around max-w-2xl">
+      <footer className="h-16 w-full mx-auto flex items-center justify-around max-w-2xl lg:w-2/3">
         <button
-          className={`${show === 'profile' && 'bg-black text-white'}`}
+          className={`flex flex-col items-center px-2 py-2 rounded-lg ${
+            show === 'profile' && 'bg-black text-white'
+          }`}
           onClick={() => setShow('profile')}
         >
-          Perfil
+          <RiUser3Line className="text-center h-5 w-5" />
+          <p className="block">Perfil</p>
         </button>
         <button
-          className={`${show === 'offer' && 'bg-black text-white'}`}
+          className={`flex flex-col items-center px-2 py-2 rounded-lg ${
+            show === 'offer' && 'bg-black text-white'
+          }`}
           onClick={() => setShow('offer')}
         >
-          Oferta
+          <RiPagesLine className="text-center h-5 w-5" />
+          <p className="block">Oferta</p>
         </button>
         <button
-          className={`${show === 'letter' && 'bg-black text-white'}`}
+          className={`flex flex-col items-center px-2 py-2 rounded-lg ${
+            show === 'letter' && 'bg-black text-white'
+          }`}
           onClick={() => setShow('letter')}
         >
-          Carta
+          <RiMailOpenLine className="text-center h-5 w-5 " />
+          <p className="block">Carta</p>
         </button>
       </footer>
     </main>

@@ -32,6 +32,11 @@ export async function GET() {
 export async function POST(req: Request) {
   const session = await getServerSession(options)
 
+  if (!session)
+    return new NextResponse('Es necesario iniciar sesión para esta acción', {
+      status: 401,
+    })
+
   const body: IProfiles = await req.json()
 
   const newProfile = await prisma.profile.upsert({

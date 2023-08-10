@@ -56,8 +56,13 @@ function Offer() {
             id="company_name"
             className="mt-2 w-full rounded-md p-2"
             placeholder="ACME S.L."
-            {...register('company_name')}
+            {...register('company_name', { required: true })}
           />
+          {errors.company_name && (
+            <span className="text-red-500">
+              Debes indicar el nombre de la empresa
+            </span>
+          )}
         </div>
         {/* register your input into the hook by invoking the "register" function */}
         <div className="mb-3">

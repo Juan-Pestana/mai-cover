@@ -2,6 +2,7 @@
 
 import React, { Dispatch, SetStateAction } from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { ScrollArea } from '../ui/scroll-area'
 
 interface Idrawer {
   isOpen: boolean
@@ -36,7 +37,9 @@ export default function Drawer({ children, isOpen, setIsOpen }: Idrawer) {
               X
             </button>
           </header>
-          <div className="px-5  mt-6 text-white">{children}</div>
+          <ScrollArea className="px-5  mt-6 text-white h-[75vh]">
+            {children}
+          </ScrollArea>
         </article>
       </section>
       <section

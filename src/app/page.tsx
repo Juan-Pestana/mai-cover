@@ -12,12 +12,12 @@ export default async function asyncHome() {
         <div className="flex-1 flex items-center xl:pr-14 ">
           <div className="py-0 md:pr-11">
             <h1
-              className={`text-3xl leading-relaxed font-semibold ${garamont.className} lg:text-3xl xl:text-4xl`}
+              className={`text-3xl leading-normal font-semibold ${garamont.className} lg:text-3xl xl:text-4xl`}
             >
               Ayúdate de la Inteligencia Artificial para generar tu carta de
               presentación.
             </h1>
-            <div className="mt-3 leading-7 text-lg text-slate-700 md:text-xl">
+            <div className="mt-5 leading-relaxed text-base text-slate-700 md:text-xl">
               <p className="">
                 Si vas en serio en tu búsqueda de empleo, no descuides ni el más
                 mínimo detalle. Una buena carta, adaptada a cada oferta, puede
@@ -30,12 +30,20 @@ export default async function asyncHome() {
 
             <div className="flex mt-8 w-5/6">
               {session ? (
-                <Link
-                  className="px-4 py-2 border-2 border-black text-xl hover:bg-black hover:text-white transition-all lg:text-2xl lg:px-6 lg:py-2"
-                  href="/profile_form"
-                >
-                  Crea tu carta
-                </Link>
+                <>
+                  <Link
+                    className="bg-black text-white px-4 py-2 border-2 border-black hover:shadow-2xl hover:bg-white hover:text-black transition-all lg:text-xl lg:px-5 lg:py-2"
+                    href="/profile_form"
+                  >
+                    Crea tu carta
+                  </Link>
+                  <Link
+                    className="px-4 py-2 border-2 border-black text-sm hover:shadow-2xl hover:bg-black hover:text-white transition-all ml-5 lg:text-xl lg:px-6 lg:py-2"
+                    href="/dashboard"
+                  >
+                    Tus documentos
+                  </Link>
+                </>
               ) : (
                 <Link
                   className="px-4 py-2 border-2 border-black text-xl hover:bg-black hover:text-white transition-all lg:text-2xl lg:px-6 lg:py-3"

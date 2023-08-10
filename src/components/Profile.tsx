@@ -164,7 +164,7 @@ function Profile({ pageType, setShow }: IProfileProps) {
   }
 
   return (
-    <div className=" mx-auto w-full max-w-3xl py-10 px-5 bg-slate-100 rounded-lg shadow-lg">
+    <div className=" mx-auto w-full max-w-3xl py-5 px-5 bg-slate-100 rounded-lg shadow-lg">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-3">
           <label className="text-sm ml-2" htmlFor="profile_name">
@@ -174,11 +174,20 @@ function Profile({ pageType, setShow }: IProfileProps) {
             id="profile_name"
             className="mt-2 w-full rounded-md p-2"
             placeholder="Mi perfil Marketing"
-            {...register('profile_name')}
+            {...register('profile_name', { required: true })}
           />
         </div>
-        {errors.profile_name && (
+        {errors.profile_name?.type === 'custom' && (
           <span className="text-red-500">{errors.profile_name.message}</span>
+        )}
+        {errors.profile_name?.type === 'required' && (
+          <span className="text-red-500">This field is required</span>
+        )}
+        {profile_preview.id && (
+          <span className="text-sm text-slate-500 italic">
+            * Modifica el nombre para crear una nueva version, o mantenlo para
+            actualizar la versión actual
+          </span>
         )}
         <hr className="my-3" />
         <div className="mb-3">
@@ -188,9 +197,12 @@ function Profile({ pageType, setShow }: IProfileProps) {
           <textarea
             id="abstract"
             className="mt-2 w-full rounded-md p-2"
-            placeholder="Descríbete brebemente"
-            {...register('abstract')}
+            placeholder="Descríbete brevemente"
+            {...register('abstract', { required: true })}
           />
+          {errors.abstract?.type === 'required' && (
+            <span className="text-red-500">This field is required</span>
+          )}
         </div>
         {/* register your input into the hook by invoking the "register" function */}
         <div className="mb-3">
@@ -200,7 +212,7 @@ function Profile({ pageType, setShow }: IProfileProps) {
           <textarea
             id="experience"
             className="mt-2 w-full rounded-md p-2 h-40"
-            placeholder="pega aquí tu experiencia"
+            placeholder="Pega aquí tu experiencia"
             {...register('experience', { required: true })}
           />
           {errors.experience && (
@@ -216,7 +228,7 @@ function Profile({ pageType, setShow }: IProfileProps) {
           <textarea
             id="training"
             className=" mt-2 w-full rounded-md p-2 h-40"
-            placeholder="pega aquí tu Formación"
+            placeholder="Pega aquí tu Formación"
             {...register('training', { required: true })}
           />
           {/* errors will return when field validation fails  */}
