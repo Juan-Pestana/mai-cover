@@ -76,8 +76,8 @@ export default async function asyncHome() {
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Obtén <span className="font-semibold">2 cartas gratis</span> en
-            cuanto te Registres.
+            Obtén <span className="font-semibold">2 cartas gratis</span> solo
+            por registrarte.
           </p>
         </div>
 
@@ -89,8 +89,8 @@ export default async function asyncHome() {
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Simplemente pega desde tu CV el perfil que nuestra IA considerará
-            para cada oferta.
+            Pega tu experiencia y formación desde tu CV. Genera tantos perfiles
+            como quieras, podrás editarlos y hacer ajustes según la oferta.
           </p>
         </div>
 
@@ -102,8 +102,8 @@ export default async function asyncHome() {
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Pega el texto de la oferta y nuestra y nuestra IA sacará lo mejor de
-            tu perfil para adaptarse a ella.
+            Pega el texto de la oferta y nuestra IA sacará lo mejor de tu perfil
+            para adaptarse a ella.
           </p>
         </div>
 
