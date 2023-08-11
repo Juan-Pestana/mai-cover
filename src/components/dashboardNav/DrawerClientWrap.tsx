@@ -24,7 +24,11 @@ function DrawerClientWrap({ letters, profiles }: IDrawerProps) {
           setIsOpen={setIsOpen}
         />
       </Drawer>
-      <div className=" absolute top-1 z-10 left-1 lg:hidden">
+      <div
+        className={`absolute top-1 z-10 left-1 lg:hidden ${
+          isOpen ? 'hidden' : null
+        }`}
+      >
         <div className="block h-8 w-8 ">
           <button
             className="h-full w-full text-slate-700"
