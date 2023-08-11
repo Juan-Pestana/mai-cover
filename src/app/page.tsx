@@ -12,7 +12,7 @@ export default async function asyncHome() {
         <div className="flex-1 flex items-center xl:pr-14 ">
           <div className="py-0 md:pr-11">
             <h1
-              className={`text-3xl leading-normal font-semibold ${garamont.className} lg:text-3xl xl:text-4xl`}
+              className={`text-3xl text-center leading-normal font-semibold ${garamont.className} md:text-left xl:text-4xl`}
             >
               Ayúdate de la Inteligencia Artificial para generar tu carta de
               presentación.
@@ -28,7 +28,7 @@ export default async function asyncHome() {
               </p>
             </div>
 
-            <div className="flex mt-8 w-5/6">
+            <div className="flex mt-8 w-full md:w-5/6 md:text-left">
               {session ? (
                 <>
                   <Link

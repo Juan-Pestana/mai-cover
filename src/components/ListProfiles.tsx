@@ -5,7 +5,6 @@ import { getServerSession } from 'next-auth/next'
 import { options } from '@/app/api/auth/[...nextauth]/options'
 import { IProfiles } from '@/schema/letter.schema'
 import { montserrat } from '@/app/fonts/fonts'
-import { Divide } from 'lucide-react'
 
 async function getProfiles() {
   const session = await getServerSession(options)

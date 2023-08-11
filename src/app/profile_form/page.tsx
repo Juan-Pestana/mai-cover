@@ -14,7 +14,7 @@ export default async function Home() {
   return (
     <main className="flex-1 flex items-center justify-center ">
       <div className="flex flex-col  justify-center lg:flex-row lg:w-5/6">
-        <div className="py-5 mx-auto lg:w-3xl lg:pt-28 lg:pr-5">
+        <div className="py-5 mx-auto flex-1 lg:pt-28 lg:pr-5">
           <Suspense
             fallback={
               <div className="w-full px-3">
@@ -28,8 +28,9 @@ export default async function Home() {
             <ListProfiles />
           </Suspense>
         </div>
-
-        <Profile pageType="form" />
+        <div className="flex-1">
+          <Profile pageType="form" />
+        </div>
       </div>
     </main>
   )

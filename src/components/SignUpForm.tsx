@@ -1,10 +1,13 @@
 'use client'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { useStore } from './Store'
-import { redirect, useRouter } from 'next/navigation'
+
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { signIn } from 'next-auth/react'
 import { signUpSchema } from '@/schema/user.schema'
+
+import { zodResolver } from '@hookform/resolvers/zod'
+
 type Inputs = {
   userName: string
   email: string
@@ -20,14 +23,13 @@ function SignUpForm() {
     handleSubmit,
     setError,
     formState: { errors },
-  } = useForm<Inputs>()
+    //validación bien hecha
+  } = useForm<Inputs>({ resolver: zodResolver(signUpSchema) })
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    //console.log(data)
+    console.log(data)
 
     try {
-      signUpSchema.parse(data)
-
       const res = await fetch('api/register', {
         method: 'POST',
         headers: {
@@ -64,10 +66,6 @@ function SignUpForm() {
       }
     } catch (error) {
       //hay que pulir esto
-      setError('email', {
-        type: 'validate',
-        message: 'Debes indicar un email correcto',
-      })
 
       console.log(error)
     }
@@ -144,7 +142,7 @@ function SignUpForm() {
             {...register('userName', { required: true })}
           />
           {errors.userName && (
-            <span className="text-red-500">Este campo es obligatorio</span>
+            <span className="text-red-500">{errors.userName.message}</span>
           )}
         </div>
         {/* register your input into the hook by invoking the "register" function */}
@@ -178,7 +176,7 @@ function SignUpForm() {
           {/* errors will return when field validation fails  */}
           <div>
             {errors.password && (
-              <span className="text-red-500">Este campo es obligatorio</span>
+              <span className="text-red-500">{errors.password.message}</span>
             )}
           </div>
         </div>

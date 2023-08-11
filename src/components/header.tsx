@@ -2,7 +2,7 @@ import { options } from '@/app/api/auth/[...nextauth]/options'
 import { getServerSession } from 'next-auth'
 import Link from 'next/link'
 import React from 'react'
-//import { SiTinyletter } from 'react-icons/si'
+import { SiTinyletter } from 'react-icons/si'
 import { FaUserCircle } from 'react-icons/fa'
 import Image from 'next/image'
 import { montserrat } from '@/app/fonts/fonts'
@@ -17,11 +17,11 @@ async function Header() {
   const session = await getServerSession(options)
 
   return (
-    <header className="block bg-black w-full p-3">
+    <header className="block bg-black w-full p-2 lg:p-3">
       <div className="flex justify-between items-center text-xl">
         <div>
           <Link href="/" className="text-white flex items-center">
-            {/* <SiTinyletter className="h-10 w-10 mx-4" /> */}
+            <SiTinyletter className="h-7 w-7 mx-4 lg:h-10 lg:w-10" />
             <h3 className={`hidden text-2xl md:block ${montserrat.className}`}>
               mAI-Cover
             </h3>
@@ -36,7 +36,7 @@ async function Header() {
               Nueva carta
             </Link>
             <DropdownMenu>
-              <DropdownMenuTrigger className="rounded-full overflow-hidden ml-2 mr-3 h-12 w-12">
+              <DropdownMenuTrigger className="rounded-full overflow-hidden ml-2 mr-3 h-10 w-10">
                 {session?.user?.image ? (
                   <Image
                     src={session.user.image}

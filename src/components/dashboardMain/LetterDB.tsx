@@ -82,7 +82,7 @@ function LetterDB({ letter }: ILetterDBProps) {
         ) : (
           <div className="h-full flex items-center justify-center">
             <div className="text-2xl font-semibold">
-              No tienes cartas de momento
+              No tienes documentos de momento
             </div>
           </div>
         )}
