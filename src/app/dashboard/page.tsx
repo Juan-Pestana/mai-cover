@@ -110,7 +110,7 @@ async function Dashboard({
     }
   } else {
     show = 'letter'
-    id = letters[0].id
+    id = letters[0].id || id
     edit = ''
   }
 

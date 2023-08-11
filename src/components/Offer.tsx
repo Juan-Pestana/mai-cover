@@ -45,7 +45,7 @@ function Offer() {
   }
 
   return (
-    <div className="w-full max-w-3xl my-10 py-10 px-2 bg-slate-100 rounded-lg shadow-lg md:px-5">
+    <div className="w-full max-w-3xl my-3 py-5 px-2 bg-slate-100 rounded-lg shadow-lg md:px-5">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-3">
           <label className="text-sm ml-2" htmlFor="company_name">
