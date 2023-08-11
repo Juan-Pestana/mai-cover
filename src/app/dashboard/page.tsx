@@ -93,11 +93,6 @@ async function Dashboard({
 
   const { profiles, letters } = docs
 
-  // const profArr = letters.map((letter) => letter.profile)
-  // const profiles = profArr.filter(
-  //   (value, index, self) => index === self.findIndex((t) => t.id === value.id)
-  // )
-
   let show = ''
   let id = ''
   let edit = ''
@@ -110,7 +105,7 @@ async function Dashboard({
     }
   } else {
     show = 'letter'
-    id = letters[0].id || id
+    id = letters ? letters[0]?.id : id
     edit = ''
   }
 
@@ -138,10 +133,10 @@ async function Dashboard({
           {/* <GetLetters /> */}
         </aside>
         {show === 'letter' ? (
-          <LetterDB letter={letters.find((letr) => letr.id === id)!} />
+          <LetterDB letter={letters.find((letr) => letr.id === id)} />
         ) : (
           <ProfileDB
-            profile={profiles.find((prof) => prof.id === id)!}
+            profile={profiles.find((prof) => prof.id === id)}
             edit={edit}
           />
         )}

@@ -9,9 +9,10 @@ import { useStore } from '../Store'
 import { useRouter } from 'next/navigation'
 import { useToast } from '../ui/use-toast'
 import { RiEdit2Line, RiUserSharedLine } from 'react-icons/ri'
+import { mainModule } from 'process'
 
 interface IprofileDBprops {
-  profile: IProfiles
+  profile: IProfiles | undefined
   edit: string | undefined
 }
 
@@ -30,19 +31,34 @@ function ProfileDB({ profile, edit }: IprofileDBprops) {
   const { toast } = useToast()
 
   const editProfile = () => {
-    updateProfilePreview(profile)
-    router.push(`/dashboard?show=profile&id=${profile.id}&edit=true`)
+    if (profile) {
+      updateProfilePreview(profile)
+      router.push(`/dashboard?show=profile&id=${profile.id}&edit=true`)
+    }
   }
 
   const thisProfile = () => {
-    updateProfileName(profile.profile_name)
-    updateAbstract(profile.abstract)
-    updateExperience(profile.experience)
-    updateTraining(profile.training)
-    updateProfileUsed(profile.id)
+    if (profile) {
+      updateProfileName(profile.profile_name)
+      updateAbstract(profile.abstract)
+      updateExperience(profile.experience)
+      updateTraining(profile.training)
+      updateProfileUsed(profile.id)
 
-    router.push('/offer_form')
-    toast({ title: `Perfil: ${profile.profile_name} seleccionado` })
+      router.push('/offer_form')
+      toast({ title: `Perfil: ${profile.profile_name} seleccionado` })
+    }
+  }
+
+  if (!profile) {
+    return (
+      <main className="flex flex-col flex-1 min-h-full  border-1 border-black  bg-white lg:rounded-tl-3xl">
+        <div className="flex-1 h-full flex flex-col items-center  justify-end overflow-hidden">
+          {' '}
+          No tienes Perfiles por el momento
+        </div>
+      </main>
+    )
   }
 
   return (
