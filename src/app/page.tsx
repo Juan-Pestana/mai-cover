@@ -38,7 +38,7 @@ export default async function asyncHome() {
                     Crea tu carta
                   </Link>
                   <Link
-                    className="px-4 py-2 border-2 border-black text-sm hover:shadow-2xl hover:bg-black hover:text-white transition-all ml-5 lg:text-xl lg:px-6 lg:py-2"
+                    className="px-4 py-2 border-2 border-black hover:shadow-2xl hover:bg-black hover:text-white transition-all ml-5 lg:text-xl lg:px-5 lg:py-2"
                     href="/dashboard"
                   >
                     Tus documentos

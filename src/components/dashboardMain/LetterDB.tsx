@@ -81,7 +81,7 @@ function LetterDB({ letter }: ILetterDBProps) {
           </ScrollArea>
         ) : (
           <div className="h-full flex items-center justify-center">
-            <div className="text-2xl font-semibold">
+            <div className="text-2xl font-semibold text-center px-2">
               No tienes documentos de momento
             </div>
           </div>
