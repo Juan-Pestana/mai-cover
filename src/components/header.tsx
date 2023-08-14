@@ -21,7 +21,7 @@ async function Header() {
       <div className="flex justify-between items-center text-xl">
         <div>
           <Link href="/" className="text-white flex items-center">
-            <SiTinyletter className="h-7 w-7 mx-4 lg:h-10 lg:w-10" />
+            {/* <SiTinyletter className="h-7 w-7 mx-4 lg:h-10 lg:w-10" /> */}
             <h3 className={`hidden text-2xl md:block ${montserrat.className}`}>
               mAI-Cover
             </h3>

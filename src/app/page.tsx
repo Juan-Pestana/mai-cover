@@ -3,6 +3,7 @@ import { montserrat, garamont } from './fonts/fonts'
 import Link from 'next/link'
 import { getServerSession } from 'next-auth'
 import { options } from './api/auth/[...nextauth]/options'
+import Pricing from '@/components/pricing'
 
 export default async function asyncHome() {
   const session = await getServerSession(options)
@@ -22,9 +23,9 @@ export default async function asyncHome() {
                 Si vas en serio en tu búsqueda de empleo, no descuides ni el más
                 mínimo detalle. Una buena carta, adaptada a cada oferta, puede
                 marcar la diferencia.{' '}
-                <span className="font-bold text-xl">
-                  Deja que nuestra IA te inspire.
-                </span>
+              </p>
+              <p className="block font-bold mt-3 text-xl">
+                Deja que nuestra IA te inspire.
               </p>
             </div>
 
@@ -67,8 +68,8 @@ export default async function asyncHome() {
         </div>
       </div>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <div className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300">
+      <div className="mb-20 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
+        <div className="group border border-transparent px-5 py-4 transition-colors hover:border-gray-300">
           <h2 className={`mb-3 text-2xl font-semibold`}>
             Date de Alta{' '}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
@@ -76,12 +77,15 @@ export default async function asyncHome() {
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Obtén <span className="font-semibold">2 cartas gratis</span> solo
-            por registrarte.
+            Obtén{' '}
+            <span className="font-semibold">
+              2 cartas de presentación gratis
+            </span>{' '}
+            solo por registrarte.
           </p>
         </div>
 
-        <div className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300">
+        <div className="group border border-transparent px-5 py-4 transition-colors hover:border-gray-300">
           <h2 className={`mb-3 text-2xl font-semibold`}>
             Tu perfil{' '}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
@@ -90,11 +94,11 @@ export default async function asyncHome() {
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
             Pega tu experiencia y formación desde tu CV. Genera tantos perfiles
-            como quieras, podrás editarlos y hacer ajustes según la oferta.
+            como quieras o edítalos y haz ajustes según la oferta.
           </p>
         </div>
 
-        <div className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 ">
+        <div className="group border border-transparent px-5 py-4 transition-colors hover:border-gray-300 ">
           <h2 className={`mb-3 text-2xl font-semibold`}>
             La Oferta{' '}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
@@ -107,7 +111,7 @@ export default async function asyncHome() {
           </p>
         </div>
 
-        <div className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 ">
+        <div className="group border border-transparent px-5 py-4 transition-colors hover:border-gray-300 ">
           <h2 className={`mb-3 text-2xl font-semibold`}>
             Genera tu Carta{' '}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
@@ -119,6 +123,10 @@ export default async function asyncHome() {
           </p>
         </div>
       </div>
+      <section>
+        <Pricing />
+      </section>
+      <section></section>
     </main>
   )
 }
