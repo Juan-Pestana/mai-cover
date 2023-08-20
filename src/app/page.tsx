@@ -1,17 +1,20 @@
 import Image from 'next/image'
-import { montserrat, garamont } from './fonts/fonts'
+import { garamont } from './fonts/fonts'
 import Link from 'next/link'
 import { getServerSession } from 'next-auth'
 import { options } from './api/auth/[...nextauth]/options'
-import Pricing from '@/components/pricing'
+import Pricing from '@/components/Pricing'
+import { nextUrl } from '@/lib/url'
 
 export default async function asyncHome() {
   const session = await getServerSession(options)
+
   return (
     <main className="flex flex-col items-center px-3 sm:px-5  ">
       <div className="flex mt-14 flex-col max-w-screen-2xl lg:flex-row lg:mt-8 xl:mt-0 md:px-0">
         <div className="flex-1 flex items-center xl:pr-14 ">
           <div className="py-0 md:pr-11">
+            <h1>{nextUrl}</h1>
             <h1
               className={`text-3xl text-center leading-normal font-semibold ${garamont.className} md:text-left xl:text-4xl`}
             >
@@ -33,13 +36,13 @@ export default async function asyncHome() {
               {session ? (
                 <>
                   <Link
-                    className="bg-black text-white px-4 py-2 border-2 border-black hover:shadow-2xl hover:bg-white hover:text-black transition-all lg:text-xl lg:px-5 lg:py-2"
+                    className="bg-black text-white px-4 py-2 border-2 border-black hover:shadow-2xl hover:bg-[#24292F]/80 hover:text-black transition-all lg:text-xl lg:px-5 lg:py-2"
                     href="/profile_form"
                   >
                     Crea tu carta
                   </Link>
                   <Link
-                    className="px-4 py-2 border-2 border-black hover:shadow-2xl hover:bg-black hover:text-white transition-all ml-5 lg:text-xl lg:px-5 lg:py-2"
+                    className="px-4 py-2 border-2 border-black hover:shadow-2xl hover:bg-[#24292F]/80 hover:text-white transition-all ml-5 lg:text-xl lg:px-5 lg:py-2"
                     href="/dashboard"
                   >
                     Tus documentos
@@ -47,7 +50,7 @@ export default async function asyncHome() {
                 </>
               ) : (
                 <Link
-                  className="px-4 py-2 border-2 border-black text-xl hover:bg-black hover:text-white transition-all lg:text-2xl lg:px-6 lg:py-3"
+                  className="px-4 py-2 border-2 border-black text-xl hover:bg-[#24292F]/90 hover:text-white transition-all lg:text-2xl lg:px-6 lg:py-3"
                   href="/signup"
                 >
                   Date de alta

@@ -50,6 +50,8 @@ model User {
   image          String?
   role           Role      @default(user)
   hashedPassword String?
+  availableDocs  Int       @default(2)
+  payments       Payment[]
   accounts       Account[]
   letters        Letter[]
   profiles       Profile[]
@@ -100,7 +102,18 @@ model Offer {
   letters      Letter?
 }
 
+model Payment {
+  stripeSessionId String @id
+  subtotal        Int
+  user            User   @relation(fields: [userId], references: [id])
+  userId          String
+  status          String
+
+  @@index([userId])
+}
+
 enum Role {
   user
+  client
   admin
 }

@@ -35,9 +35,8 @@ function CoverStreamVer() {
   const { toast } = useToast()
 
   const {
-    error,
     completion,
-
+    stop,
     isLoading,
 
     handleSubmit,
@@ -54,19 +53,19 @@ function CoverStreamVer() {
     },
     initialInput: 'esto no vale para nada',
     onResponse: async (res) => {
-      if (res.status > 200) {
-        const error = await res.json()
-
-        toast({
-          title: error.message,
-          description: error.description,
-          variant: 'destructive',
-        })
-      }
+      //const error = await res.json()
       // if (res.status === 401) {
       //   console.log('eeeehhhh')
       //   router.push('/signin')
       // }
+    },
+    onError(error) {
+      stop()
+
+      toast({
+        title: error.message,
+        variant: 'destructive',
+      })
     },
     onFinish() {
       setIsFinished(true)

@@ -1,7 +1,7 @@
 import { options } from '@/app/api/auth/[...nextauth]/options'
 import { getServerSession } from 'next-auth'
 import Link from 'next/link'
-import React from 'react'
+import React, { Suspense } from 'react'
 import { SiTinyletter } from 'react-icons/si'
 import { FaUserCircle } from 'react-icons/fa'
 import Image from 'next/image'
@@ -12,6 +12,7 @@ import {
   DropdownMenu,
   DropdownMenuTrigger,
 } from '../components/ui/dropdown-menu'
+import NewDocServ from './Header/NewDocServ'
 
 async function Header() {
   const session = await getServerSession(options)
@@ -28,15 +29,12 @@ async function Header() {
           </Link>
         </div>
         {session ? (
-          <div className="flex items-center justify-center mx-2">
-            <Link
-              href="/profile_form"
-              className="inline-block text-sm mx-4 px-4 py-2 border-2 hover:bg-[#24292F]/90 border-slate-300 text-slate-300 rounded-md lg:text-lg lg:px-6"
-            >
-              Nueva carta
-            </Link>
+          <div className="flex gap-4 items-center justify-between mx-2">
+            <Suspense>
+              <NewDocServ userId={session.user.id} role={session.user.role} />
+            </Suspense>
             <DropdownMenu>
-              <DropdownMenuTrigger className="rounded-full overflow-hidden ml-2 mr-3 h-10 w-10">
+              <DropdownMenuTrigger className="rounded-full overflow-hidden ml-2 mr-3 h-10 w-10 lg:h-12 lg:w-12">
                 {session?.user?.image ? (
                   <Image
                     src={session.user.image}

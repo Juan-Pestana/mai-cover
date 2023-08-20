@@ -8,6 +8,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuPortal,
 } from './dropdown-menu'
 
 import React from 'react'
@@ -19,21 +20,23 @@ interface dDownContent {
 
 function DropdownContent({ userName }: dDownContent) {
   return (
-    <DropdownMenuContent className="mt-2 ml-2 bg-white">
-      <DropdownMenuLabel className="text-lg text-center">
-        {userName}
-      </DropdownMenuLabel>
-      <DropdownMenuSeparator />
-      <DropdownMenuItem>Perfil</DropdownMenuItem>
-      <DropdownMenuItem>
-        <Link href={'/dashboard'}>Mis Documentos</Link>
-      </DropdownMenuItem>
-      <DropdownMenuItem>Facturación</DropdownMenuItem>
-      <DropdownMenuSeparator className="text-black" />
-      <DropdownMenuItem>
-        <button onClick={() => signOut({ callbackUrl: '/' })}>Log Out</button>
-      </DropdownMenuItem>
-    </DropdownMenuContent>
+    <DropdownMenuPortal className="-left-5">
+      <DropdownMenuContent className="  bg-white">
+        <DropdownMenuLabel className="text-lg text-center">
+          {userName}
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>Perfil</DropdownMenuItem>
+        <DropdownMenuItem>
+          <Link href={'/dashboard'}>Mis Documentos</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem>Facturación</DropdownMenuItem>
+        <DropdownMenuSeparator className="text-black" />
+        <DropdownMenuItem>
+          <button onClick={() => signOut({ callbackUrl: '/' })}>Log Out</button>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenuPortal>
   )
 }
 

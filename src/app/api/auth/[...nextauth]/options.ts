@@ -53,8 +53,28 @@ export const options: NextAuthOptions = {
     }), // ...add more providers here
   ],
   callbacks: {
+    async session({ session, token, trigger, newSession }) {
+      //  console.log('este es el trigger en session', trigger)
+
+      if (trigger === 'update') {
+        console.log('actualización de session', newSession)
+        session.user.role === newSession.user.role
+      }
+
+      if (session?.user) {
+        session.user.role = token.role
+        session.user.id = token.id
+      }
+      return session
+    },
     // Ref: https://authjs.dev/guides/basics/role-based-access-control#persisting-the-role
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger, session }) {
+      // console.log('este es el trigger en token', trigger)
+      if (trigger === 'update') {
+        //   console.log('actualizando del token', session)
+
+        token.role = session.role
+      }
       if (user) {
         token.role = user.role
         token.id = user.id
@@ -62,13 +82,6 @@ export const options: NextAuthOptions = {
       return token
     },
     // If you want to use the role in client components
-    async session({ session, token }) {
-      if (session?.user) {
-        session.user.role = token.role
-        session.user.id = token.id
-      }
-      return session
-    },
   },
   session: {
     strategy: 'jwt',

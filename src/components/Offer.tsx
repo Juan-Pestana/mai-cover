@@ -105,7 +105,7 @@ function Offer() {
         </div>
 
         <button
-          className="w-full mt-4 bg-black py-3 text-slate-50 rounded-lg text-lg hover:bg-slate-800 md:text-xl"
+          className="w-full mt-4 bg-black py-3 text-slate-50 rounded-lg text-lg hover:bg-[#24292F]/80 md:text-xl"
           type="submit"
         >
           Generar Carta

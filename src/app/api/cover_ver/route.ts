@@ -4,6 +4,7 @@ import { NextResponse } from 'next/server'
 import { StreamingTextResponse, LangChainStream } from 'ai'
 import { getServerSession } from 'next-auth/next'
 import { options } from '../auth/[...nextauth]/options'
+import { prisma } from '@/lib/prismaClient'
 
 //import { ChatOpenAI } from 'langchain/chat_models/openai'
 
@@ -13,11 +14,6 @@ export const dynamic = 'force-dynamic'
 
 export async function POST(req: Request) {
   //validar si hay usuario
-  // const session = await getServerSession(options)
-  // if (!session?.user)
-  //   return new NextResponse('Es necesario iniciar sesión para esta acción', {
-  //     status: 401,
-  //   })
 
   const {
     offer_name,
@@ -40,9 +36,6 @@ export async function POST(req: Request) {
       },
       { status: 400 }
     )
-    // return new NextResponse('Faltan información para generar el contenido', {
-    //   status: 400,
-    // })
   }
 
   const sanitizedOffer = offer.trim().replaceAll('\n', ' ')
