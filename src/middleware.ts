@@ -1,6 +1,7 @@
 import { withAuth, NextRequestWithAuth } from 'next-auth/middleware'
 import { NextResponse } from 'next/server'
 import { prisma } from './lib/prismaClient'
+import { nextUrl } from './lib/url'
 
 export default withAuth(
   // `withAuth` augments your `Request` with the user's token.
@@ -24,7 +25,7 @@ export default withAuth(
 
     if (request.nextUrl.pathname.startsWith('/api/cover_ver')) {
       const res = await fetch(
-        `http://localhost:3000/api/available_docs/${request.nextauth.token?.id}`,
+        `${nextUrl}/api/available_docs/${request.nextauth.token?.id}`,
         {
           method: 'GET',
           headers: {
