@@ -1,5 +1,6 @@
 import { RiCheckFill } from 'react-icons/ri'
 import BuyButton from './pricing/BuyButton'
+import { garamont } from '@/app/fonts/fonts'
 
 function Pricing() {
   const includedFeatures = [
@@ -13,17 +14,20 @@ function Pricing() {
     <div className="bg-white py-24 sm:py-28">
       <div className="mx-auto max-w-7xl px-3 lg:px-8">
         <div className="mx-auto max-w-2xl ">
-          <h2 className="text-3xl text-center font-bold tracking-tight text-gray-900 sm:text-4xl md:text-left ">
-            Simple no-tricks pricing
+          <h2
+            className={`text-4xl text-center ${garamont.className} font-bold tracking-tight text-gray-900 sm:text-4xl `}
+          >
+            No te limites a un solo tipo de documento
           </h2>
-          <p className="mt-6 text-lg text-center leading-8 text-gray-600 md:text-left">
-            Distinctio et nulla eum soluta et neque labore quibusdam. Saepe et
-            quasi iusto modi velit ut non voluptas in. Explicabo id ut laborum.
+          <p className="mt-6 text-lg text-center leading-8 text-gray-600 ">
+            Continuamos desarrollando nuevos recursos y servicios Premium que te
+            ayudarán a poner en palabras, las consideraciones más complejas
+            sobre ti mismo o tus colaboradores
           </p>
         </div>
         <div className="mx-auto mt-16 max-w-2xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
           <div className="p-8 sm:p-10 lg:flex-auto">
-            <h3 className="text-2xl font-bold tracking-tight text-gray-900">
+            <h3 className="text-2xl font-bold tracking-tight text-black">
               Cartas de presentación y mucho más
             </h3>
             <p className="mt-6 text-base leading-7 text-gray-600">
@@ -67,9 +71,6 @@ function Pricing() {
                   </span>
                 </p>
                 <BuyButton />
-                <p className="mt-6 text-xs leading-5 text-gray-600">
-                  Invoices and receipts available for easy company reimbursement
-                </p>
               </div>
             </div>
           </div>

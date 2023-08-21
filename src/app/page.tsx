@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { getServerSession } from 'next-auth'
 import { options } from './api/auth/[...nextauth]/options'
 import Pricing from '@/components/Pricing'
-import { nextUrl } from '@/lib/url'
 
 export default async function asyncHome() {
   const session = await getServerSession(options)
@@ -14,15 +13,14 @@ export default async function asyncHome() {
       <div className="flex mt-14 flex-col max-w-screen-2xl lg:flex-row lg:mt-8 xl:mt-0 md:px-0">
         <div className="flex-1 flex items-center xl:pr-14 ">
           <div className="py-0 md:pr-11">
-            <h1 className="text-xl">{nextUrl} caca</h1>
             <h1
               className={`text-3xl text-center leading-normal font-semibold ${garamont.className} md:text-left xl:text-4xl`}
             >
               Ayúdate de la Inteligencia Artificial para generar tu carta de
               presentación.
             </h1>
-            <div className="mt-5 leading-relaxed text-base text-slate-700 md:text-xl">
-              <p className="">
+            <div className="mt-6 text-lg leading-8 text-gray-600">
+              <p>
                 Si vas en serio en tu búsqueda de empleo, no descuides ni el más
                 mínimo detalle. Una buena carta, adaptada a cada oferta, puede
                 marcar la diferencia.{' '}

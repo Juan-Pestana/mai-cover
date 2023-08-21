@@ -26,6 +26,25 @@ export async function GET(
         },
         { status: 403 }
       )
+    } else {
+      const takeOneDoc = await prisma.user.update({
+        where: {
+          id: userId,
+        },
+        data: {
+          availableDocs: {
+            decrement: 1,
+          },
+        },
+      })
+      if (takeOneDoc) {
+        return NextResponse.json(
+          {
+            message: 'valid user',
+          },
+          { status: 200 }
+        )
+      }
     }
   } else {
     return NextResponse.json(
@@ -33,11 +52,4 @@ export async function GET(
       { status: 404 }
     )
   }
-
-  return NextResponse.json(
-    {
-      message: 'valid user',
-    },
-    { status: 200 }
-  )
 }
