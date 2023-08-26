@@ -30,7 +30,7 @@ const components: {
   },
   {
     title: 'Feedback a empleados',
-    href: '#',
+    href: '/feedback_form',
     description:
       'Un par de detalles básicos sobre tu colaborador y tendrás un feedback personalizado para incorporar en cualquier evaluación de desempeño',
     premium: true,

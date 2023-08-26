@@ -43,18 +43,21 @@ model Account {
 // }
 
 model User {
-  id             String    @id @default(cuid())
+  id             String     @id @default(cuid())
   name           String?
-  email          String?   @unique
+  email          String?    @unique
   emailVerified  DateTime?
   image          String?
-  role           Role      @default(user)
+  role           Role       @default(user)
   hashedPassword String?
-  availableDocs  Int       @default(2)
+  availableDocs  Int        @default(2)
   payments       Payment[]
   accounts       Account[]
   letters        Letter[]
   profiles       Profile[]
+  feedbacks      Feedback[]
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
 }
 
 model VerificationToken {
@@ -74,20 +77,24 @@ model Profile {
   user         User     @relation(fields: [userId], references: [id])
   userId       String
   letters      Letter[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
   @@index([userId])
 }
 
 model Letter {
-  id        String  @id @default(cuid())
-  content   String  @db.Text
+  id        String   @id @default(cuid())
+  content   String   @db.Text
   rating    Int?
-  profile   Profile @relation(fields: [profileId], references: [id])
-  offer     Offer   @relation(fields: [offerId], references: [id])
-  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  profile   Profile  @relation(fields: [profileId], references: [id])
+  offer     Offer    @relation(fields: [offerId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
   profileId String
-  offerId   String  @unique
+  offerId   String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([userId])
   @@index([profileId])
@@ -102,12 +109,31 @@ model Offer {
   letters      Letter?
 }
 
+model Feedback {
+  id          String   @id @default(cuid())
+  content     String   @db.Text
+  rating      Int?
+  area        String
+  competences String
+  develop     String
+  position    String
+  proyects    String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+}
+
 model Payment {
-  stripeSessionId String @id
+  stripeSessionId String   @id
   subtotal        Int
-  user            User   @relation(fields: [userId], references: [id])
+  user            User     @relation(fields: [userId], references: [id])
   userId          String
   status          String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
   @@index([userId])
 }

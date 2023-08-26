@@ -11,9 +11,10 @@ type Inputs = {
 }
 
 function Offer() {
-  const { updateCompanyName, updateOffer, updateOfferName, updateOfferUsed } =
-    useStore((state) => state)
-
+  const { updateCover, updateOfferUsed } = useStore((state) => state)
+  const { training, abstract, experience, profile_name } = useStore(
+    (state) => state.coverLetter
+  )
   const router = useRouter()
 
   const {
@@ -24,9 +25,18 @@ function Offer() {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     //console.log(data)
-    updateCompanyName(data.company_name)
-    updateOfferName(data.offer_name)
-    updateOffer(data.offer)
+    // updateCompanyName(data.company_name)
+    // updateOfferName(data.offer_name)
+    // updateOffer(data.offer)
+    updateCover({
+      training,
+      abstract,
+      experience,
+      profile_name,
+      company_name: data.company_name,
+      offer_name: data.offer_name,
+      offer: data.offer,
+    })
 
     const res = await fetch('api/offer', {
       method: 'POST',
@@ -41,7 +51,7 @@ function Offer() {
       updateOfferUsed(newOffer.id)
     }
 
-    router.push('/cover_stream')
+    router.push('/generate/cover_letter')
   }
 
   return (

@@ -19,13 +19,7 @@ interface IprofileDBprops {
 function ProfileDB({ profile, edit }: IprofileDBprops) {
   const [show, setShow] = useState<string>('profile')
   const { updateProfilePreview } = useStore((state) => state)
-  const {
-    updateAbstract,
-    updateExperience,
-    updateTraining,
-    updateProfileName,
-    updateProfileUsed,
-  } = useStore((state) => state)
+  const { updateCover, updateProfileUsed } = useStore((state) => state)
 
   const router = useRouter()
   const { toast } = useToast()
@@ -39,12 +33,15 @@ function ProfileDB({ profile, edit }: IprofileDBprops) {
 
   const thisProfile = () => {
     if (profile) {
-      updateProfileName(profile.profile_name)
-      updateAbstract(profile.abstract)
-      updateExperience(profile.experience)
-      updateTraining(profile.training)
-      updateProfileUsed(profile.id)
-
+      updateCover({
+        profile_name: profile.profile_name,
+        abstract: profile.abstract,
+        experience: profile.experience,
+        training: profile.training,
+        company_name: '',
+        offer_name: '',
+        offer: '',
+      })
       router.push('/offer_form')
       toast({ title: `Perfil: ${profile.profile_name} seleccionado` })
     }

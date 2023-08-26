@@ -19,13 +19,7 @@ interface IProfileProps {
 }
 
 function Profile({ pageType, setShow }: IProfileProps) {
-  const {
-    updateAbstract,
-    updateExperience,
-    updateTraining,
-    updateProfileName,
-    updateProfileUsed,
-  } = useStore((state) => state)
+  const { updateCover, updateProfileUsed } = useStore((state) => state)
 
   const profile_preview = useStore((state) => state.profile_preview)
 
@@ -57,10 +51,15 @@ function Profile({ pageType, setShow }: IProfileProps) {
   })
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    updateProfileName(data.profile_name)
-    updateAbstract(data.abstract)
-    updateExperience(data.experience)
-    updateTraining(data.training)
+    updateCover({
+      profile_name: data.profile_name,
+      abstract: data.abstract,
+      experience: data.experience,
+      training: data.training,
+      company_name: '',
+      offer_name: '',
+      offer: '',
+    })
 
     if (!profile_preview.id) {
       //no ha seleccionado un perfil previo

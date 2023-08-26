@@ -1,29 +1,30 @@
 'use client'
 
-import { useStore } from './Store'
+import { useStore } from '../Store'
 import { useState } from 'react'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 import { useCompletion } from 'ai/react'
 import { FaCopy, FaSave } from 'react-icons/fa'
 import { SiTinyletter } from 'react-icons/si'
 import { garamont } from '@/app/fonts/fonts'
-import { useToast } from './ui/use-toast'
+import { useToast } from '../ui/use-toast'
 import Image from 'next/image'
-import StarRating from './ui/starRating'
+import StarRating from '../ui/starRating'
 import { useCopyToClipboard } from '@/lib/hooks/useClipboard'
 import { redirect, useRouter } from 'next/navigation'
 
 function CoverStreamVer() {
+  const { profile_used, offer_used } = useStore((state) => state)
+
   const {
-    offer_name,
-    offer,
-    company_name,
     training,
-    experience,
     abstract,
-    profile_used,
-    offer_used,
-  } = useStore((state) => state)
+    experience,
+    profile_name,
+    offer,
+    offer_name,
+    company_name,
+  } = useStore((state) => state.coverLetter)
 
   const [isFinished, setIsFinished] = useState<boolean>(false)
   const [rating, setRating] = useState<number>(0)
@@ -41,7 +42,7 @@ function CoverStreamVer() {
 
     handleSubmit,
   } = useCompletion({
-    api: '/api/cover_ver',
+    api: '/api/cover_letter',
     body: {
       language,
       offer_name,
@@ -74,7 +75,7 @@ function CoverStreamVer() {
 
   const saveLetter = async () => {
     try {
-      const res = await fetch('api/letter', {
+      const res = await fetch('/api/letter', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -106,7 +107,7 @@ function CoverStreamVer() {
     }
   }
 
-  const copyLetter = () => {
+  const copyToClipboard = () => {
     copy(completion)
 
     toast({ title: 'Se ha copiado tu carta en el portapapeles' })
@@ -218,7 +219,7 @@ function CoverStreamVer() {
             <button
               className=" mx-3 px-10 py-3  text-slate-800 border-2 border-black hover:bg-slate-400  hover:shadow-xl hover:text-white hover:border-slate-400 transition-all"
               type="button"
-              onClick={copyLetter}
+              onClick={copyToClipboard}
             >
               <FaCopy className="inline-block mr-2" /> Copiar
             </button>

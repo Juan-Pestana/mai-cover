@@ -6,13 +6,15 @@ import { ILettersList } from '@/app/dashboard/page'
 import { IProfiles } from '@/schema/letter.schema'
 import { RiSideBarFill } from 'react-icons/ri'
 import NavContent from './NavContent'
+import { IFeedbacks } from '@/schema/feeback.schema'
 
 interface IDrawerProps {
   letters: ILettersList[]
   profiles: IProfiles[]
+  feedbacks: IFeedbacks[]
 }
 
-function DrawerClientWrap({ letters, profiles }: IDrawerProps) {
+function DrawerClientWrap({ letters, profiles, feedbacks }: IDrawerProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   return (
@@ -21,6 +23,7 @@ function DrawerClientWrap({ letters, profiles }: IDrawerProps) {
         <NavContent
           letters={letters}
           profiles={profiles}
+          feedbacks={feedbacks}
           setIsOpen={setIsOpen}
         />
       </Drawer>

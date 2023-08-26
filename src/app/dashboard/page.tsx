@@ -8,6 +8,8 @@ import ProfileDB from '@/components/dashboardMain/ProfileDB'
 import { IProfiles } from '@/schema/letter.schema'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { redirect } from 'next/navigation'
+import { IFeedbacks } from '@/schema/feeback.schema'
+import FeedbackDB from '@/components/dashboardMain/FeedbackDB'
 
 export interface ILettersList {
   id: string
@@ -30,6 +32,7 @@ export interface ILettersList {
 interface IDocs {
   letters: ILettersList[]
   profiles: IProfiles[]
+  feedbacks: IFeedbacks[]
 }
 
 async function getDocs() {
@@ -65,6 +68,7 @@ async function getDocs() {
               training: true,
             },
           },
+          createdAt: true,
         },
       },
       profiles: {
@@ -74,6 +78,20 @@ async function getDocs() {
           abstract: true,
           experience: true,
           training: true,
+          createdAt: true,
+        },
+      },
+      feedbacks: {
+        select: {
+          id: true,
+          content: true,
+          area: true,
+          competences: true,
+          position: true,
+          proyects: true,
+          develop: true,
+          createdAt: true,
+          rating: true,
         },
       },
     },
@@ -91,8 +109,7 @@ async function Dashboard({
 
   // console.log(docs)
 
-  const { profiles, letters } = docs
-
+  const { profiles, letters, feedbacks } = docs
   let show = ''
   let id = ''
   let edit = ''
@@ -112,7 +129,11 @@ async function Dashboard({
   return (
     <>
       <div className="relative flex-1 h-full flex bg-black">
-        <DrawerClientWrap letters={letters} profiles={profiles} />
+        <DrawerClientWrap
+          letters={letters}
+          profiles={profiles}
+          feedbacks={feedbacks}
+        />
         <aside className="hidden w-96 lg:block">
           <article className="relative w-full pb-10 flex flex-col h-full border-r-2 border-black bg-gradient-to-t from-gray-700 via-gray-900 to-black">
             <header className="p-4 font-bold text-lg flex justify-between  text-white ">
@@ -120,7 +141,11 @@ async function Dashboard({
             </header>
             {letters.length ? (
               <ScrollArea className="px-5 space-y-6 mt-6 text-white h-[75vh]">
-                <NavContent profiles={profiles} letters={letters} />
+                <NavContent
+                  profiles={profiles}
+                  letters={letters}
+                  feedbacks={feedbacks}
+                />
               </ScrollArea>
             ) : (
               <div className="flex h-full items-center justify-center px-5">
@@ -132,13 +157,17 @@ async function Dashboard({
           </article>
           {/* <GetLetters /> */}
         </aside>
-        {show === 'letter' ? (
+        {show === 'letter' && (
           <LetterDB letter={letters.find((letr) => letr.id === id)} />
-        ) : (
+        )}
+        {show === 'profile' && (
           <ProfileDB
             profile={profiles.find((prof) => prof.id === id)}
             edit={edit}
           />
+        )}
+        {show === 'feedback' && (
+          <FeedbackDB feedback={feedbacks.find((prof) => prof.id === id)} />
         )}
       </div>
     </>

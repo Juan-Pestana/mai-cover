@@ -7,7 +7,7 @@ function Cover() {
   const [resp, setResp] = useState<string>('')
 
   const { offer_name, offer, company_name, training, experience, abstract } =
-    useStore((state) => state)
+    useStore((state) => state.coverLetter)
 
   useEffect(() => {
     const fetchData = async () => {

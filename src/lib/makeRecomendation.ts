@@ -2,7 +2,7 @@ import { ChatOpenAI } from 'langchain/chat_models/openai'
 import { LLMChain } from 'langchain/chains'
 import { PromptTemplate } from 'langchain/prompts'
 
-const COVER_PROMPT = `Teniendo en cuenta el puesto que ha ocupado, el area o departamento, los proyectos en los que ha participado y las competencias que ha mostrado en su desempeño escribe una carta de recomendación en {language} que muestre porque el humano es un buen candidato para un futuro puesto de trabajo y sería una buena decisión contratarle.
+const COVER_PROMPT = `Teniendo en cuenta el puesto que ha ocupado, el area o departamento, los proyectos en los que ha participado y las competencias que ha mostrado en su desempeño, escribe una carta de recomendación en {language} que muestre porque el humano es un buen candidato para un futuro puesto de trabajo y sería una buena decisión contratarle.
 
 puesto:
 {position}
