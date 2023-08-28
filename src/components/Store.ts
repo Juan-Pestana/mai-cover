@@ -14,6 +14,12 @@ enum coverFields {
 }
 
 type State = {
+  recomendation: {
+    position: string
+    area: string
+    proyects: string
+    competences: string
+  }
   feedback: {
     position: string
     area: string
@@ -37,6 +43,7 @@ type State = {
 }
 
 type Action = {
+  updateRecomendation: (feedback: State['recomendation']) => void
   updateFeedback: (feedback: State['feedback']) => void
   updateCover: (coverLetter: State['coverLetter']) => void
   updateProfilePreview: (profile_preview: State['profile_preview']) => void
@@ -45,6 +52,12 @@ type Action = {
 }
 
 export const useStore = create<State & Action>((set) => ({
+  recomendation: {
+    position: '',
+    area: '',
+    proyects: '',
+    competences: '',
+  },
   feedback: {
     position: '',
     area: '',
@@ -78,4 +91,6 @@ export const useStore = create<State & Action>((set) => ({
   updateOfferUsed: (offer_used) => set(() => ({ offer_used: offer_used })),
   updateCover: (coverLetter) => set(() => ({ coverLetter: coverLetter })),
   updateFeedback: (feedback) => set(() => ({ feedback: feedback })),
+  updateRecomendation: (recomendation) =>
+    set(() => ({ recomendation: recomendation })),
 }))

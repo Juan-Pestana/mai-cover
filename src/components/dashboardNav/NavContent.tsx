@@ -14,15 +14,23 @@ import { useSearchParams, useRouter } from 'next/navigation'
 import { Dispatch, SetStateAction } from 'react'
 import { useStore } from '../Store'
 import { IFeedbacks } from '@/schema/feeback.schema'
+import { IRecomendations } from '@/schema/recomendation.schema'
 
 interface IDrawerProps {
   letters: ILettersList[]
   profiles: IProfiles[]
   feedbacks: IFeedbacks[]
+  recomendations: IRecomendations[]
   setIsOpen?: Dispatch<SetStateAction<boolean>>
 }
 
-function NavContent({ letters, profiles, feedbacks, setIsOpen }: IDrawerProps) {
+function NavContent({
+  letters,
+  profiles,
+  feedbacks,
+  recomendations,
+  setIsOpen,
+}: IDrawerProps) {
   const searchParams = useSearchParams()
   const router = useRouter()
   const updateProfilePreview = useStore((state) => state.updateProfilePreview)
@@ -106,6 +114,23 @@ function NavContent({ letters, profiles, feedbacks, setIsOpen }: IDrawerProps) {
               onClick={() => linkBtn('feedback', feedback.id)}
             >
               {feedback.position}
+            </button>
+          </AccordionContent>
+        ))}
+      </AccordionItem>
+      <AccordionItem className="mb-6 " value="item-4">
+        <AccordionTrigger className="text-xl font-semibold">
+          Tus Recomendaciones
+        </AccordionTrigger>
+        {recomendations.map((recomendation) => (
+          <AccordionContent key={recomendation.id}>
+            <button
+              className={`text-lg  text-left px-5  w-full rounded-lg hover:cursor-pointer hover:bg-slate-200 hover:text-black ${
+                id === recomendation.id ? 'bg-white text-black' : null
+              }`}
+              onClick={() => linkBtn('recomendation', recomendation.id)}
+            >
+              {recomendation.position}
             </button>
           </AccordionContent>
         ))}

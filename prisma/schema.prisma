@@ -43,21 +43,22 @@ model Account {
 // }
 
 model User {
-  id             String     @id @default(cuid())
+  id             String          @id @default(cuid())
   name           String?
-  email          String?    @unique
+  email          String?         @unique
   emailVerified  DateTime?
   image          String?
-  role           Role       @default(user)
+  role           Role            @default(user)
   hashedPassword String?
-  availableDocs  Int        @default(2)
+  availableDocs  Int             @default(2)
   payments       Payment[]
   accounts       Account[]
   letters        Letter[]
   profiles       Profile[]
   feedbacks      Feedback[]
-  createdAt      DateTime   @default(now())
-  updatedAt      DateTime   @updatedAt
+  recomendations Recomendation[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
 }
 
 model VerificationToken {
@@ -116,6 +117,22 @@ model Feedback {
   area        String
   competences String
   develop     String
+  position    String
+  proyects    String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model Recomendation {
+  id          String   @id @default(cuid())
+  content     String   @db.Text
+  rating      Int?
+  area        String
+  competences String
   position    String
   proyects    String
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
