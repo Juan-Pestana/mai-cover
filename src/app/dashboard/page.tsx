@@ -122,7 +122,7 @@ async function Dashboard({
 }) {
   const docs = await getDocs()
 
-  // console.log(docs)
+  //console.log(docs)
 
   const { profiles, letters, feedbacks, recomendations } = docs
   let show = ''
