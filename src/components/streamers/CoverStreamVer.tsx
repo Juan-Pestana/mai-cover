@@ -13,7 +13,7 @@ import StarRating from '../ui/starRating'
 import { useCopyToClipboard } from '@/lib/hooks/useClipboard'
 import { redirect, useRouter } from 'next/navigation'
 
-function CoverStreamVer() {
+function CoverStreamVer({ profile_adapt }: { profile_adapt: boolean }) {
   const { profile_used, offer_used } = useStore((state) => state)
 
   const {
@@ -42,7 +42,9 @@ function CoverStreamVer() {
 
     handleSubmit,
   } = useCompletion({
-    api: '/api/cover_letter',
+    api: !profile_adapt
+      ? '/api/generate/cover_letter_stream'
+      : '/api/generate/profile_adapt_stream',
     body: {
       language,
       offer_name,
@@ -75,28 +77,33 @@ function CoverStreamVer() {
 
   const saveLetter = async () => {
     try {
-      const res = await fetch('/api/letter', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          rating: rating > 0 ? rating : undefined,
-          offer_used,
-          completion,
-          profile_used,
-        }),
-      })
+      const res = await fetch(
+        !profile_adapt ? '/api/letter' : 'api/profile_adapt',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            rating: rating > 0 ? rating : undefined,
+            offer_used,
+            completion,
+            profile_used,
+          }),
+        }
+      )
 
       if (res.ok) {
         //TO DO
         //meter algo en local storage
         const letter = await res.json()
         toast({
-          title: 'Se ha guardado la carta',
+          title: !profile_adapt
+            ? 'Se ha guardado la carta'
+            : 'Se ha guardado la propuesta',
           description: 'Puedes encontrarla en tus Documentos',
         })
-        router.push(`/dashboard?show=letter&id=${letter.id}`)
+        // router.push(`/dashboard?show=letter&id=${letter.id}`)
       }
     } catch (error) {
       console.log(error)
@@ -110,7 +117,11 @@ function CoverStreamVer() {
   const copyToClipboard = () => {
     copy(completion)
 
-    toast({ title: 'Se ha copiado tu carta en el portapapeles' })
+    toast({
+      title: !profile_adapt
+        ? 'Se ha copiado tu carta en el portapapeles'
+        : 'Se ha copiado la recomendación de adaptación en el portapapeles',
+    })
   }
 
   return (
@@ -118,7 +129,7 @@ function CoverStreamVer() {
       <h2
         className={`text-center text-3xl py-3 ${garamont.className} font-semibold text-slate-800`}
       >
-        Carta de Presentación
+        {!profile_adapt ? 'Carta de Presentación' : 'Recomendación sobre tu CV'}
       </h2>
       <ReactMarkdown
         className={`prose whitespace-pre-wrap lg:text-lg py-6 leading-7`}
@@ -204,7 +215,7 @@ function CoverStreamVer() {
       ) : (
         <div className="">
           <div className="text-center py-3">
-            <p>Valora tu carta</p>
+            <p>Valora el Documento</p>
             <StarRating rating={rating} setRating={setRating} />
           </div>
 

@@ -31,7 +31,7 @@ function FeedbackStream() {
 
     handleSubmit,
   } = useCompletion({
-    api: '/api/feedback_stream',
+    api: '/api/generate/feedback_stream',
     body: {
       language,
       area: feedback.area,

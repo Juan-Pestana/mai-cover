@@ -2,9 +2,6 @@ import { makecover } from '@/lib/makecover'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { NextResponse } from 'next/server'
 import { StreamingTextResponse, LangChainStream } from 'ai'
-import { getServerSession } from 'next-auth/next'
-import { options } from '../auth/[...nextauth]/options'
-import { prisma } from '@/lib/prismaClient'
 
 //import { ChatOpenAI } from 'langchain/chat_models/openai'
 

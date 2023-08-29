@@ -34,7 +34,7 @@ export default async function asyncHome() {
               {session ? (
                 <>
                   <Link
-                    className="bg-black text-white px-4 py-2 border-2 border-black hover:shadow-2xl hover:bg-[#24292F]/80 hover:text-black transition-all lg:text-xl lg:px-5 lg:py-2"
+                    className="bg-black text-white px-4 py-2 border-2 border-black hover:shadow-2xl hover:bg-[#24292F]/80 hover:text-white transition-all lg:text-xl lg:px-5 lg:py-2"
                     href="/profile_form"
                   >
                     Crea tu carta

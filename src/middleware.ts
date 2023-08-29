@@ -1,6 +1,6 @@
 import { withAuth, NextRequestWithAuth } from 'next-auth/middleware'
 import { NextResponse } from 'next/server'
-import { prisma } from './lib/prismaClient'
+
 import { nextUrl } from './lib/url'
 
 export default withAuth(
@@ -23,7 +23,7 @@ export default withAuth(
     //   console.log('consideramos que no tiene los roles par este path')
     // }
 
-    if (request.nextUrl.pathname.startsWith('/api/cover_ver')) {
+    if (request.nextUrl.pathname.startsWith('/api/generate')) {
       const res = await fetch(
         `${nextUrl}/api/available_docs/${request.nextauth.token?.id}`,
         {
@@ -54,4 +54,4 @@ export default withAuth(
   }
 )
 
-export const config = { matcher: ['/api/cover_ver'] }
+export const config = { matcher: ['/api/generate/:path*'] }

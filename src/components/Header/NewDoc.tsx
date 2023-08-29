@@ -37,14 +37,14 @@ const components: {
   },
   {
     title: 'Carta de recomendación',
-    href: '#',
+    href: '/recomendation_form',
     description:
       'No siempre es fácil encontrar las palabras y la fórmula adecuada. Inspirate con nuestra propuesta personalizada ',
     premium: true,
   },
   {
     title: 'Adapta tu CV',
-    href: '#',
+    href: '/profile_form/?cvAdvisor=true',
     description:
       'Adaptar tu perfil a cada oferta, es muy fácil de decir, pero como? sigue las sugerencias de nuestra IA',
     premium: true,

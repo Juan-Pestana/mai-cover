@@ -10,7 +10,7 @@ type Inputs = {
   offer: string
 }
 
-function Offer() {
+function Offer({ cvAdvisor }: { cvAdvisor: boolean }) {
   const { updateCover, updateOfferUsed } = useStore((state) => state)
   const { training, abstract, experience, profile_name } = useStore(
     (state) => state.coverLetter
@@ -51,7 +51,9 @@ function Offer() {
       updateOfferUsed(newOffer.id)
     }
 
-    router.push('/generate/cover_letter')
+    !cvAdvisor
+      ? router.push('/generate/cover_letter')
+      : router.push('/generate/profile_adapt')
   }
 
   return (
@@ -118,7 +120,7 @@ function Offer() {
           className="w-full mt-4 bg-black py-3 text-slate-50 rounded-lg text-lg hover:bg-[#24292F]/80 md:text-xl"
           type="submit"
         >
-          Generar Carta
+          {!cvAdvisor ? 'Generar Carta' : 'Adaptar Perfil'}
         </button>
       </form>
     </div>

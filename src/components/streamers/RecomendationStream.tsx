@@ -31,7 +31,7 @@ function RecomendationStream() {
 
     handleSubmit,
   } = useCompletion({
-    api: '/api/recomendation_stream',
+    api: '/api/generate/recomendation_stream',
     body: {
       language,
       area: recomendation.area,

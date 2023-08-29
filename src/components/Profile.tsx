@@ -16,9 +16,10 @@ type Inputs = {
 interface IProfileProps {
   pageType: string
   setShow?: Dispatch<SetStateAction<string>>
+  cvAdvisor?: boolean
 }
 
-function Profile({ pageType, setShow }: IProfileProps) {
+function Profile({ pageType, setShow, cvAdvisor }: IProfileProps) {
   const { updateCover, updateProfileUsed } = useStore((state) => state)
 
   const profile_preview = useStore((state) => state.profile_preview)
@@ -120,7 +121,9 @@ function Profile({ pageType, setShow }: IProfileProps) {
           //ha usado un perfil anterior y es todo igual, no ha cambiado nada
           if (pageType === 'form') {
             updateProfileUsed(profile_preview.id)
-            router.push('offer_form')
+            !cvAdvisor
+              ? router.push('/offer_form')
+              : router.push('/offer_form/?cvAdvisor=true')
           }
           if (pageType === 'dashboard') {
             setShow && setShow('profile')
@@ -146,7 +149,9 @@ function Profile({ pageType, setShow }: IProfileProps) {
           if (pageType === 'form') {
             const newProfile = (await res.json()) as IProfiles
             updateProfileUsed(newProfile.id)
-            router.push('/offer_form')
+            !cvAdvisor
+              ? router.push('/offer_form')
+              : router.push('/offer_form/?cvAdvisor=true')
           }
           if (pageType === 'dashboard') {
             const createdProfile = (await res.json()) as IProfiles

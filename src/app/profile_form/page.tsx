@@ -5,11 +5,21 @@ import { getServerSession } from 'next-auth/next'
 import { options } from '../api/auth/[...nextauth]/options'
 import { redirect } from 'next/navigation'
 
-export default async function Home() {
+export default async function Profile_formPage({
+  searchParams,
+}: {
+  params: { slug: string }
+  searchParams?: { [key: string]: string | undefined }
+}) {
   const session = await getServerSession(options)
+  let cvAdvisor = false
 
   if (!session) {
     redirect('/api/auth/signin?callbackUrl=/')
+  }
+
+  if (searchParams?.cvAdvisor) {
+    cvAdvisor = true
   }
   return (
     <main className="flex-1 flex items-center justify-center ">
@@ -29,7 +39,7 @@ export default async function Home() {
           </Suspense>
         </div>
         <div className="flex-1">
-          <Profile pageType="form" />
+          <Profile pageType="form" cvAdvisor={cvAdvisor} />
         </div>
       </div>
     </main>
