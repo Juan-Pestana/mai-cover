@@ -23,6 +23,36 @@ async function Header() {
         <div>
           <Link href="/" className="text-white flex items-center">
             {/* <SiTinyletter className="h-7 w-7 mx-4 lg:h-10 lg:w-10" /> */}
+            <svg
+              className="h-10 w-10 mx-4 lg:h-12 lg:w-12"
+              width="512"
+              height="512"
+              viewBox="0 0 512 512"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M464 205.5V134.875C464 113.405 446.134 96 424.096 96H88.9038C66.8656 96 49 113.405 49 134.875V368.125C49 389.595 66.8656 407 88.9038 407H247.5M464 316.5V407M304 407L355.5 275L405 407M464 258V268.5"
+                stroke="white"
+                strokeWidth="22"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M464 316.5V407"
+                stroke="white"
+                strokeWidth="22"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M75 122L255.5 279L436 122"
+                stroke="#FFFEFE"
+                strokeWidth="22"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
             <h3 className={`hidden text-2xl md:block ${montserrat.className}`}>
               mAI-Cover
             </h3>

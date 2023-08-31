@@ -19,8 +19,8 @@ function BuyButton() {
 
     if (!response?.ok) {
       return toast({
-        title: 'Something went wrong.',
-        description: 'Please refresh the page and try again.',
+        title: 'Algo ha salido mal.',
+        description: 'Actualiza la página e inténtalo de nuevo.',
         variant: 'destructive',
       })
     }
@@ -38,9 +38,9 @@ function BuyButton() {
     <form action="" onSubmit={onSubmit}>
       <button
         type="submit"
-        className="mt-10 block w-full bg-black px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-slate-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        className="mt-10 block w-full bg-black px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
       >
-        Get access
+        Comprar Bono
       </button>
     </form>
   )

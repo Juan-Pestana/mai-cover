@@ -4,16 +4,19 @@ import { garamont } from '@/app/fonts/fonts'
 
 function Pricing() {
   const includedFeatures = [
-    'Cartas de presentación',
-    'Recomendaciónes para adaptar tu CV',
+    'Cartas de presentación personalizada y adaptada a cada oferta',
+
+    'Describe tu posición para incorporarla en tu CV',
+    'Recomendaciónes para adaptar tu CV a la posición a la que vas a aplicar',
+
     'Cartas de recomendación para tus colaboradores',
-    'Sugerencias de Feedback a empleados',
+    'Propuesta de Feedback para tu equipo o colaboradores',
   ]
 
   return (
-    <div className="bg-white py-24 sm:py-28">
+    <div className="bg-white pb-20 sm:pb-24">
       <div className="mx-auto max-w-7xl px-3 lg:px-8">
-        <div className="mx-auto max-w-2xl ">
+        {/* <div className="mx-auto max-w-2xl ">
           <h2
             className={`text-4xl text-center ${garamont.className} font-bold tracking-tight text-gray-900 sm:text-4xl `}
           >
@@ -24,7 +27,7 @@ function Pricing() {
             ayudarán a poner en palabras, las consideraciones más complejas
             sobre ti mismo o tus colaboradores
           </p>
-        </div>
+        </div> */}
         <div className="mx-auto mt-16 max-w-2xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
           <div className="p-8 sm:p-10 lg:flex-auto">
             <h3 className="text-2xl font-bold tracking-tight text-black">
@@ -48,7 +51,7 @@ function Pricing() {
               {includedFeatures.map((feature) => (
                 <li key={feature} className="flex gap-x-3">
                   <RiCheckFill
-                    className="h-6 w-5 flex-none "
+                    className="h-6 w-5 flex-none text-indigo-600 "
                     aria-hidden="true"
                   />
                   {feature}
