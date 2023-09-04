@@ -51,8 +51,8 @@ const components: {
     premium: true,
   },
   {
-    title: 'Describe tu puesto',
-    href: '/profile_form/?cvAdvisor=true',
+    title: 'Describe tu posición',
+    href: '/position_form',
     description:
       'Detallar tu posición para un CV puede parecer sencillo, hasta que tienes que hacerlo. Te proponemos un ejemplo adaptado a tí',
     premium: true,
@@ -85,7 +85,7 @@ function NewDoc({ docsLeft, role }: InewDocProps) {
                 <Link
                   href={
                     component.premium && role === 'user'
-                      ? '/getDocs'
+                      ? '#getDocs'
                       : component.href
                   }
                 >
@@ -111,6 +111,38 @@ function NewDoc({ docsLeft, role }: InewDocProps) {
                 </Link>
               </li>
             ))}
+            <li className="bg-slate-200 flex items-center justify-center rounded-md">
+              <svg
+                className="w-full h-24"
+                width="474"
+                height="474"
+                viewBox="0 0 512 512"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M464 205.5V134.875C464 113.405 446.134 96 424.096 96H88.9038C66.8656 96 49 113.405 49 134.875V368.125C49 389.595 66.8656 407 88.9038 407H247.5M464 316.5V407M304 407L355.5 275L405 407M464 258V268.5"
+                  stroke="black"
+                  strokeWidth="32"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M464 316.5V407"
+                  stroke="black"
+                  strokeWidth="32"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M75 122L255.5 279L436 122"
+                  stroke="black"
+                  strokeWidth="32"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </li>
           </ul>
         </NavigationMenuContent>
       </NavigationMenuItem>

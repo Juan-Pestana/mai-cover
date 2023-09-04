@@ -1,29 +1,30 @@
 import { garamont } from '@/app/fonts/fonts'
+import { RiFileAddLine } from 'react-icons/ri'
 
 const features = [
   {
     name: 'Describe tu puesto',
     description:
-      'Dominas tu puesto pero... ¿Sabrías ponerlo en palabras, para que un Hiring Manager entienda su valor?',
-    //icon: CloudArrowUpIcon,
+      'Dominas tu posición pero... ¿Sabrías extraer los aspectos clave, para que un Hiring Manager entienda su valor?',
+    icon: RiFileAddLine,
   },
   {
     name: 'Sugerencias CV',
     description:
       'Adaptar tu perfil a cada oferta es una recomendación clásica, pero sin un poco de ayuda puede resultar tedioso.',
-    //icon: LockClosedIcon,
+    icon: RiFileAddLine,
   },
   {
     name: 'Feedback a tu equipo',
     description:
       'Un par de detalles sobre tu colaborador y generaremos un feedback personalizado para que puedas adaptarlo y hacerlo tuyo.',
-    //icon: ArrowPathIcon,
+    icon: RiFileAddLine,
   },
   {
     name: 'Cartas de recomendación',
     description:
-      'No es fácil redactar una buena carta de presentación, y menos aun hacerlo en el formato adecuado, te ayudamos a arrancar.',
-    //icon: FingerPrintIcon,
+      'No es fácil redactar una buena carta de recomendación, y menos aun hacerlo en el formato adecuado, te ayudamos a arrancar.',
+    icon: RiFileAddLine,
   },
 ]
 
@@ -52,8 +53,10 @@ export default function Features() {
               <div key={feature.name} className="relative pl-16">
                 <dt className="text-base font-semibold leading-7 text-gray-900">
                   <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
-                    {/* <feature.icon className="h-6 w-6 text-white" aria-hidden="true" /> */}
-                    +
+                    <feature.icon
+                      className="h-6 w-6 text-white"
+                      aria-hidden="true"
+                    />
                   </div>
                   {feature.name}
                 </dt>

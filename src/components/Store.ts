@@ -36,6 +36,11 @@ type State = {
     offer_name: string
     offer: string
   }
+  position: {
+    position: string
+    industry: string
+    proyects: string
+  }
 
   profile_preview: IProfiles
   profile_used: string
@@ -46,6 +51,7 @@ type Action = {
   updateRecomendation: (feedback: State['recomendation']) => void
   updateFeedback: (feedback: State['feedback']) => void
   updateCover: (coverLetter: State['coverLetter']) => void
+  updatePosition: (position: State['position']) => void
   updateProfilePreview: (profile_preview: State['profile_preview']) => void
   updateProfileUsed: (profile_used: State['profile_used']) => void
   updateOfferUsed: (offer_used: State['offer_used']) => void
@@ -64,6 +70,11 @@ export const useStore = create<State & Action>((set) => ({
     proyects: '',
     competences: '',
     develop: '',
+  },
+  position: {
+    position: '',
+    industry: '',
+    proyects: '',
   },
   coverLetter: {
     profile_name: '',
@@ -90,6 +101,7 @@ export const useStore = create<State & Action>((set) => ({
     set(() => ({ profile_used: profile_used })),
   updateOfferUsed: (offer_used) => set(() => ({ offer_used: offer_used })),
   updateCover: (coverLetter) => set(() => ({ coverLetter: coverLetter })),
+  updatePosition: (position) => set(() => ({ position: position })),
   updateFeedback: (feedback) => set(() => ({ feedback: feedback })),
   updateRecomendation: (recomendation) =>
     set(() => ({ recomendation: recomendation })),

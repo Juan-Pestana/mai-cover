@@ -6,14 +6,12 @@ import { IOffer } from '@/schema/letter.schema'
 
 type Inputs = {
   position: string
-  area: string
+  industry: string
   proyects: string
-  competences: string
-  develop: string
 }
 
-function FeedbackForm() {
-  const { updateFeedback } = useStore((state) => state)
+function PositionForm() {
+  const { updatePosition } = useStore((state) => state)
 
   const router = useRouter()
 
@@ -24,10 +22,8 @@ function FeedbackForm() {
   } = useForm<Inputs>()
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    updateFeedback({
-      area: data.area,
-      competences: data.competences,
-      develop: data.develop,
+    updatePosition({
+      industry: data.industry,
       position: data.position,
       proyects: data.proyects,
     })
@@ -45,30 +41,13 @@ function FeedbackForm() {
     //   updateOfferUsed(newOffer.id)
     // }
 
-    router.push('/generate/feedback')
+    router.push('/generate/position')
   }
 
   return (
     <div className="w-full max-w-3xl my-3 py-5 px-2 bg-slate-100 rounded-lg shadow-lg md:px-5">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex gap-3 ">
-          <div className="mb-3 flex-1">
-            <label className="text-sm ml-2" htmlFor="company_name">
-              Departamento o area
-            </label>
-            <input
-              type="text"
-              id="area"
-              className="mt-2 w-full rounded-md p-2"
-              placeholder="Operaciones"
-              {...register('area', { required: true })}
-            />
-            {errors.area && (
-              <span className="text-red-500">
-                Debes indicar el departamento al que pertenece
-              </span>
-            )}
-          </div>
           {/* register your input into the hook by invoking the "register" function */}
           <div className="mb-3 flex-1">
             <label className="text-sm ml-2" htmlFor="offer_title">
@@ -88,11 +67,30 @@ function FeedbackForm() {
             )}
           </div>
         </div>
+        <div className="mb-3">
+          <label className="text-sm ml-2" htmlFor="offer">
+            Industria
+          </label>
+          <input
+            id="industry"
+            className=" mt-2 w-full rounded-md p-2"
+            placeholder="Consultoría de desarrollo de software"
+            {...register('industry', { required: true })}
+          />
+          {/* errors will return when field validation fails  */}
+          <div>
+            {errors.industry && (
+              <span className="text-red-500">
+                Debes indicar la industria en la que se encueadra el puesto
+              </span>
+            )}
+          </div>
+        </div>
 
         {/* include validation with required or other standard HTML validation rules */}
         <div className="mb-3">
           <label className="text-sm ml-2" htmlFor="offer">
-            Proyecto/s en los que haya participado
+            Algún proyecto o tarea destacable
           </label>
           <input
             id="offer"
@@ -105,45 +103,8 @@ function FeedbackForm() {
           <div>
             {errors.proyects && (
               <span className="text-red-500">
-                Debes indicar al menos un proyecto en el que haya participado
-              </span>
-            )}
-          </div>
-        </div>
-        <div className="mb-3">
-          <label className="text-sm ml-2" htmlFor="offer">
-            Competencias que ha mostrado
-          </label>
-          <input
-            id="offer"
-            className=" mt-2 w-full rounded-md p-2"
-            placeholder="Atención al detalle, Perseverancia, Creatividad..."
-            {...register('competences', { required: true })}
-          />
-          {/* errors will return when field validation fails  */}
-          <div>
-            {errors.competences && (
-              <span className="text-red-500">
-                Debes indicar alguna competencia que haya mostrado el candidato
-              </span>
-            )}
-          </div>
-        </div>
-        <div className="mb-3">
-          <label className="text-sm ml-2" htmlFor="offer">
-            Aspecto a mejorar/desarrollar
-          </label>
-          <input
-            id="develop"
-            className=" mt-2 w-full rounded-md p-2"
-            placeholder="Comunicación con compañeros, Uso de Excel..."
-            {...register('develop', { required: true })}
-          />
-          {/* errors will return when field validation fails  */}
-          <div>
-            {errors.develop && (
-              <span className="text-red-500">
-                Debes indicar alguna competencia que haya mostrado el candidato
+                Debes indicar al menos un proyecto o taréa que te gustaría
+                destacar.
               </span>
             )}
           </div>
@@ -153,11 +114,11 @@ function FeedbackForm() {
           className="w-full mt-4 bg-black py-3 text-slate-50 rounded-lg text-lg hover:bg-[#24292F]/80 md:text-xl"
           type="submit"
         >
-          Generar Feedback
+          Generar Detalle de la Posición
         </button>
       </form>
     </div>
   )
 }
 
-export default FeedbackForm
+export default PositionForm

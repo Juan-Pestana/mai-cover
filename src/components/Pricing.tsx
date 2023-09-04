@@ -5,16 +5,14 @@ import { garamont } from '@/app/fonts/fonts'
 function Pricing() {
   const includedFeatures = [
     'Cartas de presentación personalizada y adaptada a cada oferta',
-
-    'Describe tu posición para incorporarla en tu CV',
+    'Describe tu posición para incorporarla los aspectos clave en tu CV',
     'Recomendaciónes para adaptar tu CV a la posición a la que vas a aplicar',
-
     'Cartas de recomendación para tus colaboradores',
     'Propuesta de Feedback para tu equipo o colaboradores',
   ]
 
   return (
-    <div className="bg-white pb-20 sm:pb-24">
+    <div id="getDocs" className="bg-white pb-20 sm:pb-24">
       <div className="mx-auto max-w-7xl px-3 lg:px-8">
         {/* <div className="mx-auto max-w-2xl ">
           <h2

@@ -13,9 +13,10 @@ export async function POST(req: Request) {
   const data: ILetter = await req.json()
 
   try {
+    //reutilizamos el letterSchema porque es basicamente igual
     const letter = letterSchema.parse(data)
 
-    const createdLetter = await prisma.letter.create({
+    const createdCvAdapt = await prisma.cvAdapt.create({
       data: {
         content: letter.completion,
         rating: letter.rating,
@@ -28,7 +29,7 @@ export async function POST(req: Request) {
       },
     })
 
-    return NextResponse.json(createdLetter)
+    return NextResponse.json(createdCvAdapt)
   } catch (error) {
     console.log(error)
     return new NextResponse('algo ha ido mal')

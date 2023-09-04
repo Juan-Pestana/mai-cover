@@ -14,6 +14,7 @@ interface IDrawerProps {
   profiles: IProfiles[]
   feedbacks: IFeedbacks[]
   recomendations: IRecomendations[]
+  cvAdapts: ILettersList[]
 }
 
 function DrawerClientWrap({
@@ -21,6 +22,7 @@ function DrawerClientWrap({
   profiles,
   feedbacks,
   recomendations,
+  cvAdapts,
 }: IDrawerProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -32,6 +34,7 @@ function DrawerClientWrap({
           profiles={profiles}
           feedbacks={feedbacks}
           recomendations={recomendations}
+          cvAdapts={cvAdapts}
           setIsOpen={setIsOpen}
         />
       </Drawer>

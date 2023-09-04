@@ -12,8 +12,8 @@ import { SiTinyletter } from 'react-icons/si'
 import StarRating from '../ui/starRating'
 import { FaCopy, FaSave } from 'react-icons/fa'
 
-function FeedbackStream() {
-  const { feedback } = useStore((state) => state)
+function PositionStream() {
+  const { position } = useStore((state) => state)
 
   const [isFinished, setIsFinished] = useState<boolean>(false)
   const [rating, setRating] = useState<number>(0)
@@ -31,14 +31,12 @@ function FeedbackStream() {
 
     handleSubmit,
   } = useCompletion({
-    api: '/api/generate/feedback_stream',
+    api: '/api/generate/position_stream',
     body: {
       language,
-      area: feedback.area,
-      competences: feedback.competences,
-      develop: feedback.develop,
-      position: feedback.position,
-      proyects: feedback.proyects,
+      industry: position.industry,
+      position: position.position,
+      proyects: position.proyects,
     },
     initialInput: 'esto no vale para nada',
     onResponse: async (res) => {},
@@ -60,12 +58,12 @@ function FeedbackStream() {
   const copyToClipboard = () => {
     copy(completion)
 
-    toast({ title: 'Se ha copiado el Feedback en el portapapeles' })
+    toast({ title: 'Se ha copiado la Posición en el portapapeles' })
   }
 
-  const saveFeedback = async () => {
+  const savePosition = async () => {
     try {
-      const res = await fetch('/api/feedback', {
+      const res = await fetch('/api/position', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -73,11 +71,9 @@ function FeedbackStream() {
         body: JSON.stringify({
           rating: rating > 0 ? rating : undefined,
           content: completion,
-          area: feedback.area,
-          competences: feedback.competences,
-          develop: feedback.develop,
-          position: feedback.position,
-          proyects: feedback.proyects,
+          industry: position.industry,
+          position: position.position,
+          proyects: position.proyects,
         }),
       })
 
@@ -86,14 +82,14 @@ function FeedbackStream() {
         //meter algo en local storage
         const feedbackRes = await res.json()
         toast({
-          title: 'Se ha guardado el feedback',
+          title: 'Se ha guardado la Posición',
           description: 'Puedes encontrarla en tus Documentos',
         })
       }
     } catch (error) {
       console.log(error)
       toast({
-        title: 'Error al guardar el feedback',
+        title: 'Error al guardar la posición',
         variant: 'destructive',
       })
     }
@@ -104,7 +100,7 @@ function FeedbackStream() {
       <h2
         className={`text-center text-3xl py-3 ${garamont.className} font-semibold text-slate-800`}
       >
-        Feedback de colaborador
+        Descripción de la posición
       </h2>
       <ReactMarkdown
         className={`prose whitespace-pre-wrap lg:text-lg py-6 leading-7`}
@@ -196,7 +192,7 @@ function FeedbackStream() {
 
           <div className="flex items-center justify-center pt-4">
             <button
-              onClick={saveFeedback}
+              onClick={savePosition}
               className="mx-3 px-10 py-3 bg-black text-white hover:bg-slate-700 hover:shadow-xl transition-all"
               type="button"
             >
@@ -216,4 +212,4 @@ function FeedbackStream() {
   )
 }
 
-export default FeedbackStream
+export default PositionStream

@@ -12,6 +12,7 @@ import { IFeedbacks } from '@/schema/feeback.schema'
 import FeedbackDB from '@/components/dashboardMain/FeedbackDB'
 import { IRecomendations } from '@/schema/recomendation.schema'
 import RecomendationDB from '@/components/dashboardMain/RecomendationDB'
+import CvAdaptDB from '@/components/dashboardMain/CvAdaptDB'
 
 export interface ILettersList {
   id: string
@@ -36,6 +37,7 @@ interface IDocs {
   profiles: IProfiles[]
   feedbacks: IFeedbacks[]
   recomendations: IRecomendations[]
+  cvAdapts: ILettersList[]
 }
 
 async function getDocs() {
@@ -109,6 +111,30 @@ async function getDocs() {
           rating: true,
         },
       },
+      cvAdapts: {
+        select: {
+          id: true,
+          content: true,
+          offer: {
+            select: {
+              id: true,
+              company_name: true,
+              offer_name: true,
+              offer: true,
+            },
+          },
+          profile: {
+            select: {
+              id: true,
+              profile_name: true,
+              abstract: true,
+              experience: true,
+              training: true,
+            },
+          },
+          createdAt: true,
+        },
+      },
     },
   })
   return res as IDocs
@@ -124,7 +150,7 @@ async function Dashboard({
 
   //console.log(docs)
 
-  const { profiles, letters, feedbacks, recomendations } = docs
+  const { profiles, letters, feedbacks, recomendations, cvAdapts } = docs
   let show = ''
   let id = ''
   let edit = ''
@@ -149,6 +175,7 @@ async function Dashboard({
           profiles={profiles}
           feedbacks={feedbacks}
           recomendations={recomendations}
+          cvAdapts={cvAdapts}
         />
         <aside className="hidden w-96 lg:block">
           <article className="relative w-full pb-10 flex flex-col h-full border-r-2 border-black bg-gradient-to-t from-gray-700 via-gray-900 to-black">
@@ -162,6 +189,7 @@ async function Dashboard({
                   letters={letters}
                   feedbacks={feedbacks}
                   recomendations={recomendations}
+                  cvAdapts={cvAdapts}
                 />
               </ScrollArea>
             ) : (
@@ -190,6 +218,9 @@ async function Dashboard({
           <RecomendationDB
             recomendation={recomendations.find((prof) => prof.id === id)}
           />
+        )}
+        {show === 'cvAdapt' && (
+          <CvAdaptDB cvAdapt={cvAdapts.find((prof) => prof.id === id)} />
         )}
       </div>
     </>

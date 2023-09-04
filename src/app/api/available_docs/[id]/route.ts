@@ -22,7 +22,7 @@ export async function GET(
       return NextResponse.json(
         {
           message: 'No tienes creditos disponibles',
-          description: 'Adquiere nuevos créditos para generar documentos',
+          description: 'Adquiere un nuevo bono para generar más documentos',
         },
         { status: 403 }
       )

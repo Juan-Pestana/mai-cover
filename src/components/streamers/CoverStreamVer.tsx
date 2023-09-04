@@ -71,14 +71,16 @@ function CoverStreamVer({ profile_adapt }: { profile_adapt: boolean }) {
       })
     },
     onFinish() {
+      //refresh router para indicar el cambio en el número de docs disponibles
+      router.refresh()
       setIsFinished(true)
     },
   })
 
-  const saveLetter = async () => {
+  const saveDoc = async () => {
     try {
       const res = await fetch(
-        !profile_adapt ? '/api/letter' : 'api/profile_adapt',
+        !profile_adapt ? '/api/letter' : '/api/profile_adapt',
         {
           method: 'POST',
           headers: {
@@ -100,7 +102,7 @@ function CoverStreamVer({ profile_adapt }: { profile_adapt: boolean }) {
         toast({
           title: !profile_adapt
             ? 'Se ha guardado la carta'
-            : 'Se ha guardado la propuesta',
+            : 'Se ha guardado la Recomendación sobre tu CV',
           description: 'Puedes encontrarla en tus Documentos',
         })
         // router.push(`/dashboard?show=letter&id=${letter.id}`)
@@ -120,7 +122,7 @@ function CoverStreamVer({ profile_adapt }: { profile_adapt: boolean }) {
     toast({
       title: !profile_adapt
         ? 'Se ha copiado tu carta en el portapapeles'
-        : 'Se ha copiado la recomendación de adaptación en el portapapeles',
+        : 'Se ha copiado la Recomendación en el portapapeles',
     })
   }
 
@@ -221,7 +223,7 @@ function CoverStreamVer({ profile_adapt }: { profile_adapt: boolean }) {
 
           <div className="flex items-center justify-center pt-4">
             <button
-              onClick={saveLetter}
+              onClick={saveDoc}
               className="mx-3 px-10 py-3 bg-black text-white hover:bg-slate-700 hover:shadow-xl transition-all"
               type="button"
             >

@@ -1,5 +1,4 @@
 import { prisma } from '@/lib/prismaClient'
-import React, { Suspense } from 'react'
 import NewDoc from './NewDoc'
 
 interface INewDocProps {

@@ -50,6 +50,8 @@ function RecomendationStream() {
       })
     },
     onFinish() {
+      //refresh router para indicar el cambio en el número de docs disponibles
+      router.refresh()
       setIsFinished(true)
     },
   })

@@ -21,6 +21,7 @@ interface IDrawerProps {
   profiles: IProfiles[]
   feedbacks: IFeedbacks[]
   recomendations: IRecomendations[]
+  cvAdapts: ILettersList[]
   setIsOpen?: Dispatch<SetStateAction<boolean>>
 }
 
@@ -29,6 +30,7 @@ function NavContent({
   profiles,
   feedbacks,
   recomendations,
+  cvAdapts,
   setIsOpen,
 }: IDrawerProps) {
   const searchParams = useSearchParams()
@@ -58,23 +60,6 @@ function NavContent({
 
   return (
     <Accordion type="single" collapsible>
-      <AccordionItem className="mb-6 " value="item-1">
-        <AccordionTrigger className="text-xl font-semibold">
-          Tus Cartas
-        </AccordionTrigger>
-        {letters.map((letter) => (
-          <AccordionContent key={letter.id}>
-            <button
-              className={`text-lg  text-left px-5  w-full rounded-lg hover:cursor-pointer hover:bg-slate-200 hover:text-black ${
-                id === letter.id ? 'bg-white text-black' : null
-              }`}
-              onClick={() => linkBtn('letter', letter.id)}
-            >
-              {letter.offer.company_name}
-            </button>
-          </AccordionContent>
-        ))}
-      </AccordionItem>
       <AccordionItem className="mb-6" value="item-2">
         <AccordionTrigger className="text-xl font-semibold">
           Tus Perfiles
@@ -101,9 +86,27 @@ function NavContent({
           </button>
         </AccordionContent>
       </AccordionItem>
+      <AccordionItem className="mb-6 " value="item-1">
+        <AccordionTrigger className="text-xl font-semibold">
+          Cartas de Presentación
+        </AccordionTrigger>
+        {letters.map((letter) => (
+          <AccordionContent key={letter.id}>
+            <button
+              className={`text-lg  text-left px-5  w-full rounded-lg hover:cursor-pointer hover:bg-slate-200 hover:text-black ${
+                id === letter.id ? 'bg-white text-black' : null
+              }`}
+              onClick={() => linkBtn('letter', letter.id)}
+            >
+              {letter.offer.company_name}
+            </button>
+          </AccordionContent>
+        ))}
+      </AccordionItem>
+
       <AccordionItem className="mb-6 " value="item-3">
         <AccordionTrigger className="text-xl font-semibold">
-          Tus Feedbacks
+          Feedbacks
         </AccordionTrigger>
         {feedbacks.map((feedback) => (
           <AccordionContent key={feedback.id}>
@@ -120,7 +123,7 @@ function NavContent({
       </AccordionItem>
       <AccordionItem className="mb-6 " value="item-4">
         <AccordionTrigger className="text-xl font-semibold">
-          Tus Recomendaciones
+          Cartas de Recomendación
         </AccordionTrigger>
         {recomendations.map((recomendation) => (
           <AccordionContent key={recomendation.id}>
@@ -131,6 +134,23 @@ function NavContent({
               onClick={() => linkBtn('recomendation', recomendation.id)}
             >
               {recomendation.position}
+            </button>
+          </AccordionContent>
+        ))}
+      </AccordionItem>
+      <AccordionItem className="mb-6 " value="item-5">
+        <AccordionTrigger className="text-xl font-semibold">
+          Sugerencias CV
+        </AccordionTrigger>
+        {cvAdapts.map((cvAdapt) => (
+          <AccordionContent key={cvAdapt.id}>
+            <button
+              className={`text-lg  text-left px-5  w-full rounded-lg hover:cursor-pointer hover:bg-slate-200 hover:text-black ${
+                id === cvAdapt.id ? 'bg-white text-black' : null
+              }`}
+              onClick={() => linkBtn('cvAdapt', cvAdapt.id)}
+            >
+              {cvAdapt.offer.company_name}
             </button>
           </AccordionContent>
         ))}

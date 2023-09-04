@@ -1,18 +1,17 @@
-import React from 'react'
 import { montserrat } from '../fonts/fonts'
-import FeedbackForm from '@/components/forms/FeedbackForm'
+import PositionForm from '@/components/forms/PositionForm'
 
-function Feedback_form_page() {
+function Position_form_page() {
   return (
     <main className="flex-1 flex items-center justify-center p-3  ">
       <div className="flex flex-col w-full justify-center items-center ">
         <h2 className={`py-6 text-center text-4xl ${montserrat.className}`}>
-          Un par de datos sobre el colaborador
+          Un par de datos sobre tu posición
         </h2>
-        <FeedbackForm />
+        <PositionForm />
       </div>
     </main>
   )
 }
 
-export default Feedback_form_page
+export default Position_form_page

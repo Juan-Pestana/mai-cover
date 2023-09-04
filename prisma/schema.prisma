@@ -57,6 +57,8 @@ model User {
   profiles       Profile[]
   feedbacks      Feedback[]
   recomendations Recomendation[]
+  cvAdapts       cvAdapt[]
+  positions      Position[]
   createdAt      DateTime        @default(now())
   updatedAt      DateTime        @updatedAt
 }
@@ -70,16 +72,17 @@ model VerificationToken {
 }
 
 model Profile {
-  id           String   @id @default(cuid())
+  id           String    @id @default(cuid())
   profile_name String
-  abstract     String   @db.Text
-  experience   String   @db.Text
-  training     String   @db.Text
-  user         User     @relation(fields: [userId], references: [id])
+  abstract     String    @db.Text
+  experience   String    @db.Text
+  training     String    @db.Text
+  user         User      @relation(fields: [userId], references: [id])
   userId       String
   letters      Letter[]
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  cvAdapt      cvAdapt[]
 
   @@index([userId])
 }
@@ -103,11 +106,12 @@ model Letter {
 }
 
 model Offer {
-  id           String  @id @default(cuid())
+  id           String   @id @default(cuid())
   company_name String
   offer_name   String
-  offer        String  @db.Text
+  offer        String   @db.Text
   letters      Letter?
+  cvAdapt      cvAdapt?
 }
 
 model Feedback {
@@ -127,6 +131,21 @@ model Feedback {
   @@index([userId])
 }
 
+model Position {
+  id        String   @id @default(cuid())
+  content   String   @db.Text
+  rating    Int?
+  industry  String
+  position  String
+  proyects  String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+}
+
 model Recomendation {
   id          String   @id @default(cuid())
   content     String   @db.Text
@@ -141,6 +160,24 @@ model Recomendation {
   updatedAt   DateTime @updatedAt
 
   @@index([userId])
+}
+
+model cvAdapt {
+  id        String   @id @default(cuid())
+  content   String   @db.Text
+  rating    Int?
+  profile   Profile  @relation(fields: [profileId], references: [id])
+  offer     Offer    @relation(fields: [offerId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  profileId String
+  offerId   String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([profileId])
+  @@index([offerId])
 }
 
 model Payment {

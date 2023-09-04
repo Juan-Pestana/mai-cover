@@ -6,11 +6,11 @@
 
 [ ] volver a inicio desde las paginas stream
 
-[ ] crear componente de servicios para la landing
+[x] crear componente de servicios para la landing
 
 [ ] emails transaccionales
 
-[ ] crear footer
+[x] crear footer
 
 [ ] Linkedin login
 
