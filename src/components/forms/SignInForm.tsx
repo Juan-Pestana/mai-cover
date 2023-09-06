@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { signIn } from 'next-auth/react'
-import { useToast } from './ui/use-toast'
+import { useToast } from '../ui/use-toast'
 import { useEffect } from 'react'
 
 type Inputs = {

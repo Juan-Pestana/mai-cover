@@ -3,9 +3,9 @@ import { RiFileAddLine } from 'react-icons/ri'
 
 const features = [
   {
-    name: 'Describe tu puesto',
+    name: 'Describe tu Posición',
     description:
-      'Dominas tu posición pero... ¿Sabrías extraer los aspectos clave, para que un Hiring Manager entienda su valor?',
+      'Dominas tu posición pero... ¿Sabrías extraer y expresar los aspectos clave para que un Hiring Manager entienda su valor?',
     icon: RiFileAddLine,
   },
   {

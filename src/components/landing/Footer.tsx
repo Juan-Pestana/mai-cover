@@ -1,4 +1,5 @@
 import { montserrat } from '@/app/fonts/fonts'
+import Link from 'next/link'
 
 export default function Footer() {
   return (
@@ -64,9 +65,12 @@ export default function Footer() {
             </a>
           </li>
           <li>
-            <a href="#" className="mr-4  hover:text-indigo-600 md:mr-6">
+            <Link
+              href="/contact"
+              className="mr-4  hover:text-indigo-600 md:mr-6"
+            >
               Contacto
-            </a>
+            </Link>
           </li>
         </ul>
         <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">

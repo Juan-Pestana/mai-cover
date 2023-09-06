@@ -1,5 +1,5 @@
 import { RiCheckFill } from 'react-icons/ri'
-import BuyButton from './pricing/BuyButton'
+import BuyButton from '../pricing/BuyButton'
 import { garamont } from '@/app/fonts/fonts'
 
 function Pricing() {
@@ -37,7 +37,7 @@ function Pricing() {
               diseñados por nuestros expertos, profesionales de RRHH.
             </p>
             <div className="mt-6 flex items-center gap-x-4">
-              <h4 className="flex-none text-sm font-semibold leading-6 ">
+              <h4 className="flex-none text-sm font-semibold leading-6 text-indigo-600">
                 Qué incluye?
               </h4>
               <div className="h-px flex-auto bg-gray-100" />

@@ -6,22 +6,19 @@ import { SiTinyletter } from 'react-icons/si'
 import { FaUserCircle } from 'react-icons/fa'
 import Image from 'next/image'
 import { montserrat } from '@/app/fonts/fonts'
-import DropdownContent from './ui/dropdownContent'
+import DropdownContent from '../ui/dropdownContent'
 
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-} from '../components/ui/dropdown-menu'
-import NewDocServ from './Header/NewDocServ'
+import { DropdownMenu, DropdownMenuTrigger } from '../ui/dropdown-menu'
+import NewDocServ from './NewDocServ'
 
 async function Header() {
   const session = await getServerSession(options)
 
   return (
     <>
-      <div className="bg-yellow-200 text-center">
+      {/* <div className="bg-yellow-200 text-center">
         Estás probando mAI-Cover? Dejanós tu opinión
-      </div>
+      </div> */}
       <header className="block bg-black w-full p-2 lg:p-3">
         <div className="flex justify-between items-center text-xl">
           <div>

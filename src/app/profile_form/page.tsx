@@ -1,4 +1,4 @@
-import Profile from '@/components/Profile'
+import Profile from '@/components/forms/Profile'
 import { Suspense } from 'react'
 import ListProfiles from '@/components/ListProfiles'
 import { getServerSession } from 'next-auth/next'

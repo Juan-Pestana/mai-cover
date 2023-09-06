@@ -1,10 +1,10 @@
 'use client'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { useStore } from './Store'
+import { useStore } from '../Store'
 import { useRouter } from 'next/navigation'
 import { Dispatch, SetStateAction, useEffect } from 'react'
 import { IProfiles } from '@/schema/letter.schema'
-import { useToast } from './ui/use-toast'
+import { useToast } from '../ui/use-toast'
 
 type Inputs = {
   profile_name: string

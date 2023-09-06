@@ -2,7 +2,7 @@ import AuthProvider from '@/lib/Providers'
 import './globals.css'
 import type { Metadata } from 'next'
 import { inter } from '@/app/fonts/fonts'
-import Header from '@/components/header'
+import Header from '@/components/Header/Header'
 import { Toaster } from '@/components/ui/toaster'
 
 export const metadata: Metadata = {

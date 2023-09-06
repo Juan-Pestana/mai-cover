@@ -1,4 +1,4 @@
-import Offer from '@/components/Offer'
+import Offer from '@/components/forms/Offer'
 import { montserrat } from '../fonts/fonts'
 import { getServerSession } from 'next-auth/next'
 import { options } from '../api/auth/[...nextauth]/options'

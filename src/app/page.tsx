@@ -3,9 +3,9 @@ import { garamont } from './fonts/fonts'
 import Link from 'next/link'
 import { getServerSession } from 'next-auth'
 import { options } from './api/auth/[...nextauth]/options'
-import Pricing from '@/components/Pricing'
-import Features from '@/components/Features'
-import Footer from '@/components/Footer'
+import Pricing from '@/components/landing/Pricing'
+import Features from '@/components/landing/Features'
+import Footer from '@/components/landing/Footer'
 
 export default async function asyncHome() {
   const session = await getServerSession(options)
@@ -76,7 +76,7 @@ export default async function asyncHome() {
           <div className="group border border-transparent px-5 py-4 transition-colors hover:border-gray-300 ">
             <h2 className={`mb-3 text-2xl font-semibold`}>
               Regístrate{' '}
-              <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+              <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none group-hover:text-indigo-600">
                 -&gt;
               </span>
             </h2>
@@ -92,7 +92,7 @@ export default async function asyncHome() {
           <div className="group border border-transparent px-5 py-4 transition-colors hover:border-gray-300">
             <h2 className={`mb-3 text-2xl font-semibold`}>
               Tu perfil{' '}
-              <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+              <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none group-hover:text-indigo-600">
                 -&gt;
               </span>
             </h2>
@@ -105,7 +105,7 @@ export default async function asyncHome() {
           <div className="group border border-transparent px-5 py-4 transition-colors hover:border-gray-300 ">
             <h2 className={`mb-3 text-2xl font-semibold`}>
               La Oferta{' '}
-              <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+              <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none group-hover:text-indigo-600">
                 -&gt;
               </span>
             </h2>
@@ -118,7 +118,7 @@ export default async function asyncHome() {
           <div className="group border border-transparent px-5 py-4 transition-colors hover:border-gray-300 ">
             <h2 className={`mb-3 text-2xl font-semibold`}>
               Genera tu Carta{' '}
-              <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+              <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none group-hover:text-indigo-600">
                 -&gt;
               </span>
             </h2>

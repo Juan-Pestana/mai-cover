@@ -1,6 +1,6 @@
 'use client'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { useStore } from './Store'
+import { useStore } from '../Store'
 import { useRouter } from 'next/navigation'
 import { IOffer } from '@/schema/letter.schema'
 
