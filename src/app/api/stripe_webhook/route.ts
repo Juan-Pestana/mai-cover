@@ -3,6 +3,10 @@ import { headers } from 'next/headers'
 import stripe from '../../../lib/getStripe'
 import Stripe from 'stripe'
 import { prisma } from '@/lib/prismaClient'
+import { ThankYouEmailTemlate } from '@/components/emails/ThankYouEmail'
+import { Resend } from 'resend'
+
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(req: Request) {
   const body = await req.text()
@@ -45,7 +49,7 @@ export async function POST(req: Request) {
         })
 
         if (payment) {
-          await prisma.user.update({
+          const updatedUser = await prisma.user.update({
             where: {
               id: session.metadata?.userId!,
             },
@@ -56,6 +60,18 @@ export async function POST(req: Request) {
               role: 'client',
             },
           })
+          if (updatedUser) {
+            const data = await resend.emails.send({
+              from: 'mAI-cover <info@mai-cover.com>',
+              to: [updatedUser.email],
+              subject: '¡Gracias por tu compra!',
+              react: ThankYouEmailTemlate({
+                userName: updatedUser.name,
+              }),
+            })
+          } else {
+            console.log('error al actualizar usuario tras la compra')
+          }
         }
       } else {
         console.log('la session sin metadata.userId', session)

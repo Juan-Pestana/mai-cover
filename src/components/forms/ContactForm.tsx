@@ -1,6 +1,7 @@
 'use client'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
+import { toast } from '../ui/use-toast'
 
 type Inputs = {
   name: string
@@ -15,6 +16,7 @@ function ContactForm() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<Inputs>()
 
@@ -24,7 +26,7 @@ function ContactForm() {
     // updateOfferName(data.offer_name)
     // updateOffer(data.offer)
 
-    const res = await fetch('api/offer', {
+    const res = await fetch('/api/send/contact', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -32,7 +34,8 @@ function ContactForm() {
       body: JSON.stringify(data),
     })
     if (res.ok) {
-      const newOffer = await res.json()
+      reset({ name: '', lastName: '', message: '', email: '' })
+      toast({ title: 'Tu mensaje se ha enviado' })
     }
   }
 

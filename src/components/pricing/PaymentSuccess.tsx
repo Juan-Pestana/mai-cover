@@ -8,16 +8,15 @@ function PaymentSuccess() {
 
   const { update } = useSession()
 
-  // useEffect(() => {
-  //   const updateSession = async () => {
+  useEffect(() => {
+    refreshSession()
+  }, [])
 
-  //   }
-
-  //   updateSession()
-  // }, [])
+  const refreshSession = async () => {
+    await update({ role: 'client' })
+  }
 
   const goAndRefresh = async () => {
-    await update({ role: 'client' })
     router.refresh()
     router.push('/')
   }
