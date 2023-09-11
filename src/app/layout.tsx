@@ -8,19 +8,12 @@ import { Toaster } from '@/components/ui/toaster'
 export const metadata: Metadata = {
   title: 'mAI-Cover',
   description: 'Tu carta de presentación en segundos gracias a nuestra IA',
+  keywords: ['Empleo', 'IA', 'cartas de recomendación', 'Feedback'],
   openGraph: {
     title: 'mAI-Cover',
-    description:
-      'Cartas de presentación, de recomendación, descripciones, evaluaciones... Apóyate en la IA para generar todo lo que HR necesita',
+    description: 'La IA que te apoya en tu búsqueda de empleo.',
     url: 'https://mai-cover.com',
     siteName: 'mAI-Cover',
-    images: [
-      {
-        url: 'https://mai-cover.com/contact_robot.png',
-        width: 500,
-        height: 500,
-      },
-    ],
   },
 }
 
