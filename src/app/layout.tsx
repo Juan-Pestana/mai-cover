@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'mAI-Cover',
     description: 'La IA que te apoya en tu búsqueda de empleo.',
-    url: 'https://mai-cover.com',
+    url: 'https://www.mai-cover.com',
     siteName: 'mAI-Cover',
   },
   twitter: {
@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     description: 'La IA que te apoya en tu búsqueda de empleo.',
     card: 'summary',
     creator: '@PestanaDev',
+    site: 'https://www.mai-cover.com',
   },
 }
 
