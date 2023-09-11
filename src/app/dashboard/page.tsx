@@ -1,20 +1,20 @@
-import DrawerClientWrap from '@/components/dashboardNav/DrawerClientWrap'
 import { prisma } from '@/lib/prismaClient'
 import { getServerSession } from 'next-auth/next'
+import { redirect } from 'next/navigation'
 import { options } from '../api/auth/[...nextauth]/options'
+import { ScrollArea } from '@/components/ui/scroll-area'
 import NavContent from '@/components/dashboardNav/NavContent'
+import DrawerClientWrap from '@/components/dashboardNav/DrawerClientWrap'
 import LetterDB from '@/components/dashboardMain/LetterDB'
 import ProfileDB from '@/components/dashboardMain/ProfileDB'
-import { IProfiles } from '@/schema/letter.schema'
-import { ScrollArea } from '@/components/ui/scroll-area'
-import { redirect } from 'next/navigation'
-import { IFeedbacks } from '@/schema/feeback.schema'
 import FeedbackDB from '@/components/dashboardMain/FeedbackDB'
-import { IRecomendations } from '@/schema/recomendation.schema'
 import RecomendationDB from '@/components/dashboardMain/RecomendationDB'
 import CvAdaptDB from '@/components/dashboardMain/CvAdaptDB'
 import PositionDB from '@/components/dashboardMain/PositionDB'
 import { IPositions } from '@/schema/position.schema'
+import { IFeedbacks } from '@/schema/feeback.schema'
+import { IRecomendations } from '@/schema/recomendation.schema'
+import { IProfiles } from '@/schema/letter.schema'
 
 export interface ILettersList {
   id: string
@@ -47,7 +47,7 @@ async function getDocs() {
   const session = await getServerSession(options)
 
   if (!session) {
-    redirect('/api/auth/signin?callbackUrl=/')
+    redirect('/api/auth/signin?callbackUrl=/dashboard')
   }
 
   const res = await prisma.user.findUnique({

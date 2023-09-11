@@ -15,7 +15,7 @@ export default async function Profile_formPage({
   let cvAdvisor = false
 
   if (!session) {
-    redirect('/api/auth/signin?callbackUrl=/')
+    redirect('/api/auth/signin?callbackUrl=/profile_form')
   }
 
   if (searchParams?.cvAdvisor) {
@@ -38,7 +38,7 @@ export default async function Profile_formPage({
             <ListProfiles />
           </Suspense>
         </div>
-        <div className="flex-1">
+        <div className="flex-1 px-3">
           <Profile pageType="form" cvAdvisor={cvAdvisor} />
         </div>
       </div>

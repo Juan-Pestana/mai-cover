@@ -8,6 +8,20 @@ import { Toaster } from '@/components/ui/toaster'
 export const metadata: Metadata = {
   title: 'mAI-Cover',
   description: 'Tu carta de presentación en segundos gracias a nuestra IA',
+  openGraph: {
+    title: 'mAI-Cover',
+    description:
+      'Cartas de presentación, de recomendación, descripciones, evaluaciones... Apóyate en la IA para generar todo lo que HR necesita',
+    url: 'https://mai-cover.com',
+    siteName: 'mAI-Cover',
+    images: [
+      {
+        url: 'https://mai-cover.com/contact_robot.png',
+        width: 500,
+        height: 500,
+      },
+    ],
+  },
 }
 
 export default function RootLayout({

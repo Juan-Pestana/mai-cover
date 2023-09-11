@@ -168,7 +168,7 @@ function Profile({ pageType, setShow, cvAdvisor }: IProfileProps) {
   }
 
   return (
-    <div className=" mx-auto w-full max-w-3xl py-5 px-5 bg-slate-100 rounded-lg shadow-lg">
+    <div className=" mx-auto w-full max-w-3xl py-5 px-3 bg-slate-100 rounded-lg shadow-lg md:px-5">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-3">
           <label className="text-sm ml-2" htmlFor="profile_name">

@@ -2,13 +2,15 @@
 
 import React from 'react'
 import { toast } from '../ui/use-toast'
+import { useRouter } from 'next/navigation'
 
 function BuyButton() {
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
+  const router = useRouter()
 
   async function onSubmit(event: any) {
     event.preventDefault()
-    setIsLoading(!isLoading)
+    setIsLoading(true)
 
     toast({
       title: 'El boton de compra ha sido deshabilitado',
@@ -16,7 +18,7 @@ function BuyButton() {
         'Durante las semanas de Testing el boton de compra ha sido deshabilidado',
     })
 
-    // // Get a Stripe session URL.
+    // Get a Stripe session URL.
     // const response = await fetch('/api/checkout_session', {
     //   method: 'POST',
     //   headers: {
@@ -25,11 +27,21 @@ function BuyButton() {
     // })
 
     // if (!response?.ok) {
-    //   return toast({
-    //     title: 'Algo ha salido mal.',
-    //     description: 'Actualiza la página e inténtalo de nuevo.',
-    //     variant: 'destructive',
-    //   })
+    //   if (response.status === 401) {
+    //     const resp = await response.json()
+    //     toast({
+    //       title: resp.message,
+    //       variant: 'destructive',
+    //     })
+    //     router.push('/signin')
+    //     return
+    //   } else {
+    //     return toast({
+    //       title: 'Algo ha salido mal.',
+    //       description: 'Actualiza la página e inténtalo de nuevo.',
+    //       variant: 'destructive',
+    //     })
+    //   }
     // }
 
     // // Redirect to the Stripe session.
@@ -39,6 +51,8 @@ function BuyButton() {
     // if (session) {
     //   window.location.href = session.url
     // }
+
+    setIsLoading(false)
   }
 
   return (

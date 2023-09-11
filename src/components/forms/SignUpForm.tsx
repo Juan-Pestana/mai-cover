@@ -27,8 +27,6 @@ function SignUpForm() {
   } = useForm<Inputs>({ resolver: zodResolver(signUpSchema) })
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log(data)
-
     try {
       const res = await fetch('api/register', {
         method: 'POST',
@@ -62,6 +60,13 @@ function SignUpForm() {
             //   toast.success('Logged in successfully!')
             console.log('sesion iniciada')
           }
+        })
+      } else {
+        const error = await res.json()
+        console.log(error)
+        setError('notRegisteredInput', {
+          type: 'custom',
+          message: `Error en el registro de usuario, ${error.message}`,
         })
       }
     } catch (error) {

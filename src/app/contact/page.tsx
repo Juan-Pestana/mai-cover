@@ -1,15 +1,9 @@
 import ContactForm from '@/components/forms/ContactForm'
-import Profile from '@/components/forms/Profile'
 import Image from 'next/image'
 import { garamont } from '../fonts/fonts'
 import Footer from '@/components/landing/Footer'
 
-export default async function Profile_formPage({
-  searchParams,
-}: {
-  params: { slug: string }
-  searchParams?: { [key: string]: string | undefined }
-}) {
+export default async function Contact() {
   return (
     <>
       <main className="flex-1 flex items-center justify-center ">

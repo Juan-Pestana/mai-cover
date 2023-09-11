@@ -3,13 +3,17 @@ import { options } from '../auth/[...nextauth]/options'
 import { NextResponse } from 'next/server'
 import stripe from '../../../lib/getStripe'
 import { nextUrl } from '@/lib/url'
+import { redirect } from 'next/navigation'
 
 export async function POST(req: Request) {
   const session = await getServerSession(options)
   if (!session?.user) {
-    return new NextResponse('Es necesario iniciar sesión para esta acción', {
-      status: 401,
-    })
+    return NextResponse.json(
+      { message: 'Es necesario iniciar sesión para adquirir el bono' },
+      {
+        status: 401,
+      }
+    )
   } else {
     try {
       const stripeSession = await stripe.checkout.sessions.create({

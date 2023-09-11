@@ -1,6 +1,6 @@
 'use client'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams, redirect } from 'next/navigation'
 import Link from 'next/link'
 import { signIn } from 'next-auth/react'
 import { useToast } from '../ui/use-toast'
@@ -23,6 +23,7 @@ function SignInForm() {
   const searchParams = useSearchParams()
 
   const { toast } = useToast()
+  const router = useRouter()
 
   useEffect(() => {
     checkAuthError()
@@ -41,25 +42,29 @@ function SignInForm() {
     //console.log(data)
 
     try {
-      signIn('credentials', { ...data, callbackUrl: '/' }).then((callback) => {
-        if (callback?.error) {
+      await signIn('credentials', { ...data, redirect: false }).then((res) => {
+        if (res?.error) {
           setError('notRegisteredInput', {
             type: 'custom',
-            message: `Error en el inicio de sesión,  ${callback.error}`,
+            message: `Error en el inicio de sesión lalala`,
           })
-          console.log('hubo un error')
-        }
-
-        if (callback?.ok && !callback?.error) {
-          //   toast.success('Logged in successfully!')
+        } else {
           console.log('sesion iniciada')
+          if (res?.url) {
+            router.refresh()
+            if (searchParams && searchParams.get('callbackUrl')) {
+              router.push(searchParams.get('callbackUrl')!)
+            } else {
+              router.push('/')
+            }
+          }
         }
       })
     } catch (error) {
       console.log(error)
       setError('notRegisteredInput', {
         type: 'custom',
-        message: 'Error en el inicio de sesión',
+        message: 'Error en el servidor',
       })
     }
   }
