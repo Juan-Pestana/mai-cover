@@ -13,6 +13,8 @@ import FeedbackDB from '@/components/dashboardMain/FeedbackDB'
 import { IRecomendations } from '@/schema/recomendation.schema'
 import RecomendationDB from '@/components/dashboardMain/RecomendationDB'
 import CvAdaptDB from '@/components/dashboardMain/CvAdaptDB'
+import PositionDB from '@/components/dashboardMain/PositionDB'
+import { IPositions } from '@/schema/position.schema'
 
 export interface ILettersList {
   id: string
@@ -38,6 +40,7 @@ interface IDocs {
   feedbacks: IFeedbacks[]
   recomendations: IRecomendations[]
   cvAdapts: ILettersList[]
+  positions: IPositions[]
 }
 
 async function getDocs() {
@@ -135,6 +138,15 @@ async function getDocs() {
           createdAt: true,
         },
       },
+      positions: {
+        select: {
+          id: true,
+          content: true,
+          industry: true,
+          position: true,
+          proyects: true,
+        },
+      },
     },
   })
   return res as IDocs
@@ -150,7 +162,8 @@ async function Dashboard({
 
   //console.log(docs)
 
-  const { profiles, letters, feedbacks, recomendations, cvAdapts } = docs
+  const { profiles, letters, feedbacks, recomendations, cvAdapts, positions } =
+    docs
   let show = ''
   let id = ''
   let edit = ''
@@ -176,29 +189,24 @@ async function Dashboard({
           feedbacks={feedbacks}
           recomendations={recomendations}
           cvAdapts={cvAdapts}
+          positions={positions}
         />
         <aside className="hidden w-96 lg:block">
           <article className="relative w-full pb-10 flex flex-col h-full border-r-2 border-black bg-gradient-to-t from-gray-700 via-gray-900 to-black">
             <header className="p-4 font-bold text-lg flex justify-between  text-white ">
               <h2 className="text-2xl">Documentos</h2>
             </header>
-            {letters.length ? (
-              <ScrollArea className="px-5 space-y-6 mt-6 text-white h-[75vh]">
-                <NavContent
-                  profiles={profiles}
-                  letters={letters}
-                  feedbacks={feedbacks}
-                  recomendations={recomendations}
-                  cvAdapts={cvAdapts}
-                />
-              </ScrollArea>
-            ) : (
-              <div className="flex h-full items-center justify-center px-5">
-                <h2 className="text-white text-center text-2xl leading-relaxed ">
-                  No tienes documentos todavía
-                </h2>
-              </div>
-            )}
+
+            <ScrollArea className="px-5 space-y-6 mt-6 text-white h-[75vh]">
+              <NavContent
+                profiles={profiles}
+                letters={letters}
+                feedbacks={feedbacks}
+                recomendations={recomendations}
+                cvAdapts={cvAdapts}
+                positions={positions}
+              />
+            </ScrollArea>
           </article>
           {/* <GetLetters /> */}
         </aside>
@@ -221,6 +229,9 @@ async function Dashboard({
         )}
         {show === 'cvAdapt' && (
           <CvAdaptDB cvAdapt={cvAdapts.find((prof) => prof.id === id)} />
+        )}
+        {show === 'position' && (
+          <PositionDB position={positions.find((prof) => prof.id === id)} />
         )}
       </div>
     </>

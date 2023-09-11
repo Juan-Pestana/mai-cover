@@ -2,10 +2,8 @@ import { options } from '@/app/api/auth/[...nextauth]/options'
 import { getServerSession } from 'next-auth'
 import Link from 'next/link'
 import React, { Suspense } from 'react'
-import { SiTinyletter } from 'react-icons/si'
-import { FaUserCircle } from 'react-icons/fa'
 import Image from 'next/image'
-import { montserrat } from '@/app/fonts/fonts'
+import { garamont, montserrat } from '@/app/fonts/fonts'
 import DropdownContent from '../ui/dropdownContent'
 
 import { DropdownMenu, DropdownMenuTrigger } from '../ui/dropdown-menu'
@@ -16,9 +14,17 @@ async function Header() {
 
   return (
     <>
-      {/* <div className="bg-yellow-200 text-center">
-        Estás probando mAI-Cover? Dejanós tu opinión
-      </div> */}
+      <div className="bg-yellow-200 text-center text-sm md:text-base">
+        Estás probando mAI-Cover?{' '}
+        <a
+          className="text-indigo-600 hover:underline"
+          href="https://forms.gle/8pB3zpbTPHsPxqSdA"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          Dejanós tu opinión
+        </a>
+      </div>
       <header className="block bg-black w-full p-2 lg:p-3">
         <div className="flex justify-between items-center text-xl">
           <div>
@@ -61,13 +67,13 @@ async function Header() {
               </h3>
             </Link>
           </div>
-          {session ? (
+          {session?.user ? (
             <div className="flex gap-4 items-center justify-between mx-2">
               <Suspense>
                 <NewDocServ userId={session.user.id} role={session.user.role} />
               </Suspense>
               <DropdownMenu>
-                <DropdownMenuTrigger className="rounded-full overflow-hidden ml-2 mr-3 h-10 w-10 lg:h-12 lg:w-12">
+                <DropdownMenuTrigger className="rounded-full overflow-hidden ml-2 mr-3 h-10 w-10 lg:h-12 lg:w-12 border-2 border-white">
                   {session?.user?.image ? (
                     <Image
                       src={session.user.image}
@@ -77,14 +83,17 @@ async function Header() {
                       className="object-cover"
                     />
                   ) : (
-                    <FaUserCircle className="text-white h-full w-full" />
+                    <div className={`${garamont.className}`}>
+                      <span className="text-white text-3xl font-semibold">
+                        {session.user.name[0]}
+                      </span>
+                      <span className="text-white font-semibold text-xl">
+                        {session.user.name[1]}
+                      </span>
+                    </div>
                   )}
                 </DropdownMenuTrigger>
-                <DropdownContent
-                  userName={
-                    session?.user?.name ? session.user.name : 'Mi cuenta'
-                  }
-                />
+                <DropdownContent userName={session.user.name} />
               </DropdownMenu>
             </div>
           ) : (

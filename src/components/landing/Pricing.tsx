@@ -60,12 +60,15 @@ function Pricing() {
           <div className="-mt-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
             <div className=" bg-gray-50 h-full py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
               <div className="mx-auto max-w-xs px-8">
+                <p className="text-base font-semibold py-2  text-indigo-600">
+                  Un único pago
+                </p>
                 <p className="text-base font-semibold text-gray-600">
                   15 documentos, por tan solo
                 </p>
                 <p className="mt-6 flex items-baseline justify-center gap-x-2">
                   <span className="text-5xl font-bold tracking-tight text-gray-900">
-                    12€
+                    10€
                   </span>
                   <span className="text-sm font-semibold leading-6 tracking-wide text-gray-600">
                     EUR

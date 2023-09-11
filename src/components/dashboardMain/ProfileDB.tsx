@@ -33,16 +33,17 @@ function ProfileDB({ profile, edit }: IprofileDBprops) {
 
   const thisProfile = () => {
     if (profile) {
-      updateCover({
-        profile_name: profile.profile_name,
-        abstract: profile.abstract,
-        experience: profile.experience,
-        training: profile.training,
-        company_name: '',
-        offer_name: '',
-        offer: '',
-      })
-      router.push('/offer_form')
+      updateProfilePreview(profile)
+      // updateCover({
+      //   profile_name: profile.profile_name,
+      //   abstract: profile.abstract,
+      //   experience: profile.experience,
+      //   training: profile.training,
+      //   company_name: '',
+      //   offer_name: '',
+      //   offer: '',
+      // })
+      router.push('/profile_form')
       toast({ title: `Perfil: ${profile.profile_name} seleccionado` })
     }
   }

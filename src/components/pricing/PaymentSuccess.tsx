@@ -2,23 +2,22 @@
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
+import { toast } from '../ui/use-toast'
 
 function PaymentSuccess() {
   const router = useRouter()
 
   const { update } = useSession()
 
-  useEffect(() => {
-    refreshSession()
-  }, [])
-
-  const refreshSession = async () => {
-    await update({ role: 'client' })
-  }
-
   const goAndRefresh = async () => {
+    await update({ role: 'client' })
     router.refresh()
     router.push('/')
+    toast({
+      title: 'Perfil Actualizado',
+      description:
+        'Hemos actualizado tu perfil para poder acceder a todos los documentos',
+    })
   }
 
   return (
@@ -35,7 +34,7 @@ function PaymentSuccess() {
         </svg>
         <div className="text-center">
           <h3 className="md:text-2xl text-base text-gray-900 font-semibold text-center">
-            Compra realizad con éxito
+            Compra realizada con éxito
           </h3>
           <p className="text-gray-600 my-2">
             Inspírate para crear tus documentos de HR
@@ -46,7 +45,7 @@ function PaymentSuccess() {
               onClick={goAndRefresh}
               className="px-12 bg-black hover:bg-[#24292F]/80 text-white font-semibold py-3"
             >
-              Inicio
+              Canjear mi bono
             </button>
           </div>
         </div>

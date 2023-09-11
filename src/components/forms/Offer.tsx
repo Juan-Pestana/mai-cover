@@ -120,7 +120,7 @@ function Offer({ cvAdvisor }: { cvAdvisor: boolean }) {
           className="w-full mt-4 bg-black py-3 text-slate-50 rounded-lg text-lg hover:bg-[#24292F]/80 md:text-xl"
           type="submit"
         >
-          {!cvAdvisor ? 'Generar Carta' : 'Adaptar Perfil'}
+          {!cvAdvisor ? 'Generar carta de presentación' : 'Adaptar Perfil'}
         </button>
       </form>
     </div>

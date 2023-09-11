@@ -25,7 +25,7 @@ export default async function Offer_formPage({
     <main className="flex-1 flex items-center justify-center p-3  ">
       <div className="flex flex-col w-full justify-center items-center ">
         <h2 className={`py-6 text-center text-4xl ${montserrat.className}`}>
-          Cuéntanos sobre la oferta
+          Háblanos de la oferta
         </h2>
         <Offer cvAdvisor={cvAdvisor} />
       </div>

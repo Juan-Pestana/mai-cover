@@ -8,6 +8,7 @@ import { RiSideBarFill } from 'react-icons/ri'
 import NavContent from './NavContent'
 import { IFeedbacks } from '@/schema/feeback.schema'
 import { IRecomendations } from '@/schema/recomendation.schema'
+import { IPositions } from '@/schema/position.schema'
 
 interface IDrawerProps {
   letters: ILettersList[]
@@ -15,6 +16,7 @@ interface IDrawerProps {
   feedbacks: IFeedbacks[]
   recomendations: IRecomendations[]
   cvAdapts: ILettersList[]
+  positions: IPositions[]
 }
 
 function DrawerClientWrap({
@@ -23,6 +25,7 @@ function DrawerClientWrap({
   feedbacks,
   recomendations,
   cvAdapts,
+  positions,
 }: IDrawerProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -35,6 +38,7 @@ function DrawerClientWrap({
           feedbacks={feedbacks}
           recomendations={recomendations}
           cvAdapts={cvAdapts}
+          positions={positions}
           setIsOpen={setIsOpen}
         />
       </Drawer>
