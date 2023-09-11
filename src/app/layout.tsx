@@ -15,6 +15,12 @@ export const metadata: Metadata = {
     url: 'https://mai-cover.com',
     siteName: 'mAI-Cover',
   },
+  twitter: {
+    title: 'mAI-Cover',
+    description: 'La IA que te apoya en tu búsqueda de empleo.',
+    card: 'summary_large_image',
+    creator: '@PestanaDev',
+  },
 }
 
 export default function RootLayout({
