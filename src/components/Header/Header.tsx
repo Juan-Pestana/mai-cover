@@ -14,17 +14,20 @@ async function Header() {
 
   return (
     <>
-      <div className="bg-yellow-200 text-center text-sm md:text-base">
-        Estás probando mAI-Cover?{' '}
-        <a
-          className="text-indigo-600 hover:underline"
-          href="https://forms.gle/8pB3zpbTPHsPxqSdA"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          Dejanós tu opinión
-        </a>
-      </div>
+      {session?.user && (
+        <div className="bg-yellow-200 text-center text-sm md:text-base">
+          Estás probando mAI-Cover?{' '}
+          <a
+            className="text-indigo-600 hover:underline"
+            href="https://forms.gle/8pB3zpbTPHsPxqSdA"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Déjanos tu opinión
+          </a>
+        </div>
+      )}
+
       <header className="block bg-black w-full p-2 lg:p-3">
         <div className="flex justify-between items-center text-xl">
           <div>

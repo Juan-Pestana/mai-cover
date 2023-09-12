@@ -25,7 +25,7 @@ export default async function asyncHome() {
               <div className="mt-6 text-lg leading-8 text-gray-600">
                 <p>
                   Si vas en serio en tu búsqueda de empleo, no descuides ni el
-                  más mínimo detalle. Una buena carta, adaptada a cada oferta,
+                  más mínimo detalle. Una buena carta adaptada a cada oferta,
                   puede marcar la diferencia.{' '}
                 </p>
                 <p className="block font-bold mt-3 text-xl">

@@ -18,9 +18,9 @@ export const metadata: Metadata = {
   twitter: {
     title: 'mAI-Cover',
     description: 'La IA que te apoya en tu búsqueda de empleo.',
-    card: 'summary',
+    card: 'summary_large_image',
     creator: '@PestanaDev',
-    site: 'https://www.mai-cover.com',
+    site: '@mAIcover',
   },
 }
 

@@ -5,8 +5,8 @@ export default function Footer() {
   return (
     <footer className="p-4 bg-black md:p-8 lg:p-10 dark:bg-gray-800">
       <div className="mx-auto max-w-screen-xl text-center">
-        <a
-          href="#"
+        <Link
+          href="/"
           className="flex justify-center items-center text-2xl text-white"
         >
           <svg
@@ -42,21 +42,27 @@ export default function Footer() {
           <h3 className={`hidden text-2xl md:block ${montserrat.className}`}>
             mAI-Cover
           </h3>
-        </a>
+        </Link>
         <p className="my-6 text-gray-500 dark:text-gray-400">
           Si Recursos Humanos va a utilizar la IA para hacer la selección,{' '}
           <br /> ¿Por qué no van a hacer lo mismo los candidatos?.
         </p>
         <ul className="flex flex-wrap justify-center items-center mb-6 text-white">
           <li>
-            <a href="#" className="mr-4 hover:text-indigo-600 md:mr-6 ">
-              Aviso Legal
-            </a>
+            <Link
+              href="/legal/terms_conditions"
+              className="mr-4 hover:text-indigo-600 md:mr-6 "
+            >
+              Terminos y Condiciones
+            </Link>
           </li>
           <li>
-            <a href="#" className="mr-4 hover:text-indigo-600 md:mr-6">
+            <Link
+              href="/legal/gdpr"
+              className="mr-4 hover:text-indigo-600 md:mr-6"
+            >
               Política de privacidad
-            </a>
+            </Link>
           </li>
 
           <li>
