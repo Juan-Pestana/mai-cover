@@ -6,6 +6,8 @@ import { useState } from 'react'
 import { montserrat } from '@/app/fonts/fonts'
 import { RiUser3Line, RiFeedbackLine } from 'react-icons/ri'
 import { IFeedbacks } from '@/schema/feeback.schema'
+import CopyButton from '../ui/CopyButton'
+import { DocType } from '@/schema/doctype.schema'
 
 interface ILetterDBProps {
   feedback: IFeedbacks | undefined
@@ -30,10 +32,16 @@ function FeedbackDB({ feedback }: ILetterDBProps) {
                 </div>
                 <hr className="mb-5" />
                 <ReactMarkdown
-                  className={`prose whitespace-pre-wrap lg:text-lg leading-7`}
+                  className={`prose whitespace-pre-wrap lg:text-lg leading-7 mb-3`}
                 >
                   {feedback.content}
                 </ReactMarkdown>
+                <hr />
+
+                <CopyButton
+                  type={DocType.Feedback}
+                  content={feedback.content}
+                />
               </>
             )}
             {show === 'employee' && (

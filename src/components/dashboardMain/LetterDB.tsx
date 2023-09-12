@@ -4,7 +4,16 @@ import ReactMarkdown from 'react-markdown'
 import { ScrollArea } from '../ui/scroll-area'
 import { useState } from 'react'
 import { montserrat } from '@/app/fonts/fonts'
-import { RiUser3Line, RiPagesLine, RiMailOpenLine } from 'react-icons/ri'
+import {
+  RiUser3Line,
+  RiPagesLine,
+  RiMailOpenLine,
+  RiFileCopy2Line,
+} from 'react-icons/ri'
+import { useCopyToClipboard } from '@/lib/hooks/useClipboard'
+import { toast } from '../ui/use-toast'
+import CopyButton from '../ui/CopyButton'
+import { DocType } from '@/schema/doctype.schema'
 
 interface ILetterDBProps {
   letter: ILettersList | undefined
@@ -12,12 +21,21 @@ interface ILetterDBProps {
 
 function LetterDB({ letter }: ILetterDBProps) {
   const [show, setShow] = useState<string>('letter')
+  const [value, copy] = useCopyToClipboard()
+
+  const copyToClipboard = () => {
+    copy(letter?.content!)
+
+    toast({
+      title: 'la carta se ha copiado en el portapapeles',
+    })
+  }
 
   return (
     <main className="flex flex-col flex-1 min-h-full  border-1 border-black  bg-white lg:rounded-tl-3xl">
       <div className="flex-1 h-full flex flex-col items-center  justify-end overflow-hidden">
         {letter ? (
-          <ScrollArea className="p-2 border-2 max-w-2xl h-[80vh] border-zinc-200 lg:h-[800px]">
+          <ScrollArea className="relative p-2 border-2 max-w-2xl h-[80vh] border-zinc-200 lg:h-[800px]">
             {show === 'letter' && (
               <>
                 <div className="leading-relaxed p-5">
@@ -29,10 +47,13 @@ function LetterDB({ letter }: ILetterDBProps) {
                 </div>
                 <hr className="mb-5" />
                 <ReactMarkdown
-                  className={`prose whitespace-pre-wrap lg:text-lg leading-7`}
+                  className={`relative prose whitespace-pre-wrap lg:text-lg leading-7`}
                 >
                   {letter.content}
                 </ReactMarkdown>
+                <hr />
+
+                <CopyButton type={DocType.Letter} content={letter.content} />
               </>
             )}
             {show === 'offer' && (
@@ -45,7 +66,7 @@ function LetterDB({ letter }: ILetterDBProps) {
                 </div>
                 <hr className="mb-5" />
                 <ReactMarkdown
-                  className={`prose whitespace-pre-wrap lg:text-lg leading-7`}
+                  className={`prose whitespace-pre-wrap lg:text-lg leading-7 mb-3`}
                 >
                   {letter.offer.offer}
                 </ReactMarkdown>
@@ -106,6 +127,7 @@ function LetterDB({ letter }: ILetterDBProps) {
           <RiPagesLine className="text-center h-5 w-5" />
           <p className="block">Oferta</p>
         </button>
+
         <button
           className={`flex flex-col items-center px-2 py-2 rounded-lg ${
             show === 'letter' && 'bg-black text-white'

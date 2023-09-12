@@ -7,6 +7,8 @@ import { montserrat } from '@/app/fonts/fonts'
 import { RiUser3Line, RiMailStarLine } from 'react-icons/ri'
 import { IFeedbacks } from '@/schema/feeback.schema'
 import { IRecomendations } from '@/schema/recomendation.schema'
+import CopyButton from '../ui/CopyButton'
+import { DocType } from '@/schema/doctype.schema'
 
 interface ILetterDBProps {
   recomendation: IRecomendations | undefined
@@ -31,10 +33,16 @@ function LetterDB({ recomendation }: ILetterDBProps) {
                 </div>
                 <hr className="mb-5" />
                 <ReactMarkdown
-                  className={`prose whitespace-pre-wrap lg:text-lg leading-7`}
+                  className={`prose whitespace-pre-wrap lg:text-lg leading-7 mb-3`}
                 >
                   {recomendation.content}
                 </ReactMarkdown>
+                <hr />
+
+                <CopyButton
+                  type={DocType.Recomendation}
+                  content={recomendation.content}
+                />
               </>
             )}
             {show === 'employee' && (

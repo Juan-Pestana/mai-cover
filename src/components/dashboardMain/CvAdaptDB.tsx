@@ -5,6 +5,9 @@ import { ScrollArea } from '../ui/scroll-area'
 import { useState } from 'react'
 import { montserrat } from '@/app/fonts/fonts'
 import { RiUser3Line, RiPagesLine, RiChatSmileLine } from 'react-icons/ri'
+import { DocType } from '@/schema/doctype.schema'
+
+import CopyButton from '../ui/CopyButton'
 
 interface IcvAdaptDBProps {
   cvAdapt: ILettersList | undefined
@@ -24,15 +27,18 @@ function LetterDB({ cvAdapt }: IcvAdaptDBProps) {
                   <h2
                     className={`${montserrat.className} text-2xl text-center`}
                   >
-                    Sugerencia Adaptación CV
+                    Propuesta de adaptación CV
                   </h2>
                 </div>
                 <hr className="mb-5" />
                 <ReactMarkdown
-                  className={`prose whitespace-pre-wrap lg:text-lg leading-7`}
+                  className={`prose whitespace-pre-wrap lg:text-lg leading-7 mb-3`}
                 >
                   {cvAdapt.content}
                 </ReactMarkdown>
+                <hr />
+
+                <CopyButton type={DocType.CvAdapt} content={cvAdapt.content} />
               </>
             )}
             {show === 'offer' && (

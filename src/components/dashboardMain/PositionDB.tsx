@@ -6,6 +6,8 @@ import { useState } from 'react'
 import { montserrat } from '@/app/fonts/fonts'
 import { RiFileUserLine, RiChatQuoteLine } from 'react-icons/ri'
 import { IPosition } from '@/schema/position.schema'
+import CopyButton from '../ui/CopyButton'
+import { DocType } from '@/schema/doctype.schema'
 
 interface IPositionDBProps {
   position: IPosition | undefined
@@ -30,10 +32,16 @@ function PositionDB({ position }: IPositionDBProps) {
                 </div>
                 <hr className="mb-5" />
                 <ReactMarkdown
-                  className={`prose whitespace-pre-wrap lg:text-lg leading-7`}
+                  className={`prose whitespace-pre-wrap lg:text-lg leading-7 mb-3`}
                 >
                   {position.content}
                 </ReactMarkdown>
+                <hr />
+
+                <CopyButton
+                  type={DocType.Position}
+                  content={position.content}
+                />
               </>
             )}
             {show === 'position' && (

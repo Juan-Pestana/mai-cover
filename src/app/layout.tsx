@@ -6,8 +6,18 @@ import Header from '@/components/Header/Header'
 import { Toaster } from '@/components/ui/toaster'
 
 export const metadata: Metadata = {
+  robots: {
+    'max-image-preview': 'large',
+    follow: true,
+    index: true,
+  },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+  },
   title: 'mAI-Cover',
-  description: 'Tu carta de presentación en segundos gracias a nuestra IA',
+  description:
+    'La IA que te apoya en tu búsqueda de empleo y el feedaback a tu equipo',
   keywords: ['Empleo', 'IA', 'cartas de recomendación', 'Feedback'],
   openGraph: {
     title: 'mAI-Cover',
@@ -30,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es">
+    <html lang="es-ES">
       <AuthProvider>
         <body
           className={`${inter.className} relative flex flex-col h-[100dvh]`}
