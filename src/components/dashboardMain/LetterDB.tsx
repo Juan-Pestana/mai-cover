@@ -4,12 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import { ScrollArea } from '../ui/scroll-area'
 import { useState } from 'react'
 import { montserrat } from '@/app/fonts/fonts'
-import {
-  RiUser3Line,
-  RiPagesLine,
-  RiMailOpenLine,
-  RiFileCopy2Line,
-} from 'react-icons/ri'
+import { RiUser3Line, RiPagesLine, RiMailOpenLine } from 'react-icons/ri'
 import { useCopyToClipboard } from '@/lib/hooks/useClipboard'
 import { toast } from '../ui/use-toast'
 import CopyButton from '../ui/CopyButton'
@@ -21,15 +16,6 @@ interface ILetterDBProps {
 
 function LetterDB({ letter }: ILetterDBProps) {
   const [show, setShow] = useState<string>('letter')
-  const [value, copy] = useCopyToClipboard()
-
-  const copyToClipboard = () => {
-    copy(letter?.content!)
-
-    toast({
-      title: 'la carta se ha copiado en el portapapeles',
-    })
-  }
 
   return (
     <main className="flex flex-col flex-1 min-h-full  border-1 border-black  bg-white lg:rounded-tl-3xl">

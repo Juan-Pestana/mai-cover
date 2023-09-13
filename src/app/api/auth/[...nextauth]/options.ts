@@ -1,5 +1,6 @@
 import type { NextAuthOptions } from 'next-auth'
 import GitHubProvider from 'next-auth/providers/github'
+import LinkedinProvider from 'next-auth/providers/linkedin'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { GithubProfile } from 'next-auth/providers/github'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
@@ -11,6 +12,26 @@ export const options: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   adapter: PrismaAdapter(prisma),
   providers: [
+    LinkedinProvider({
+      clientId: process.env.LINKEDIN_CLIENT_ID as string,
+      clientSecret: process.env.LINKEDIN_CLIENT_SECRET as string,
+      authorization: {
+        params: { scope: 'openid profile email' },
+      },
+      issuer: 'https://www.linkedin.com',
+      jwks_endpoint: 'https://www.linkedin.com/oauth/openid/jwks',
+      profile(profile, tokens) {
+        const defaultImage =
+          'https://cdn-icons-png.flaticon.com/512/174/174857.png'
+        return {
+          id: profile.sub,
+          name: profile.name,
+          email: profile.email,
+          image: profile.picture ?? defaultImage,
+          role: 'client',
+        }
+      },
+    }),
     GitHubProvider({
       clientId: process.env.GITHUB_ID as string,
       clientSecret: process.env.GITHUB_SECRET as string,
@@ -68,13 +89,17 @@ export const options: NextAuthOptions = {
       return session
     },
     // Ref: https://authjs.dev/guides/basics/role-based-access-control#persisting-the-role
-    async jwt({ token, user, trigger, session }) {
+    async jwt({ token, user, trigger, session, account }) {
       // console.log('este es el trigger en token', trigger)
       if (trigger === 'update') {
         //   console.log('actualizando del token', session)
 
         token.role = session.role
       }
+      if (account) {
+        token.access_token = account.access_token
+      }
+
       if (user) {
         token.role = user.role
         token.id = user.id

@@ -183,7 +183,7 @@ model cvAdapt {
 model Payment {
   stripeSessionId String   @id
   subtotal        Int
-  user            User     @relation(fields: [userId], references: [id])
+  user            User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId          String
   status          String
   createdAt       DateTime @default(now())

@@ -94,6 +94,31 @@ function SignInForm() {
     }
   }
 
+  const linkedInSignIn = async () => {
+    try {
+      await signIn('linkedin', { callbackUrl: '/' }).then((callback) => {
+        if (callback?.error) {
+          setError('notRegisteredInput', {
+            type: 'custom',
+            message: `Error en el inicio de sesión,  ${callback.error}`,
+          })
+          console.log('hubo un error')
+        }
+
+        if (callback?.ok && !callback?.error) {
+          //   toast.success('Logged in successfully!')
+          console.log('sesion iniciada')
+        }
+      })
+    } catch (error) {
+      console.log(error)
+      setError('notRegisteredInput', {
+        type: 'custom',
+        message: 'Error en el inicio de sesión',
+      })
+    }
+  }
+
   return (
     <div className="w-full max-w-xl my-10 py-3 px-5 bg-slate-100 rounded-lg shadow-lg">
       <button
@@ -117,6 +142,13 @@ function SignInForm() {
           </svg>
           Sign in with Github
         </div>
+      </button>
+      <button
+        type="button"
+        className="block w-full content-center text-white bg-blue-600 hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-lg  py-3 text-center items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 my-3"
+        onClick={linkedInSignIn}
+      >
+        <div className="items-center content-center">Sign in with LinkedIn</div>
       </button>
       <div>
         <span className=" w-full flex items-center">
