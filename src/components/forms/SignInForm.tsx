@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { signIn } from 'next-auth/react'
 import { useToast } from '../ui/use-toast'
 import { useEffect } from 'react'
+import { FaLinkedinIn } from 'react-icons/fa'
 
 type Inputs = {
   email: string
@@ -145,9 +146,10 @@ function SignInForm() {
       </button>
       <button
         type="button"
-        className="block w-full content-center text-white bg-blue-600 hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-lg  py-3 text-center items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 my-3"
+        className="block w-full content-center text-white bg-[#0a66c2] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-lg  py-3 text-center items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 my-3"
         onClick={linkedInSignIn}
       >
+        <FaLinkedinIn className="w-5 h-5 mr-2 inline-block text-white" />
         <div className="items-center content-center">Sign in with LinkedIn</div>
       </button>
       <div>
