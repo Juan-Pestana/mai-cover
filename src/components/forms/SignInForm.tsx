@@ -79,13 +79,11 @@ function SignInForm() {
             message: `Error en el inicio de sesión,  ${callback.error}`,
           })
           console.log('hubo un error')
-        } else {
-          router.refresh()
-          if (searchParams && searchParams.get('callbackUrl')) {
-            router.push(searchParams.get('callbackUrl')!)
-          } else {
-            router.push('/')
-          }
+        }
+
+        if (callback?.ok && !callback?.error) {
+          //   toast.success('Logged in successfully!')
+          console.log('sesion iniciada')
         }
       })
     } catch (error) {
@@ -106,13 +104,11 @@ function SignInForm() {
             message: `Error en el inicio de sesión,  ${callback.error}`,
           })
           console.log('hubo un error')
-        } else {
-          router.refresh()
-          if (searchParams && searchParams.get('callbackUrl')) {
-            router.push(searchParams.get('callbackUrl')!)
-          } else {
-            router.push('/')
-          }
+        }
+
+        if (callback?.ok && !callback?.error) {
+          //   toast.success('Logged in successfully!')
+          console.log('sesion iniciada')
         }
       })
     } catch (error) {
