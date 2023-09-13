@@ -6,6 +6,9 @@ export async function GET() {
 
   try {
     const users = await prisma.user.findMany({
+      where: {
+        email: 'bbermejoa@gmail.com',
+      },
       include: {
         letters: true,
         feedbacks: true,
@@ -13,6 +16,7 @@ export async function GET() {
         recomendations: true,
         positions: true,
         profiles: true,
+        accounts: true,
       },
     })
 
