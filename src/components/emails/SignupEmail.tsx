@@ -68,8 +68,17 @@ export const SignUpEmailTemlate = ({ userName }: ContactEmailProps) => (
     </p>
     <br />
     <p>
-      ¡Adelante, da un paso hacia un futuro más brillante y profesional con
-      mAI-Cover!
+      ¡Ahh... y no olvides{' '}
+      <span>
+        <a
+          href="https://www.linkedin.com/company/mai-solutions/"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          seguirnos en LinkedIn
+        </a>
+      </span>{' '}
+      seguirnos en LinkedIn !
     </p>
     <br />
     <p>Cordialmente:</p>
