@@ -4,8 +4,10 @@ import type { Metadata } from 'next'
 import { inter } from '@/app/fonts/fonts'
 import Header from '@/components/Header/Header'
 import { Toaster } from '@/components/ui/toaster'
+import { nextUrl } from '@/lib/url'
 
 export const metadata: Metadata = {
+  metadataBase: new URL(nextUrl),
   robots: {
     'max-image-preview': 'large',
     follow: true,
@@ -31,6 +33,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     creator: '@PestanaDev',
     site: '@mAIcover',
+    images: '',
   },
 }
 
