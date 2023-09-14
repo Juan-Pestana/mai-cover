@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { signIn } from 'next-auth/react'
 import { signUpSchema } from '@/schema/user.schema'
-
+import { FaLinkedinIn } from 'react-icons/fa'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 type Inputs = {
@@ -101,6 +101,31 @@ function SignUpForm() {
     }
   }
 
+  const linkedInSignIn = async () => {
+    try {
+      await signIn('linkedin', { callbackUrl: '/' }).then((callback) => {
+        if (callback?.error) {
+          setError('notRegisteredInput', {
+            type: 'custom',
+            message: `Error en el inicio de sesión,  ${callback.error}`,
+          })
+          console.log('hubo un error')
+        }
+
+        if (callback?.ok && !callback?.error) {
+          //   toast.success('Logged in successfully!')
+          console.log('sesion iniciada')
+        }
+      })
+    } catch (error) {
+      console.log(error)
+      setError('notRegisteredInput', {
+        type: 'custom',
+        message: 'Error en el inicio de sesión',
+      })
+    }
+  }
+
   return (
     <div className="w-full max-w-xl my-10 py-3 px-5 bg-slate-100 rounded-lg shadow-lg">
       <button
@@ -122,9 +147,17 @@ function SignUpForm() {
               clipRule="evenodd"
             />
           </svg>
-          Sign in with Github
+          Sign up with Github
         </div>
       </button>
+      {/* <button
+        type="button"
+        className="flex justify-center w-full content-center text-white bg-[#0a66c2] hover:bg-[#0a66c2]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-lg  py-3 text-center items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 my-3"
+        onClick={linkedInSignIn}
+      >
+        <FaLinkedinIn className="w-5 h-5 mr-2 inline-block text-white" />
+        <div className="items-center content-center">Sign in with LinkedIn</div>
+      </button> */}
       <div>
         <span className=" w-full flex items-center">
           <hr className="flex-1" />{' '}
