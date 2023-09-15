@@ -73,7 +73,10 @@ async function Header() {
           {session?.user ? (
             <div className="flex gap-4 items-center justify-between mx-2">
               <Suspense>
-                <NewDocServ userId={session.user.id} role={session.user.role} />
+                <NewDocServ
+                  userId={session.user.id}
+                  role={session.user.role!}
+                />
               </Suspense>
               <DropdownMenu>
                 <DropdownMenuTrigger className="rounded-full overflow-hidden ml-2 mr-3 h-10 w-10 lg:h-12 lg:w-12 border-2 border-white">
