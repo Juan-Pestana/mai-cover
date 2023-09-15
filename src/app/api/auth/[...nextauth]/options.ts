@@ -28,7 +28,6 @@ export const options: NextAuthOptions = {
           name: profile.name,
           email: profile.email,
           image: profile.picture ?? defaultImage,
-          role: 'client',
         }
       },
     }),
@@ -101,7 +100,7 @@ export const options: NextAuthOptions = {
       }
 
       if (user) {
-        token.role = user.role
+        token.role = user.role!
         token.id = user.id
       }
       return token

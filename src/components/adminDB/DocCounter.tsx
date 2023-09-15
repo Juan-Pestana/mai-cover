@@ -57,9 +57,9 @@ async function DocCounter({ count }: IDocCounterProps) {
 
   return (
     <div
-      className={`h-44 flex-1 min-w-[150px]  text-white rounded-lg p-3 md:max-w-[25%] ${color}`}
+      className={`h-34 flex-1 min-w-[150px]  text-white rounded-lg p-3 md:max-w-[25%] lg:h-44 ${color}`}
     >
-      <div className="flex flex-col justify-between h-full pb-5">
+      <div className="flex flex-col justify-between h-full">
         <div>
           <h3 className="text-2xl">{text}</h3>
         </div>
