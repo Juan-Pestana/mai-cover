@@ -108,7 +108,7 @@ export const options: NextAuthOptions = {
   },
   events: {
     async createUser({ user }) {
-      const res = await fetch('/api/send/welcome', {
+      const res = await fetch('https://mai-cover.com/api/send/welcome', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
