@@ -2,7 +2,6 @@ import type { NextAuthOptions } from 'next-auth'
 import GitHubProvider from 'next-auth/providers/github'
 import LinkedinProvider from 'next-auth/providers/linkedin'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { GithubProfile } from 'next-auth/providers/github'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import { prisma } from '@/lib/prismaClient'
 import { loginSchema } from '@/schema/user.schema'
@@ -107,12 +106,29 @@ export const options: NextAuthOptions = {
     },
     // If you want to use the role in client components
   },
+  events: {
+    async createUser({ user }) {
+      const res = await fetch('/api/send/welcome', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          userName: user.name,
+          email: user.email,
+        }),
+      })
+      if (!res.ok) {
+        console.log(`el email de Bienvenida no se ha enviado a ${user.email}`)
+      }
+    },
+  },
   session: {
     strategy: 'jwt',
   },
   pages: {
     signIn: '/signin',
-    newUser: '/signup',
+    newUser: '/',
   },
   debug: false,
 }
