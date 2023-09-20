@@ -106,23 +106,23 @@ export const options: NextAuthOptions = {
     },
     // If you want to use the role in client components
   },
-  events: {
-    async createUser({ user }) {
-      const res = await fetch('https://mai-cover.com/api/send/welcome', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify({
-          userName: user.name,
-          email: user.email,
-        }),
-      })
-      if (!res.ok) {
-        console.log(`el email de Bienvenida no se ha enviado a ${user.email}`)
-      }
-    },
-  },
+  // events: {
+  //   async createUser({ user }) {
+  //     const res = await fetch('https://mai-cover.com/api/send/welcome', {
+  //       method: 'POST',
+  //       headers: {
+  //         'content-type': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         userName: user.name,
+  //         email: user.email,
+  //       }),
+  //     })
+  //     if (!res.ok) {
+  //       console.log(`el email de Bienvenida no se ha enviado a ${user.email}`)
+  //     }
+  //   },
+  // },
   session: {
     strategy: 'jwt',
   },
