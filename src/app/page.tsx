@@ -17,12 +17,12 @@ export default async function asyncHome() {
           <div className="flex-1 flex items-center xl:pr-14 ">
             <div className="py-0 md:pr-11">
               <h1
-                className={`text-3xl text-center leading-normal font-semibold ${garamont.className} md:text-left xl:text-4xl`}
+                className={`${garamont.className} text-3xl text-center leading-normal font-semibold md:text-left xl:text-4xl`}
               >
                 Ayúdate de la Inteligencia Artificial para generar tu carta de
                 presentación.
               </h1>
-              <div className="mt-6 text-lg leading-8 text-gray-600">
+              <div className="mt-6  text-lg leading-8 text-gray-600">
                 <p>
                   Si vas en serio en tu búsqueda de empleo, no descuides ni el
                   más mínimo detalle. Una buena carta adaptada a cada oferta,

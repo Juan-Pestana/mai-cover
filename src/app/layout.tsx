@@ -41,12 +41,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  console.log(inter.className)
   return (
     <html lang="es-ES">
       <AuthProvider>
         <body
-          className={`${inter.className} relative flex flex-col h-[100dvh]`}
+          className={`${inter.className} font-inter relative flex flex-col h-[100dvh]`}
         >
           <Header />
           {children}
