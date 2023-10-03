@@ -45,7 +45,7 @@ export default function RootLayout({
     <html lang="es-ES">
       <AuthProvider>
         <body
-          className={`${inter.className} font-inter relative flex flex-col h-[100dvh]`}
+          className={`${inter.className} relative flex flex-col h-[100dvh]`}
         >
           <Header />
           {children}

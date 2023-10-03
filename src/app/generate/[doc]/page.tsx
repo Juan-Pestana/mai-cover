@@ -4,6 +4,7 @@ import RecomendationStream from '@/components/streamers/RecomendationStream'
 import { getServerSession } from 'next-auth/next'
 import { options } from '../../api/auth/[...nextauth]/options'
 import { redirect } from 'next/navigation'
+import Link from 'next/link'
 import PositionStream from '@/components/streamers/PositionStream'
 
 export default async function GereatePage({
@@ -21,7 +22,7 @@ export default async function GereatePage({
 
   if (params.doc === 'cover_letter') {
     return (
-      <main className="flex items-center justify-center p-3  ">
+      <main className="relative flex items-center justify-center p-3  ">
         <div className="flex flex-col w-full justify-center items-center lg:mt-6">
           <CoverStreamVer profile_adapt={false} />
         </div>

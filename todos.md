@@ -1,17 +1,24 @@
 [x] meter las rutas stream en generate
 
-[ ] generar el servicio de adaptar cv
+[x] generar el servicio de adaptar cv
 
-[ ] nombres de opciones en el dashboard
+[x] nombres de opciones en el dashboard
 
 [ ] volver a inicio desde las paginas stream
 
 [x] crear componente de servicios para la landing
 
-[ ] emails transaccionales
+[x] emails transaccionales
 
 [x] crear footer
 
-[ ] Linkedin login
+[x] Linkedin login
 
-[ ] revisar middleware control de roles para servicios
+[x] revisar middleware control de roles para servicios
+
+FAQ's
+
+Es seguro incorporar mi perfil en mAI-Cover?
+Qué tecnologías se utilizan para generar los documentos?
+mAI-Cover es mejor que ChatGPT para generar esta clase de documentos?
+Puedo utilizar los documentos de mAI-Cover directamente en mis procesos?

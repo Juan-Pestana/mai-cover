@@ -11,6 +11,7 @@ export const loginSchema = z.object({
     .max(12, {
       message: 'La contraseña debe contener entre 4 y 12 caracteres',
     }),
+  notRegisteredInput: z.string().optional(),
 })
 
 export const signUpSchema = loginSchema.extend({

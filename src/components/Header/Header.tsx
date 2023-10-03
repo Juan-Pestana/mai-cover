@@ -14,7 +14,7 @@ async function Header() {
 
   return (
     <>
-      <div className="bg-yellow-200 text-center text-sm md:text-base">
+      {/* <div className="bg-yellow-200 text-center text-sm md:text-base">
         <p>
           Estás probando mAI-Cover? Regístrate, prueba a generar alguno de
           nuestros documentos y{' '}
@@ -27,7 +27,7 @@ async function Header() {
         >
           Déjanos tu opinión
         </a>
-      </div>
+      </div> */}
 
       <header className="block bg-black w-full p-2 lg:p-3">
         <div className="flex justify-between items-center text-xl">

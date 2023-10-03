@@ -12,6 +12,7 @@ import Image from 'next/image'
 import StarRating from '../ui/starRating'
 import { useCopyToClipboard } from '@/lib/hooks/useClipboard'
 import { redirect, useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 function CoverStreamVer({ profile_adapt }: { profile_adapt: boolean }) {
   const { profile_used, offer_used } = useStore((state) => state)
@@ -104,6 +105,7 @@ function CoverStreamVer({ profile_adapt }: { profile_adapt: boolean }) {
             ? 'Se ha guardado la carta'
             : 'Se ha guardado la Recomendación sobre tu CV',
           description: 'Puedes encontrarla en tus Documentos',
+          // action: () => router.push('/'),
         })
         // router.push(`/dashboard?show=letter&id=${letter.id}`)
       }
@@ -215,7 +217,7 @@ function CoverStreamVer({ profile_adapt }: { profile_adapt: boolean }) {
           )}
         </div>
       ) : (
-        <div className="">
+        <div className="relative">
           <div className="text-center py-3">
             <p>Valora el Documento</p>
             <StarRating rating={rating} setRating={setRating} />
