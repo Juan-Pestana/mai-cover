@@ -44,7 +44,7 @@ export default function Features() {
   const lastFeatures = features.slice(3)
 
   return (
-    <div className="bg-white py-20">
+    <div className="bg-white pt-15 pb-20">
       <div className="mx-auto px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-base font-semibold leading-7 text-indigo-600">
@@ -56,9 +56,9 @@ export default function Features() {
             Accede a la generación de nuestros documentos y servicios.
           </h3>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            Continuamos desarrollando nuevos recursos y servicios Premium que te
-            ayudarán a poner en palabras, las consideraciones más complejas
-            sobre ti mismo o tus colaboradores
+            Continuamos desarrollando nuevos recursos y servicios que te
+            ayudarán a poner en palabras las consideraciones más complejas sobre
+            ti mismo o tus colaboradores.
           </p>
         </div>
         <div className="mx-auto mt-16 w-full mb-7 sm:mt-20 lg:mt-24 lg:max-w-7xl">

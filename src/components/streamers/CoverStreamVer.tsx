@@ -13,6 +13,7 @@ import StarRating from '../ui/starRating'
 import { useCopyToClipboard } from '@/lib/hooks/useClipboard'
 import { redirect, useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { ToastAction } from '../ui/toast'
 
 function CoverStreamVer({ profile_adapt }: { profile_adapt: boolean }) {
   const { profile_used, offer_used } = useStore((state) => state)
@@ -105,7 +106,12 @@ function CoverStreamVer({ profile_adapt }: { profile_adapt: boolean }) {
             ? 'Se ha guardado la carta'
             : 'Se ha guardado la Recomendación sobre tu CV',
           description: 'Puedes encontrarla en tus Documentos',
-          // action: () => router.push('/'),
+          variant: 'success',
+          action: (
+            <ToastAction altText="ir a Dashboard" asChild>
+              <Link href="/dashboard">Dashboard</Link>
+            </ToastAction>
+          ),
         })
         // router.push(`/dashboard?show=letter&id=${letter.id}`)
       }

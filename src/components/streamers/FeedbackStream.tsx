@@ -11,6 +11,8 @@ import ReactMarkdown from 'react-markdown'
 import { SiTinyletter } from 'react-icons/si'
 import StarRating from '../ui/starRating'
 import { FaCopy, FaSave } from 'react-icons/fa'
+import { ToastAction } from '../ui/toast'
+import Link from 'next/link'
 
 function FeedbackStream() {
   const { feedback } = useStore((state) => state)
@@ -88,6 +90,12 @@ function FeedbackStream() {
         toast({
           title: 'Se ha guardado el feedback',
           description: 'Puedes encontrarla en tus Documentos',
+          variant: 'success',
+          action: (
+            <ToastAction altText="ir a Dashboard" asChild>
+              <Link href="/dashboard">Documentos</Link>
+            </ToastAction>
+          ),
         })
       }
     } catch (error) {

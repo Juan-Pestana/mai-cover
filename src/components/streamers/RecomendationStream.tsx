@@ -11,6 +11,8 @@ import ReactMarkdown from 'react-markdown'
 import { SiTinyletter } from 'react-icons/si'
 import StarRating from '../ui/starRating'
 import { FaCopy, FaSave } from 'react-icons/fa'
+import { ToastAction } from '../ui/toast'
+import Link from 'next/link'
 
 function RecomendationStream() {
   const { recomendation } = useStore((state) => state)
@@ -86,6 +88,12 @@ function RecomendationStream() {
         toast({
           title: 'Se ha guardado la carta de Recomendación',
           description: 'Puedes encontrarla en tus Documentos',
+          variant: 'success',
+          action: (
+            <ToastAction altText="ir a Dashboard" asChild>
+              <Link href="/dashboard">Documentos</Link>
+            </ToastAction>
+          ),
         })
       }
     } catch (error) {
