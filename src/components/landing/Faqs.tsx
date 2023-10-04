@@ -28,7 +28,7 @@ function Faqs() {
             <p>
               En mAI-Cover hemos diseñado los Prompts y la generación de
               documentos, para que en ningún caso sea necesario incorporar
-              información que permita identificar a los usuarios o
+              información personal que permita identificar a los usuarios o
               colaboradores.
             </p>
             <br />
@@ -46,13 +46,12 @@ function Faqs() {
           </AccordionTrigger>
           <AccordionContent className="text-gray-600 md:text-lg">
             <p>
-              Actualmente buscamos que los usuarios puedan aprobechar la
-              generación de hasta 15 documentos de forma totalmente gratuita,
-              con el objetivo de que puedan valorarlos. De este modo podremos
-              seleccionar solo los mejores documentos generados, para alimentar,
-              entrenar y especializar nuestra solución en la generación
-              específica de esta clase de documentos, mejorando de este modo
-              cada vez más su calidad.
+              Actualmente los usuarios podrán aprobechar la generación de hasta
+              15 documentos de forma totalmente gratuita, con el objetivo de que
+              puedan valorarlos. De este modo podremos seleccionar solo los
+              mejores documentos generados, para entrenar y especializar nuestra
+              solución en la creación específica de esta clase de documentos, y
+              mejorar de este modo cada vez más su calidad.
             </p>
             <br />
             <p>
@@ -85,7 +84,7 @@ function Faqs() {
             </p>
             <br />
             <p>
-              Sin embargo y a medida que podamos ir entrenando el modelo con los
+              Sin embargo y a medida que vayamos entrenando el modelo con los
               ejemplos generados, podremos desarrollar la IA con un uso
               específico. Sin duda en un futuro próximo, la calidad de los
               documentos generados estará muy por encima de chatGPT y otros
@@ -107,8 +106,8 @@ function Faqs() {
             <br />
             <p>
               En cualquier caso, no podemos dejar de recomendar a los usuarios,
-              el revisar, ajustar, adaptar y personalizar el documento generado,
-              esto es así, tanto por cuestiones éticas, como de calidad.
+              el revisar, adaptar y personalizar el documento generado, esto es
+              así, tanto por cuestiones éticas, como de calidad.
             </p>
             <br />
             <p>
