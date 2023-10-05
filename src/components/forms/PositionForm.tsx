@@ -114,7 +114,7 @@ function PositionForm() {
           className="w-full mt-4 bg-black py-3 text-slate-50 rounded-lg text-lg hover:bg-[#24292F]/80 md:text-xl"
           type="submit"
         >
-          Generar Detalle de la Posición
+          Desarrolla la posición
         </button>
       </form>
     </div>

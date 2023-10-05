@@ -22,7 +22,7 @@ function Faqs() {
       >
         <AccordionItem value="item-1">
           <AccordionTrigger className="w-full">
-            ¿Es Seguro incorporar mi perfil en mAI-Cover?
+            ¿Es seguro incorporar mi perfil en mAI-Cover?
           </AccordionTrigger>
           <AccordionContent className=" text-gray-600 md:text-lg">
             <p>
@@ -42,16 +42,16 @@ function Faqs() {
         </AccordionItem>
         <AccordionItem value="item-2">
           <AccordionTrigger className="w-full ">
-            ¿mAI Cover seguira siendo un servicio gratuito en el futuro?
+            ¿mAI Cover seguirá siendo un servicio gratuito en el futuro?
           </AccordionTrigger>
           <AccordionContent className="text-gray-600 md:text-lg">
             <p>
-              Actualmente los usuarios podrán aprobechar la generación de hasta
-              15 documentos de forma totalmente gratuita, con el objetivo de que
-              puedan valorarlos. De este modo podremos seleccionar solo los
-              mejores documentos generados, para entrenar y especializar nuestra
+              Actualmente los usuarios podrán aprovechar la generación de hasta
+              15 documentos de forma gratuita, con el objetivo de poder
+              valorarlos. De este modo, podremos seleccionar solo los mejores
+              documentos generados, para entrenar y especializar nuestra
               solución en la creación específica de esta clase de documentos, y
-              mejorar de este modo cada vez más su calidad.
+              de este modo mejorar continuamente el resultado.
             </p>
             <br />
             <p>
@@ -106,8 +106,8 @@ function Faqs() {
             <br />
             <p>
               En cualquier caso, no podemos dejar de recomendar a los usuarios,
-              el revisar, adaptar y personalizar el documento generado, esto es
-              así, tanto por cuestiones éticas, como de calidad.
+              el revisar, adaptar y personalizar el documento generado, tanto
+              por cuestiones éticas como de calidad.
             </p>
             <br />
             <p>

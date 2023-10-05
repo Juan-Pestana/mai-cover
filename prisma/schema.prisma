@@ -50,7 +50,7 @@ model User {
   image          String?
   role           Role            @default(client)
   hashedPassword String?
-  availableDocs  Int             @default(5)
+  availableDocs  Int             @default(15)
   payments       Payment[]
   accounts       Account[]
   letters        Letter[]
