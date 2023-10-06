@@ -21,7 +21,7 @@ export default async function asyncHome() {
                 className={`${garamont.className} text-3xl text-center leading-normal font-semibold md:text-left xl:text-4xl`}
               >
                 Ayúdate de la Inteligencia Artificial para crear los documentos
-                para tu busqueda de empleo o el feedback de tu equipo.
+                para tu búsqueda de empleo o el feedback de tu equipo.
               </h1>
               <div className="mt-6  text-lg leading-8 text-gray-600">
                 <p>
