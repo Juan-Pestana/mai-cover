@@ -5,6 +5,7 @@ import { inter } from '@/app/fonts/fonts'
 import Header from '@/components/Header/Header'
 import { Toaster } from '@/components/ui/toaster'
 import { nextUrl } from '@/lib/url'
+import PlausibleProvider from 'next-plausible'
 
 export const metadata: Metadata = {
   metadataBase: new URL(nextUrl),
@@ -43,6 +44,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es-ES">
+      <head>
+        <PlausibleProvider domain="mai-cover.com" />
+      </head>
       <AuthProvider>
         <body
           className={`${inter.className} relative flex flex-col h-[100dvh]`}
