@@ -14,10 +14,10 @@ export const metadata: Metadata = {
     follow: true,
     index: true,
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-  },
+  // viewport: {
+  //   width: 'device-width',
+  //   initialScale: 1,
+  // },
   title: 'mAI-Cover',
   description:
     'La IA que te apoya en tu búsqueda de empleo y el feedaback a tu equipo',
@@ -44,9 +44,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es-ES">
-      {/* <head>
+      <head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1"
+        ></meta>
         <PlausibleProvider domain="mai-cover.com" />
-      </head> */}
+      </head>
       <AuthProvider>
         <body
           className={`${inter.className} relative flex flex-col h-[100dvh]`}
