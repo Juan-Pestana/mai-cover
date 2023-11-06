@@ -34,7 +34,7 @@ function SignInForm() {
         if (res?.error) {
           setError('notRegisteredInput', {
             type: 'custom',
-            message: `Error en el inicio de sesión lalala`,
+            message: `Error en el inicio de sesión`,
           })
         } else {
           console.log('sesion iniciada')

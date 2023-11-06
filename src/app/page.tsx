@@ -4,13 +4,13 @@ import Link from 'next/link'
 import { getServerSession } from 'next-auth'
 import { options } from './api/auth/[...nextauth]/options'
 import Pricing from '@/components/landing/Pricing'
+import LandingButton from '@/components/landing/LandingButton'
 import Features from '@/components/landing/Features'
 import Faqs from '@/components/landing/Faqs'
 import Footer from '@/components/landing/Footer'
+import { Suspense } from 'react'
 
 export default async function asyncHome() {
-  const session = await getServerSession(options)
-
   return (
     <>
       <main className="flex flex-col items-center   ">
@@ -36,23 +36,18 @@ export default async function asyncHome() {
               </div>
 
               <div className="flex mt-8 md:w-5/6 md:text-left">
-                {session ? (
-                  <>
+                <Suspense
+                  fallback={
                     <Link
                       className="px-4 py-2 border-2 border-black hover:shadow-2xl hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all lg:text-lg lg:px-5 lg:py-2"
                       href="#features"
                     >
                       Empieza ya
                     </Link>
-                  </>
-                ) : (
-                  <Link
-                    className="px-4 py-2 border-2 border-black text-xl hover:bg-[#24292F]/90 hover:text-white transition-all lg:text-xl lg:px-5 lg:py-2"
-                    href="/signup"
-                  >
-                    Regístrate
-                  </Link>
-                )}
+                  }
+                >
+                  <LandingButton />
+                </Suspense>
               </div>
             </div>
           </div>
