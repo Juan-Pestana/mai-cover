@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   title: 'mAI-Cover',
   description:
     'La IA que te apoya en tu búsqueda de empleo y el feedaback a tu equipo',
-  keywords: ['Empleo', 'IA', 'cartas de recomendación', 'Feedback'],
+  keywords: ['Empleo', 'IA', 'Recomendación', 'Feedback', 'Recursos Humanos'],
   openGraph: {
     title: 'mAI-Cover',
     description: 'La IA que te apoya en tu búsqueda de empleo.',
