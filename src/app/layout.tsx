@@ -44,9 +44,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es-ES">
-      <head>
+      {/* <head>
         <PlausibleProvider domain="mai-cover.com" />
-      </head>
+      </head> */}
       <AuthProvider>
         <body
           className={`${inter.className} relative flex flex-col h-[100dvh]`}
